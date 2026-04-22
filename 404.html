@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found — Space to Be</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Pontano+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #FFF9F0;
+      --green:  #60A484;
+      --forest: #1E2618;
+      --black:  #0F0F0F;
+      --line:   rgba(30,38,24,0.14);
+      --muted:  rgba(30,38,24,0.5);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--forest);
+      font-family: 'Pontano Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.75;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2 {
+      font-family: 'Tenor Sans', serif;
+      font-weight: 400;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5vw;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo img { height: 42px; display: block; }
+
+    a.nav-btn {
+      font-family: 'Pontano Sans', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--bg); background: var(--green);
+      text-decoration: none; padding: 0.55rem 1.6rem;
+      transition: background 0.22s;
+    }
+    a.nav-btn:hover { background: var(--forest); }
+
+    /* ─── MAIN ─── */
+    main {
+      flex: 1;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 4rem 5vw;
+    }
+
+    .four-oh-four {
+      font-family: 'Tenor Sans', serif;
+      font-size: clamp(6rem, 20vw, 14rem);
+      line-height: 1;
+      color: var(--green);
+      opacity: 0.18;
+      user-select: none;
+      margin-bottom: -2rem;
+      position: relative;
+      z-index: 0;
+    }
+
+    .message {
+      position: relative; z-index: 1;
+      opacity: 0; animation: fadeUp 0.7s 0.2s ease forwards;
+    }
+
+    .message h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--black); margin-bottom: 1rem;
+    }
+
+    .message p {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 40ch; margin: 0 auto 2.5rem;
+    }
+
+    a.btn-green {
+      display: inline-block;
+      font-family: 'Pontano Sans', sans-serif;
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; padding: 0.9rem 2.6rem;
+      background: var(--green); color: var(--bg);
+      transition: background 0.22s, transform 0.18s;
+    }
+    a.btn-green:hover { background: var(--forest); transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black); color: rgba(255,249,240,0.5);
+      padding: 2.2rem 5vw;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: 0.78rem; }
+    .footer-links { display: flex; gap: 2.2rem; }
+    footer a { font-size: 0.78rem; color: rgba(255,249,240,0.6); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--green); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 500px) {
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="/">
+      <img src="https://images.squarespace-cdn.com/content/v1/6431c245d7c6bb38963e8967/6a4c7498-4b96-40a7-a190-0c0315600b5d/logo+no+bg.png?format=1500w" alt="Space to Be" />
+    </a>
+    <a class="nav-btn" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Get in touch</a>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+    <p class="four-oh-four">404</p>
+    <div class="message">
+      <h1>Page not found</h1>
+      <p>This page doesn't exist or may have moved. Let's get you back.</p>
+      <a class="btn-green" href="/">Back to home</a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Space to Be</p>
+    <div class="footer-links">
+      <a href="https://j-hn.info/" target="_blank" rel="noopener">John's Website</a>
+      <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>
+    </div>
+  </footer>
+
+</body>
+</html>

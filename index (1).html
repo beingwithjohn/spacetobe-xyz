@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Space to Be — One-to-One with John O</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Pontano+Sans:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #FFF9F0;
+      --green:  #60A484;
+      --forest: #1E2618;
+      --black:  #0F0F0F;
+      --line:   rgba(30,38,24,0.14);
+      --muted:  rgba(30,38,24,0.5);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--forest);
+      font-family: 'Pontano Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Tenor Sans', serif;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5vw;
+      background: rgba(255,249,240,0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo img { height: 42px; display: block; }
+
+    a.nav-btn {
+      font-family: 'Pontano Sans', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--bg); background: var(--green);
+      text-decoration: none; padding: 0.55rem 1.6rem;
+      transition: background 0.22s;
+    }
+    a.nav-btn:hover { background: var(--forest); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100svh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 10rem 5vw 6rem;
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; bottom: -15%; right: -8%;
+      width: 55vw; height: 55vw;
+      max-width: 650px; max-height: 650px;
+      border-radius: 50%;
+      border: 1px solid rgba(96,164,132,0.18);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-family: 'Pontano Sans', sans-serif;
+      font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1.6rem;
+      opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Tenor Sans', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      color: var(--black); white-space: nowrap;
+      opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards;
+    }
+
+    .hero-sub {
+      margin-top: 1.6rem;
+      font-size: clamp(1.2rem, 2vw, 1.6rem); color: var(--muted); max-width: 46ch;
+      opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards;
+    }
+
+    .hero-actions {
+      margin-top: 2.8rem;
+      opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards;
+    }
+
+    /* ─── BUTTONS ─── */
+    a.btn {
+      display: inline-block;
+      font-family: 'Pontano Sans', sans-serif;
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; padding: 0.9rem 2.6rem;
+      transition: background 0.22s, transform 0.18s;
+    }
+
+    a.btn-dark  { background: var(--forest); color: var(--bg); }
+    a.btn-dark:hover  { background: var(--black); transform: translateY(-2px); }
+
+    a.btn-green { background: var(--green); color: var(--bg); }
+    a.btn-green:hover { background: var(--forest); transform: translateY(-2px); }
+
+    a.btn-light { background: var(--bg); color: var(--forest); border: 1px solid var(--forest); }
+    a.btn-light:hover { background: var(--forest); color: var(--bg); }
+
+    /* ─── RULE ─── */
+    .rule { border: none; border-top: 1px solid var(--line); }
+
+    /* ─── SECTION WRAPPER ─── */
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 7rem 5vw; }
+
+    .section-label {
+      font-family: 'Pontano Sans', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 2rem;
+    }
+
+    /* ─── INTRO ─── */
+    .intro p {
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      color: var(--forest); max-width: 62ch;
+    }
+    .intro p + p { margin-top: 1.3rem; }
+
+    /* ─── WHAT HAPPENS ─── */
+    .what-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3.5rem 8rem; margin-top: 2.5rem;
+    }
+    .what-grid h2 {
+      grid-column: 1 / -1;
+      font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--black);
+    }
+    .what-grid .col p { color: var(--forest); margin-bottom: 0.9rem; font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
+    .what-grid .col p:last-child { margin-bottom: 0; }
+
+    /* ─── WHO BAND ─── */
+    .who-band { background: var(--forest); padding: 7rem 5vw; }
+    .who-inner { max-width: 1080px; margin: 0 auto; }
+    .who-band .section-label { color: rgba(255,249,240,0.4); }
+    .who-band h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem); color: var(--bg); margin-bottom: 1.2rem;
+    }
+    .who-band p { color: rgba(255,249,240,0.75); font-size: 1.05rem; max-width: 52ch; }
+
+    /* ─── TESTIMONIALS ─── */
+    .t-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.4rem; margin-top: 3rem;
+    }
+
+    .t-card {
+      background: #fff; border: 1px solid var(--line);
+      padding: 2rem 1.8rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.55s, transform 0.55s, box-shadow 0.3s;
+    }
+    .t-card.visible { opacity: 1; transform: translateY(0); }
+    .t-card.visible:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(30,38,24,0.09);
+    }
+    .t-card:nth-child(2) { transition-delay: 0.08s; }
+    .t-card:nth-child(3) { transition-delay: 0.16s; }
+    .t-card:nth-child(4) { transition-delay: 0.24s; }
+    .t-card:nth-child(5) { transition-delay: 0.32s; }
+
+    .t-avatar {
+      width: 62px; height: 62px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+      background: rgba(96,164,132,0.1);
+      border: 2px dashed rgba(96,164,132,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .t-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .t-avatar .ph { font-size: 0.55rem; letter-spacing: 0.05em; text-align: center; color: var(--green); line-height: 1.4; padding: 4px; }
+
+    .t-quote { font-size: 0.97rem; font-style: italic; line-height: 1.65; color: var(--forest); flex: 1; }
+    .t-name { font-family: 'Tenor Sans', serif; font-size: 0.95rem; color: var(--black); }
+    .t-role { font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
+
+    /* ─── JOHN PHOTO SECTION ─── */
+    .john-section {
+      max-width: 1080px; margin: 0 auto;
+      padding: 5rem 5vw 7rem;
+    }
+
+    .photo-frame {
+      aspect-ratio: 16/9;
+      background: rgba(96,164,132,0.07);
+      border: 2px dashed rgba(96,164,132,0.28);
+      overflow: hidden; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .photo-frame img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .photo-frame .ph {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; color: var(--green);
+      font-size: 0.73rem; letter-spacing: 0.1em; line-height: 1.7;
+    }
+    .photo-frame .ph-icon { font-size: 2rem; opacity: 0.4; margin-bottom: 0.4rem; }
+
+    .john-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--black); margin-bottom: 1.4rem;
+    }
+    .john-text p { color: var(--forest); margin-bottom: 1rem; }
+    .john-text p:last-of-type { margin-bottom: 2rem; }
+
+    /* ─── CTA BAND ─── */
+    .cta-band { background: var(--green); padding: 7rem 5vw; text-align: center; }
+    .cta-band h2 {
+      font-size: clamp(2rem, 4.5vw, 3.6rem); color: var(--bg); margin-bottom: 2.4rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black); color: rgba(255,249,240,0.5);
+      padding: 2.2rem 5vw;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: 0.78rem; }
+    .footer-links { display: flex; gap: 2.2rem; }
+    footer a { font-size: 0.78rem; color: rgba(255,249,240,0.6); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--green); }
+
+    /* ─── CUSTOM CURSOR ─── */
+    * { cursor: none; }
+
+    #cursor {
+      position: fixed;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+      mix-blend-mode: multiply;
+    }
+
+    #cursor.grow {
+      width: 28px; height: 28px;
+      opacity: 0.5;
+    }
+
+    /* ─── CARD HOVER LIFT ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── CARD HOVER LIFT ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 720px) {
+      .what-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .what-grid h2 { grid-column: 1; }
+      .john-section { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#">
+      <!-- TO DO: download logo and save as images/logo.png, then change src below -->
+      <img src="https://images.squarespace-cdn.com/content/v1/6431c245d7c6bb38963e8967/6a4c7498-4b96-40a7-a190-0c0315600b5d/logo+no+bg.png?format=1500w" alt="Space to Be" />
+    </a>
+    <a class="nav-btn" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Get in touch</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <h1>What is possible?</h1>
+    <p class="hero-sub">Space to Be is one-to-one space with John.</p>
+    <div class="hero-actions">
+      <a class="btn btn-green" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Get in touch</a>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- INTRO -->
+  <div class="wrap intro">
+    <p class="reveal">I offer the kind of support that only arrives through real relationship.</p>
+    <p class="reveal reveal-delay-1">Whether we meet only once or a hundred times, my intention is to support you to meet every kind of change.</p>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- WHAT HAPPENS -->
+  <div class="wrap">
+    <p class="section-label reveal">What happens</p>
+    <div class="what-grid">
+      <h2 class="reveal reveal-delay-1">How we work together</h2>
+      <div class="col reveal reveal-delay-2">
+        <p>I trust your intelligence.</p>
+        <p>Together we become curious about what's true.</p>
+        <p>You develop ways to stay connected to your whole intelligence.</p>
+      </div>
+      <div class="col reveal reveal-delay-3">
+        <p>Each session responds to where you are.</p>
+        <p>Overall, you're building the capacity to be with what's happening while it's happening, see it clearly, and trust your own intelligence.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHO -->
+  <div class="who-band">
+    <div class="who-inner">
+      <p class="section-label reveal">Who this is for</p>
+      <h2 class="reveal reveal-delay-1">Founders, creatives, and people in transition.</h2>
+      <p class="reveal reveal-delay-2">I work with people navigating change. Inner and outer.</p>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="wrap">
+    <p class="section-label">What people say</p>
+    <div class="t-grid">
+
+      <div class="t-card">
+        <div class="t-avatar">
+          <!-- Save as images/laura.jpg -->
+          <img src="images/laura.jpg" alt="Laura F" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <p class="ph" style="display:none">Upload<br>laura.jpg</p>
+        </div>
+        <p class="t-quote">"John has this rare capacity to make you feel at ease, accepted, and guided."</p>
+        <div>
+          <p class="t-name">Laura F</p>
+          <p class="t-role">Writer &amp; teacher</p>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-avatar">
+          <!-- Save as images/manansh.png -->
+          <img src="images/manansh.png" alt="Manansh" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <p class="ph" style="display:none">Upload<br>manansh.png</p>
+        </div>
+        <p class="t-quote">"John's words are clear, lucid, and deeply supportive."</p>
+        <div>
+          <p class="t-name">Manansh</p>
+          <p class="t-role">Founder &amp; UX researcher</p>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-avatar">
+          <!-- Save as images/clfx.png -->
+          <img src="images/clfx.png" alt="Sean P" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <p class="ph" style="display:none">Upload<br>clfx.png</p>
+        </div>
+        <p class="t-quote">"John's spiritual friendship changed how I experience life itself."</p>
+        <div>
+          <p class="t-name">Sean P</p>
+          <p class="t-role">Founder &amp; industrial designer</p>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-avatar">
+          <!-- Save as images/dani.png -->
+          <img src="images/dani.png" alt="Daniel G" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <p class="ph" style="display:none">Upload<br>dani.png</p>
+        </div>
+        <p class="t-quote">"John helped me understand what I was really looking for and make it real."</p>
+        <div>
+          <p class="t-name">Daniel G</p>
+          <p class="t-role">Artist &amp; musician</p>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-avatar">
+          <!-- Save as images/CArolina.jpeg -->
+          <img src="images/CArolina.jpeg" alt="Carolina M" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <p class="ph" style="display:none">Upload<br>CArolina.jpeg</p>
+        </div>
+        <p class="t-quote">"What I love most is how genuine and supportive John is."</p>
+        <div>
+          <p class="t-name">Carolina M</p>
+          <p class="t-role">Founder &amp; fashion designer</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- JOHN PHOTO -->
+  <div class="john-section">
+    <div class="photo-frame">
+      <!-- Save as images/DSC00393.jpg -->
+      <img src="images/DSC00393.jpg" alt="John O"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <div class="ph" style="display:none">
+        <span class="ph-icon">&#9654;</span>
+        Upload DSC00393.jpg
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>Ready to get started?</h2>
+    <a class="btn btn-green" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Get in touch</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Space to Be</p>
+    <div class="footer-links">
+      <a href="https://j-hn.info/" target="_blank" rel="noopener">John's Website</a>
+      <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── CUSTOM CURSOR ──
+    const cursor = document.getElementById('cursor');
+    let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    let tx = cx, ty = cy;
+
+    document.addEventListener('mousemove', e => {
+      tx = e.clientX; ty = e.clientY;
+    });
+
+    // Hover grow on interactive elements
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+    });
+
+    // Smooth cursor follow
+    (function animateCursor() {
+      cx += (tx - cx) * 0.18;
+      cy += (ty - cy) * 0.18;
+      cursor.style.left = cx + 'px';
+      cursor.style.top  = cy + 'px';
+      requestAnimationFrame(animateCursor);
+    })();
+
+    // ── HERO PARALLAX ──
+    const hero = document.getElementById('hero');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const heroH1  = hero.querySelector('h1');
+      const heroSub = hero.querySelector('.hero-sub');
+      const heroAct = hero.querySelector('.hero-actions');
+      if (scrolled < window.innerHeight) {
+        const offset = scrolled * 0.22;
+        if (heroH1)  heroH1.style.transform  = `translateY(${offset}px)`;
+        if (heroSub) heroSub.style.transform  = `translateY(${offset * 0.8}px)`;
+        if (heroAct) heroAct.style.transform  = `translateY(${offset * 0.6}px)`;
+      }
+    }, { passive: true });
+
+    // ── SCROLL REVEAL ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // ── TESTIMONIAL CARD SCROLL REVEAL ──
+    const cards = document.querySelectorAll('.t-card');
+    const cardObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    cards.forEach(c => cardObs.observe(c));
+  </script>
+
+</body>
+</html>
