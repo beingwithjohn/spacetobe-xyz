@@ -85,14 +85,14 @@
 
     .hero h1 {
       font-family: 'Tenor Sans', serif;
-      font-size: clamp(3rem, 8vw, 6.5rem);
-      color: var(--black); white-space: nowrap;
+      font-size: clamp(2.6rem, 10vw, 6.5rem);
+      color: var(--black);
       opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards;
     }
 
     .hero-sub {
       margin-top: 1.6rem;
-      font-size: clamp(1.2rem, 2vw, 1.6rem); color: var(--muted); max-width: 46ch;
+      font-size: clamp(1rem, 3vw, 1.6rem); color: var(--muted); max-width: 46ch;
       opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards;
     }
 
@@ -291,6 +291,17 @@
       .what-grid h2 { grid-column: 1; }
       .john-section { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: flex-start; }
+      .wrap { padding: 4rem 5vw; }
+      .who-band { padding: 4rem 5vw; }
+      .cta-band { padding: 4rem 5vw; }
+      .hero { padding: 8rem 5vw 4rem; }
+      .john-section { padding: 3rem 5vw 4rem; }
+    }
+
+    /* ─── HIDE CURSOR ON TOUCH ─── */
+    @media (hover: none) and (pointer: coarse) {
+      #cursor { display: none; }
+      * { cursor: auto; }
     }
   </style>
 </head>
@@ -379,7 +390,7 @@
         </div>
         <p class="t-quote">"John's words are clear, lucid, and deeply supportive."</p>
         <div>
-          <p class="t-name">Manansh S</p>
+          <p class="t-name">Manansh</p>
           <p class="t-role">Founder &amp; UX researcher</p>
         </div>
       </div>
@@ -412,9 +423,9 @@
 
       <div class="t-card">
         <div class="t-avatar">
-          <!-- Save as images/carolina.png -->
-          <img src="images/carolina.png" alt="Carolina M" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-          <p class="ph" style="display:none">Upload<br>carolina.png</p>
+          <!-- Save as images/CArolina.jpeg -->
+          <img src="images/CArolina.jpeg" alt="Carolina M" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <p class="ph" style="display:none">Upload<br>CArolina.jpeg</p>
         </div>
         <p class="t-quote">"What I love most is how genuine and supportive John is."</p>
         <div>
@@ -457,44 +468,47 @@
   </footer>
 
   <script>
-    // ── CUSTOM CURSOR ──
+    // ── CUSTOM CURSOR (desktop only) ──
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     const cursor = document.getElementById('cursor');
-    let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-    let tx = cx, ty = cy;
+    if (!isTouchDevice) {
+      let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+      let tx = cx, ty = cy;
 
-    document.addEventListener('mousemove', e => {
-      tx = e.clientX; ty = e.clientY;
-    });
+      document.addEventListener('mousemove', e => {
+        tx = e.clientX; ty = e.clientY;
+      });
 
-    // Hover grow on interactive elements
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
-    });
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+      });
 
-    // Smooth cursor follow
-    (function animateCursor() {
-      cx += (tx - cx) * 0.18;
-      cy += (ty - cy) * 0.18;
-      cursor.style.left = cx + 'px';
-      cursor.style.top  = cy + 'px';
-      requestAnimationFrame(animateCursor);
-    })();
+      (function animateCursor() {
+        cx += (tx - cx) * 0.18;
+        cy += (ty - cy) * 0.18;
+        cursor.style.left = cx + 'px';
+        cursor.style.top  = cy + 'px';
+        requestAnimationFrame(animateCursor);
+      })();
+    }
 
-    // ── HERO PARALLAX ──
+    // ── HERO PARALLAX (desktop only) ──
     const hero = document.getElementById('hero');
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      const heroH1  = hero.querySelector('h1');
-      const heroSub = hero.querySelector('.hero-sub');
-      const heroAct = hero.querySelector('.hero-actions');
-      if (scrolled < window.innerHeight) {
-        const offset = scrolled * 0.22;
-        if (heroH1)  heroH1.style.transform  = `translateY(${offset}px)`;
-        if (heroSub) heroSub.style.transform  = `translateY(${offset * 0.8}px)`;
-        if (heroAct) heroAct.style.transform  = `translateY(${offset * 0.6}px)`;
-      }
-    }, { passive: true });
+    if (!isTouchDevice) {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const heroH1  = hero.querySelector('h1');
+        const heroSub = hero.querySelector('.hero-sub');
+        const heroAct = hero.querySelector('.hero-actions');
+        if (scrolled < window.innerHeight) {
+          const offset = scrolled * 0.22;
+          if (heroH1)  heroH1.style.transform  = `translateY(${offset}px)`;
+          if (heroSub) heroSub.style.transform  = `translateY(${offset * 0.8}px)`;
+          if (heroAct) heroAct.style.transform  = `translateY(${offset * 0.6}px)`;
+        }
+      }, { passive: true });
+    }
 
     // ── SCROLL REVEAL ──
     const revealEls = document.querySelectorAll('.reveal');
