@@ -230,7 +230,10 @@
     .john-text h2 {
       font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--black); margin-bottom: 1.4rem;
     }
-    .john-text p { color: var(--forest); margin-bottom: 1rem; }
+    .john-text p:not(.section-label) {
+      color: var(--forest); margin-bottom: 1rem;
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    }
     .john-text p:last-of-type { margin-bottom: 2rem; }
 
     /* ─── CTA BAND ─── */
