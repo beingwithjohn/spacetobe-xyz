@@ -150,8 +150,11 @@
       grid-column: 1 / -1;
       font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--black);
     }
-    .what-grid .col p { color: var(--forest); margin-bottom: 0.9rem; font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
-    .what-grid .col p:last-child { margin-bottom: 0; }
+    .what-grid .col {
+      display: flex; flex-direction: column; justify-content: space-between;
+      gap: 0.9rem;
+    }
+    .what-grid .col p { color: var(--forest); font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
 
     /* ─── WHO BAND ─── */
     .who-band { background: var(--forest); padding: 7rem 5vw; }
@@ -223,6 +226,7 @@
     }
     .photo-frame .ph-icon { font-size: 2rem; opacity: 0.4; margin-bottom: 0.4rem; }
 
+    .john-text { margin-top: 3.2rem; max-width: 64ch; }
     .john-text h2 {
       font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--black); margin-bottom: 1.4rem;
     }
@@ -451,6 +455,15 @@
         <span class="ph-icon">&#9654;</span>
         Upload DSC00393.jpg
       </div>
+    </div>
+
+    <div class="john-text reveal">
+      <p class="section-label">About</p>
+      <h2>Who I am</h2>
+      <p>My name is John.</p>
+      <p>I believe good relationships are essential for societies to thrive — and that our relationship to ourselves is the place to begin.</p>
+      <p>My work sits at the intersection of meditation, creativity, and lived experience.</p>
+      <a class="btn btn-dark" href="https://j-hn.info/#about" target="_blank" rel="noopener">More about me</a>
     </div>
   </div>
 
