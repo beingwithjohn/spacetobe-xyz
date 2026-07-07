@@ -104,16 +104,10 @@
     .intro p { font-family: var(--display); font-weight: 500; font-size: 44px; line-height: 1.24;
       letter-spacing: -0.02em; color: var(--forest); max-width: 26ch; }
 
-    /* Section head */
-    .sec-head { display: flex; align-items: baseline; gap: 16px; }
-    .sec-idx { font-family: var(--mono); font-size: 13px; color: var(--green); }
-    .sec-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(30,38,24,0.5); }
-
     .block { border-bottom: 1px solid var(--hair); }
 
     /* What happens */
-    .wh-head { padding: 36px 40px 0; }
-    .h-sec { font-family: var(--display); font-weight: 700; font-size: 60px; letter-spacing: -0.03em; color: var(--forest); padding: 16px 40px 40px; }
+    .h-sec { font-family: var(--display); font-weight: 700; font-size: 60px; letter-spacing: -0.03em; color: var(--forest); padding: 48px 40px 40px; }
     .two-col { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--hair); }
     .cell { padding: 40px; display: flex; flex-direction: column; gap: 18px; }
     .cell.br { border-right: 1px solid var(--hair); }
@@ -124,14 +118,12 @@
 
     /* Who */
     .who { padding: 100px 40px; border-bottom: 1px solid var(--hair); text-align: center; }
-    .who .sec-head { justify-content: center; margin-bottom: 28px; }
     .h-who { font-family: var(--display); font-weight: 800; font-size: 76px; line-height: 1.02;
       letter-spacing: -0.04em; color: var(--forest); max-width: 15ch; margin: 0 auto 22px; }
     .who-sub { font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em; color: rgba(30,38,24,0.55); }
 
     /* Testimonials */
-    .tst-head { padding: 36px 40px; }
-    .three-col { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--hair); }
+    .three-col { display: grid; grid-template-columns: repeat(3,1fr); }
     .tcell { padding: 34px; display: flex; flex-direction: column; gap: 20px; }
     .tcell.br { border-right: 1px solid var(--hair); }
     .tcell.bb { border-bottom: 1px solid var(--hair); }
@@ -201,7 +193,7 @@
     }
     @media (max-width: 560px) {
       .hero-inner, .intro, .who, .cta { padding-left: 22px; padding-right: 22px; }
-      .wh-head, .h-sec, .tst-head { padding-left: 22px; padding-right: 22px; }
+      .h-sec { padding-left: 22px; padding-right: 22px; }
       .cell, .tcell, .about-left, .about-right { padding: 28px 22px; }
       .intro { padding-top: 60px; padding-bottom: 60px; }
       .who { padding-top: 70px; padding-bottom: 70px; }
@@ -265,10 +257,6 @@
 
     <!-- WHAT HAPPENS -->
     <div class="block">
-      <div class="sec-head wh-head">
-        <span class="sec-idx">01</span>
-        <span class="sec-label">what happens</span>
-      </div>
       <h2 class="h-sec">How we work together</h2>
       <div class="two-col">
         <div class="cell br">
@@ -286,20 +274,12 @@
 
     <!-- WHO -->
     <div class="who">
-      <div class="sec-head">
-        <span class="sec-idx">02</span>
-        <span class="sec-label">who this is for</span>
-      </div>
       <h2 class="h-who">Founders, creatives, &amp; people in transition.</h2>
       <p class="who-sub">people navigating change — inner and outer</p>
     </div>
 
     <!-- TESTIMONIALS -->
     <div class="block">
-      <div class="sec-head tst-head">
-        <span class="sec-idx">03</span>
-        <span class="sec-label">what people say</span>
-      </div>
       <div class="three-col">
         <div class="tcell br bb">
           <p class="q">“John has this rare capacity to make you feel at ease, accepted, and guided.”</p>
@@ -328,10 +308,6 @@
     <!-- ABOUT (ASCII donut) -->
     <div class="about">
       <div class="about-left">
-        <div class="sec-head" style="margin-bottom:28px;">
-          <span class="sec-idx">04</span>
-          <span class="sec-label">about</span>
-        </div>
         <h2 class="h-about">Who I am</h2>
         <p>My name is John. I believe good relationships are essential for societies to thrive — and that our relationship to ourselves is the place to begin.</p>
         <p>My work sits at the intersection of meditation, creativity, and lived experience — trained as a mindfulness teacher, exploring through practice, travel, writing, and building.</p>
