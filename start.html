@@ -109,11 +109,11 @@
   <div class="progress" id="progress"></div>
 
   <div class="topbar">
-    <a class="home" href="/">
+    <a class="home" href="/" data-close>
       <img src="images/logo.png" alt="" aria-hidden="true" />
       <span>Space to Be</span>
     </a>
-    <a class="home" href="/" aria-label="Close"><span class="x">close ✕</span></a>
+    <a class="home" href="/" aria-label="Close" data-close><span class="x">close ✕</span></a>
   </div>
 
   <div class="screens" id="screens">
@@ -214,7 +214,25 @@
   <script>
   (function () {
     var FORMSPREE = 'https://formspree.io/f/xpqkbpyv';
+    var inFrame = window.self !== window.top;
     var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
+
+    function closeForm() {
+      if (inFrame) { try { window.parent.postMessage('spacetobe:close-form', '*'); } catch (_) {} return; }
+      var sameOrigin = false;
+      try { sameOrigin = document.referrer && new URL(document.referrer).origin === location.origin; } catch (_) {}
+      if (sameOrigin && history.length > 1) history.back(); else location.href = '/';
+    }
+    document.querySelectorAll('[data-close]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); closeForm(); });
+    });
+    // parent tells the embedded form it just opened → focus the current field
+    window.addEventListener('message', function (ev) {
+      if (ev.data === 'spacetobe:open') {
+        var inp = screens[current].querySelector('input, textarea');
+        if (inp) inp.focus();
+      }
+    });
     var progress = document.getElementById('progress');
     var navUp = document.getElementById('navUp');
     var navDown = document.getElementById('navDown');
@@ -307,6 +325,7 @@
     // keyboard
     document.addEventListener('keydown', function (e) {
       var s = screens[current];
+      if (e.key === 'Escape') { closeForm(); return; }
       if (e.key !== 'Enter') return;
       var ta = s.querySelector('textarea');
       if (ta && document.activeElement === ta && e.shiftKey) return; // line break
@@ -316,8 +335,10 @@
     });
 
     updateProgress();
-    var firstInput = screens[0].querySelector('input, textarea');
-    if (firstInput) firstInput.focus();
+    if (!inFrame) {
+      var firstInput = screens[0].querySelector('input, textarea');
+      if (firstInput) firstInput.focus();
+    }
   })();
   </script>
 </body>
