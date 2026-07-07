@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get in touch — Space to Be</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #FFF9F0;
+      --ink: #1E2618;
+      --green: #60A484;
+      --mute: rgba(30,38,24,0.55);
+      --line: rgba(30,38,24,0.28);
+      --display: 'Bricolage Grotesque', sans-serif;
+      --body: 'Space Grotesk', sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+    * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--body);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow: hidden; }
+    a { color: inherit; }
+    ::selection { background: rgba(96,164,132,0.28); }
+
+    /* progress */
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: var(--green); z-index: 10; transition: width 0.5s ease; }
+
+    /* top bar */
+    .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9;
+      display: flex; align-items: center; justify-content: space-between; padding: 20px 26px; }
+    .home { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .home img { width: 24px; height: 24px; display: block; }
+    .home span { font-family: var(--display); font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+    .home .x { font-family: var(--mono); font-size: 13px; color: var(--mute); }
+
+    /* screens */
+    .screens { position: relative; width: 100%; height: 100%; }
+    .screen { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      padding: 6vh 7vw; opacity: 0; transform: translateY(26px); pointer-events: none;
+      transition: opacity 0.5s ease, transform 0.5s ease; }
+    .screen.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .inner { width: 100%; max-width: 820px; margin: 0 auto; }
+
+    /* welcome / thanks two-column */
+    .split .inner { max-width: 1160px; display: flex; align-items: center; justify-content: space-between; gap: 6vw; }
+    .split .copy { max-width: 30ch; }
+    .ring { width: clamp(200px, 26vw, 380px); height: auto; flex-shrink: 0; }
+    @media (max-width: 780px) { .split .inner { flex-direction: column-reverse; align-items: flex-start; gap: 3rem; } .ring { width: 140px; } }
+
+    h2.big { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 5.2vw, 3rem);
+      line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 1.1rem; }
+    .sub { font-size: clamp(1.05rem, 2.4vw, 1.3rem); color: rgba(30,38,24,0.72); line-height: 1.55; margin-bottom: 2rem; }
+    .sub.italic { font-style: italic; }
+    .sub strong { color: var(--ink); }
+
+    /* question */
+    .qhead { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 1.3rem; }
+    .num { flex-shrink: 0; margin-top: 0.35em; width: 26px; height: 26px; border-radius: 6px;
+      background: var(--ink); color: var(--bg); font-family: var(--body); font-weight: 600; font-size: 13px;
+      display: inline-flex; align-items: center; justify-content: center; }
+    .q h2 { font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3.6vw, 2.15rem);
+      line-height: 1.12; letter-spacing: -0.02em; }
+    .q h2 .req { color: var(--green); font-weight: 500; }
+    .helper { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--mute); margin: -0.6rem 0 1.4rem 38px; }
+
+    .field { margin: 0 0 0.6rem 38px; }
+    .field input, .field textarea { width: 100%; font-family: var(--body); font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+      color: var(--ink); background: transparent; border: none; border-bottom: 2px solid var(--line);
+      padding: 10px 2px; transition: border-color 0.2s; resize: none; line-height: 1.4; }
+    .field textarea { overflow: hidden; }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(30,38,24,0.34); }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--ink); }
+
+    .hint { font-family: var(--mono); font-size: 12px; color: var(--mute); margin: 0.55rem 0 0 38px; }
+    .hint b { color: rgba(30,38,24,0.72); }
+    .err { font-family: var(--mono); font-size: 12.5px; color: #b5532e; min-height: 1em; margin: 0.5rem 0 0 38px; }
+    .statement .err, .statement .hint { margin-left: 0; }
+
+    /* buttons */
+    .btn { display: inline-flex; align-items: center; gap: 12px; font-family: var(--body); font-weight: 600;
+      font-size: 1rem; color: var(--bg); background: var(--ink); border: none; cursor: pointer;
+      padding: 13px 22px; border-radius: 8px; transition: transform 0.15s ease, opacity 0.2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+    .btn-row { display: flex; align-items: center; gap: 14px; margin-left: 38px; margin-top: 0.4rem; flex-wrap: wrap; }
+    .welcome .btn-row, .thanks .btn-row, .statement .btn-row { margin-left: 0; }
+    .keyhint { font-family: var(--mono); font-size: 12px; color: var(--mute); }
+    .keyhint b { color: rgba(30,38,24,0.72); }
+
+    /* nav arrows */
+    .nav-arrows { position: fixed; right: 22px; bottom: 22px; z-index: 9; display: flex; gap: 2px; }
+    .nav-arrows button { width: 42px; height: 38px; background: var(--ink); color: var(--bg);
+      border: none; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.2s; }
+    .nav-arrows button:first-child { border-radius: 6px 0 0 6px; }
+    .nav-arrows button:last-child { border-radius: 0 6px 6px 0; }
+    .nav-arrows button:disabled { opacity: 0.35; cursor: default; }
+  </style>
+</head>
+<body>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="topbar">
+    <a class="home" href="/">
+      <img src="images/logo.png" alt="" aria-hidden="true" />
+      <span>Space to Be</span>
+    </a>
+    <a class="home" href="/" aria-label="Close"><span class="x">close ✕</span></a>
+  </div>
+
+  <div class="screens" id="screens">
+
+    <!-- 0 · WELCOME -->
+    <section class="screen split welcome active" data-role="welcome">
+      <div class="inner">
+        <div class="copy">
+          <h2 class="big">This is where it begins.</h2>
+          <p class="sub">This form takes 2 minutes and is followed up with a <strong>free discovery call.</strong></p>
+          <div class="btn-row">
+            <button class="btn" data-next>Let's start</button>
+            <span class="keyhint">press <b>Enter ↵</b></span>
+          </div>
+        </div>
+        <img class="ring" src="images/logo.png" alt="Space to Be" />
+      </div>
+    </section>
+
+    <!-- 1 · NAME -->
+    <section class="screen q" data-role="question">
+      <div class="inner">
+        <div class="qhead"><span class="num">1</span>
+          <h2 id="q1-label">What is your name? <span class="req">*</span></h2></div>
+        <div class="field"><input type="text" name="name" autocomplete="name" placeholder="Type your answer here…" aria-labelledby="q1-label" required /></div>
+        <div class="err" role="alert"></div>
+        <div class="btn-row"><button class="btn" data-next>OK</button><span class="keyhint">press <b>Enter ↵</b></span></div>
+      </div>
+    </section>
+
+    <!-- 2 · EMAIL -->
+    <section class="screen q" data-role="question">
+      <div class="inner">
+        <div class="qhead"><span class="num">2</span>
+          <h2 id="q2-label">What is your email? <span class="req">*</span></h2></div>
+        <div class="field"><input type="email" name="email" autocomplete="email" placeholder="Type your answer here…" aria-labelledby="q2-label" required /></div>
+        <div class="err" role="alert"></div>
+        <div class="btn-row"><button class="btn" data-next>OK</button><span class="keyhint">press <b>Enter ↵</b></span></div>
+      </div>
+    </section>
+
+    <!-- 3 · SITUATION -->
+    <section class="screen q" data-role="question">
+      <div class="inner">
+        <div class="qhead"><span class="num">3</span>
+          <h2 id="q3-label">Please describe your current situation. <span class="req">*</span></h2></div>
+        <p class="helper">What is happening in your life at the moment?</p>
+        <div class="field"><textarea name="situation" rows="2" placeholder="Type your answer here…" aria-labelledby="q3-label" required></textarea></div>
+        <p class="hint"><b>Shift ⇧ + Enter ↵</b> to make a line break</p>
+        <div class="err" role="alert"></div>
+        <div class="btn-row"><button class="btn" data-next>OK</button><span class="keyhint">press <b>Enter ↵</b></span></div>
+      </div>
+    </section>
+
+    <!-- 4 · OUTCOME -->
+    <section class="screen q" data-role="question">
+      <div class="inner">
+        <div class="qhead"><span class="num">4</span>
+          <h2 id="q4-label">What would you consider as a successful outcome from our work together? <span class="req">*</span></h2></div>
+        <div class="field"><textarea name="outcome" rows="2" placeholder="Type your answer here…" aria-labelledby="q4-label" required></textarea></div>
+        <p class="hint"><b>Shift ⇧ + Enter ↵</b> to make a line break</p>
+        <div class="err" role="alert"></div>
+        <div class="btn-row"><button class="btn" data-next>OK</button><span class="keyhint">press <b>Enter ↵</b></span></div>
+      </div>
+    </section>
+
+    <!-- 5 · STATEMENT + SUBMIT -->
+    <section class="screen statement" data-role="statement">
+      <div class="inner">
+        <h2 class="big">John works with a small number of committed individuals in alignment with his capacity for offering genuine care.</h2>
+        <p class="sub italic">This offering is donation-based. Giving in this way is a practice of honesty, generosity, and skilfully looking after oneself.</p>
+        <div class="btn-row">
+          <button class="btn" id="submitBtn" data-submit>Submit</button>
+          <span class="keyhint">press <b>Cmd ⌘ + Enter ↵</b></span>
+        </div>
+        <div class="err" role="alert" id="submitErr"></div>
+      </div>
+    </section>
+
+    <!-- 6 · THANK YOU -->
+    <section class="screen split thanks" data-role="thanks">
+      <div class="inner">
+        <div class="copy">
+          <h2 class="big">Thank you.</h2>
+          <p class="sub">I'll be in touch soon. If you have any questions before then, email me at <a href="mailto:john@spacetobe.xyz">john@spacetobe.xyz</a>.</p>
+        </div>
+        <img class="ring" src="images/logo.png" alt="Space to Be" />
+      </div>
+    </section>
+
+  </div>
+
+  <div class="nav-arrows">
+    <button id="navUp" aria-label="Previous">↑</button>
+    <button id="navDown" aria-label="Next">↓</button>
+  </div>
+
+  <script>
+  (function () {
+    var FORMSPREE = 'https://formspree.io/f/xpqkbpyv';
+    var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
+    var progress = document.getElementById('progress');
+    var navUp = document.getElementById('navUp');
+    var navDown = document.getElementById('navDown');
+    var current = 0;
+    var lastIndex = screens.length - 1;
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function role(s) { return s.getAttribute('data-role'); }
+
+    function autosize(t) {
+      t.style.height = 'auto';
+      t.style.height = Math.min(t.scrollHeight, 260) + 'px';
+    }
+    document.querySelectorAll('textarea').forEach(function (t) {
+      t.addEventListener('input', function () { autosize(t); });
+    });
+
+    function validate(s) {
+      var input = s.querySelector('input, textarea');
+      if (!input) return true;
+      var err = s.querySelector('.err');
+      var v = input.value.trim();
+      if (input.hasAttribute('required') && !v) { if (err) err.textContent = 'Please fill this in.'; input.focus(); return false; }
+      if (input.type === 'email' && v && !emailRe.test(v)) { if (err) err.textContent = 'Hmm, that email looks off.'; input.focus(); return false; }
+      if (err) err.textContent = '';
+      return true;
+    }
+
+    function updateProgress() {
+      progress.style.width = (current / lastIndex * 100) + '%';
+      navUp.disabled = (current === 0 || role(screens[current]) === 'thanks');
+      navDown.disabled = (role(screens[current]) === 'statement' || role(screens[current]) === 'thanks');
+    }
+
+    function show(i) {
+      if (i < 0 || i > lastIndex) return;
+      screens[current].classList.remove('active');
+      current = i;
+      var s = screens[current];
+      s.classList.add('active');
+      var input = s.querySelector('input, textarea');
+      if (input) setTimeout(function () { input.focus(); }, 320);
+      updateProgress();
+    }
+
+    function next() {
+      var s = screens[current];
+      if (role(s) === 'question' && !validate(s)) return;
+      if (role(s) === 'statement' || role(s) === 'thanks') return;
+      show(current + 1);
+    }
+    function back() {
+      if (current === 0 || role(screens[current]) === 'thanks') return;
+      show(current - 1);
+    }
+
+    function submit() {
+      // validate every question; jump to first invalid
+      var data = { _subject: 'New Space to Be enquiry', source: 'spacetobe.xyz' };
+      var firstInvalid = -1;
+      screens.forEach(function (s, idx) {
+        if (role(s) !== 'question') return;
+        var input = s.querySelector('input, textarea');
+        data[input.name] = input.value.trim();
+        if (!validate(s) && firstInvalid === -1) firstInvalid = idx;
+      });
+      var errEl = document.getElementById('submitErr');
+      if (firstInvalid !== -1) { errEl.textContent = ''; show(firstInvalid); return; }
+
+      var btn = document.getElementById('submitBtn');
+      btn.disabled = true; btn.textContent = 'Sending…'; errEl.textContent = '';
+      fetch(FORMSPREE, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        if (res.ok) { show(lastIndex); }
+        else { errEl.textContent = 'Something went wrong — please try again.'; btn.disabled = false; btn.textContent = 'Submit'; }
+      }).catch(function () {
+        errEl.textContent = 'Network error — please try again.'; btn.disabled = false; btn.textContent = 'Submit';
+      });
+    }
+
+    // clicks
+    document.querySelectorAll('[data-next]').forEach(function (b) { b.addEventListener('click', next); });
+    document.querySelectorAll('[data-submit]').forEach(function (b) { b.addEventListener('click', submit); });
+    navUp.addEventListener('click', back);
+    navDown.addEventListener('click', next);
+
+    // keyboard
+    document.addEventListener('keydown', function (e) {
+      var s = screens[current];
+      if (e.key !== 'Enter') return;
+      var ta = s.querySelector('textarea');
+      if (ta && document.activeElement === ta && e.shiftKey) return; // line break
+      if (role(s) === 'statement') { e.preventDefault(); submit(); return; }
+      if (role(s) === 'thanks') return;
+      e.preventDefault(); next();
+    });
+
+    updateProgress();
+    var firstInput = screens[0].querySelector('input, textarea');
+    if (firstInput) firstInput.focus();
+  })();
+  </script>
+</body>
+</html>
