@@ -192,6 +192,12 @@
       .intro { padding-top: 60px; padding-bottom: 60px; }
       .who { padding-top: 70px; padding-bottom: 70px; }
       .cta { padding-top: 80px; padding-bottom: 80px; }
+      /* long brand line: shrink + constrain so it wraps without hitting the button */
+      .nav { padding: 16px 20px; align-items: flex-start; }
+      .brand { max-width: 58%; align-items: flex-start; }
+      .brand-logo { margin-top: 1px; }
+      .wordmark { font-size: 13px; line-height: 1.3; }
+      .btn-ghost { flex-shrink: 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -212,7 +218,7 @@
     <div class="nav">
       <span class="brand">
         <img class="brand-logo" src="images/logo.png" alt="Space to Be logo" />
-        <span class="wordmark">Space to Be</span>
+        <span class="wordmark">One-to-One Meditation Teaching and Spiritual Friendship</span>
       </span>
       <a class="btn-ghost" href="/start.html">Get in touch</a>
     </div>
