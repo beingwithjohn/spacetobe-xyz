@@ -115,9 +115,22 @@
     .cell .ink { color: var(--forest); }
     .cell .mut { color: rgba(30,38,24,0.7); }
     .cell .mono-accent { font-family: var(--mono); font-size: 14px; color: var(--green); line-height: 1.65; }
+    /* donation-basis tooltip */
+    .dtip { position: relative; cursor: help; border-bottom: 1px dotted rgba(96,164,132,0.7); outline: none; }
+    .dtip-pop { position: absolute; left: 0; bottom: calc(100% + 12px); z-index: 60; width: min(360px, 82vw);
+      background: var(--bg); color: var(--forest); border: 1px solid var(--hair); padding: 16px 18px;
+      font-family: var(--body); font-weight: 400; font-size: 14px; line-height: 1.65;
+      letter-spacing: normal; text-transform: none; text-align: left; text-shadow: none;
+      box-shadow: 0 22px 55px -22px rgba(30,38,24,0.4);
+      opacity: 0; visibility: hidden; transform: translateY(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease; }
+    .dtip:hover .dtip-pop, .dtip:focus .dtip-pop, .dtip:focus-within .dtip-pop { opacity: 1; visibility: visible; transform: none; }
+    .dtip-pop em { font-style: italic; }
 
     /* Who */
     .who { padding: 100px 40px; border-bottom: 1px solid var(--hair); text-align: center; }
+    .who-eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 22px; }
     .h-who { font-family: var(--display); font-weight: 800; font-size: 76px; line-height: 1.02;
       letter-spacing: -0.04em; color: var(--forest); max-width: 15ch; margin: 0 auto 22px; }
     .who-sub { font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em; color: rgba(30,38,24,0.55); }
@@ -200,6 +213,8 @@
       .cta { padding-top: 80px; padding-bottom: 80px; }
       /* hide the long brand line on mobile — the logo stands in for it */
       .wordmark { display: none; }
+      /* donation tooltip: bottom-anchored card so it never overflows a phone */
+      .dtip-pop { position: fixed; left: 16px; right: 16px; bottom: 24px; top: auto; width: auto; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -267,13 +282,14 @@
         <div class="cell">
           <p class="ink">Each session responds to where you are.</p>
           <p class="mut">You build the capacity to be with what's happening while it's happening, and see it clearly.</p>
-          <p class="mono-accent">Offered on a donation basis</p>
+          <p class="mono-accent">Offered on a <span class="dtip" tabindex="0" role="note" aria-label="What donation basis means">donation basis<span class="dtip-pop">Space is primarily offered over six-week <em>flows</em>, on a donation basis, after mutual discernment. This follows the spirit of dāna — the practice, ancient in Buddhist tradition, of offering the work freely and letting it be supported through generosity. Giving in this way is itself a practice of honesty, generosity, and skilfully looking after oneself. For a sense of scale, past donations have ranged from $480 to $1500 per six-week <em>flow</em>.</span></span></p>
         </div>
       </div>
     </div>
 
     <!-- WHO -->
     <div class="who">
+      <p class="who-eyebrow">Who I work with</p>
       <h2 class="h-who">Founders, creatives, &amp; people in transition.</h2>
       <p class="who-sub">people navigating change — inner and outer</p>
     </div>
