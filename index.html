@@ -139,6 +139,12 @@
     .tcell .a { font-family: var(--mono); font-size: 12px; color: rgba(30,38,24,0.55); }
     .tcell.accent { justify-content: center; background: rgba(96,164,132,0.04); }
     .tcell.accent p { font-family: var(--display); font-weight: 600; font-size: 26px; line-height: 1.2; color: var(--forest); }
+    a.cta-tile { text-decoration: none; color: var(--green); font-family: var(--mono);
+      font-size: 16px; letter-spacing: 0.06em; flex-direction: row; align-items: center;
+      justify-content: center; gap: 12px; transition: background 0.2s ease, color 0.2s ease; }
+    a.cta-tile:hover { background: var(--green); color: var(--bg); }
+    a.cta-tile .arrow { transition: transform 0.2s ease; }
+    a.cta-tile:hover .arrow { transform: translateX(5px); }
 
     /* About */
     .about { border-bottom: 1px solid var(--hair); display: grid; grid-template-columns: 1fr 1fr; }
@@ -311,9 +317,7 @@
           <p class="q">“What I love most is how genuine and supportive John is.”</p>
           <p class="a">Carolina M — founder &amp; fashion designer</p>
         </div>
-        <div class="tcell accent">
-          <p>Real relationship, over time.</p>
-        </div>
+        <a class="tcell accent cta-tile" href="/start.html">Get Started <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
 
