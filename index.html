@@ -26,547 +26,429 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Pontano+Sans:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:     #FFF9F0;
-      --green:  #60A484;
+      --bg: #FFF9F0;
       --forest: #1E2618;
-      --black:  #0F0F0F;
-      --line:   rgba(30,38,24,0.14);
-      --muted:  rgba(30,38,24,0.5);
+      --green: #60A484;
+      --hair: rgba(30,38,24,0.08);
+      --display: 'Bricolage Grotesque', sans-serif;
+      --body: 'Space Grotesk', sans-serif;
+      --mono: 'Space Mono', monospace;
     }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    body { background: var(--bg); font-family: var(--body); color: var(--forest);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: rgba(96,164,132,0.28); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    body {
-      background: var(--bg);
-      color: var(--forest);
-      font-family: 'Pontano Sans', sans-serif;
-      font-weight: 400;
-      line-height: 1.75;
-      overflow-x: hidden;
+    .page { position: relative; background: var(--bg); overflow: hidden; }
+    .grid-overlay {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(30,38,24,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,38,24,0.028) 1px, transparent 1px);
+      background-size: 64px 64px;
+      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 100%);
+      mask-image: radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 100%);
+    }
+    .col { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
+      border-left: 1px solid var(--hair); border-right: 1px solid var(--hair); }
+
+    /* Nav */
+    .nav { display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 28px; border-bottom: 1px solid var(--hair); }
+    .wordmark { font-family: var(--display); font-weight: 600; font-size: 20px; letter-spacing: -0.01em; color: var(--forest); }
+    .btn-ghost { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--green);
+      border: 1px solid rgba(96,164,132,0.4); padding: 10px 18px; transition: all 0.2s; }
+    .btn-ghost:hover { background: var(--green); color: var(--bg); }
+
+    /* Hero */
+    .hero { position: relative; min-height: 88vh; overflow: hidden;
+      border-bottom: 1px solid var(--hair); display: flex; align-items: center; }
+    .hero-ascii-wrap { position: absolute; inset: 0; z-index: 0;
+      -webkit-mask-image: radial-gradient(120% 120% at 50% 45%, #000 30%, transparent 92%);
+      mask-image: radial-gradient(120% 120% at 50% 45%, #000 30%, transparent 92%); }
+    #hero-ascii { margin: 0; font-family: var(--mono); font-size: 13px; line-height: 13px;
+      white-space: pre; user-select: none; color: var(--green); opacity: 0.7; }
+    .hero-inner { position: relative; z-index: 2; padding: 0 40px; width: 100%; }
+    .kicker { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--green); margin-bottom: 26px; }
+    .hero h1 { font-family: var(--display); font-weight: 700; font-size: 132px; line-height: 0.92;
+      letter-spacing: -0.03em; color: var(--forest); max-width: 13ch; }
+    .hero-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-top: 38px; flex-wrap: wrap; }
+    .hero-row p { font-size: 20px; color: rgba(30,38,24,0.7); max-width: 46ch; line-height: 1.65; }
+
+    .btn-solid { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--bg);
+      background: var(--green); padding: 15px 30px; white-space: nowrap; display: inline-block;
+      box-shadow: 0 10px 40px rgba(96,164,132,0.35); transition: transform 0.2s; }
+    .btn-solid:hover { transform: translateY(-3px); }
+
+    /* Marquee */
+    .ticker { overflow: hidden; border-bottom: 1px solid var(--hair); padding: 12px 0; background: rgba(96,164,132,0.03); }
+    .ticker-row { display: flex; width: max-content; font-family: var(--mono); font-size: 13px;
+      letter-spacing: 0.06em; color: rgba(30,38,24,0.5); animation: marquee 26s linear infinite; }
+    .ticker-row .w { padding: 0 20px; }
+    .ticker-row .d { color: var(--green); }
+
+    /* Intro */
+    .intro { padding: 90px 40px; border-bottom: 1px solid var(--hair); }
+    .intro p { font-family: var(--display); font-weight: 500; font-size: 44px; line-height: 1.24;
+      letter-spacing: -0.02em; color: var(--forest); max-width: 26ch; }
+
+    /* Section head */
+    .sec-head { display: flex; align-items: baseline; gap: 16px; }
+    .sec-idx { font-family: var(--mono); font-size: 13px; color: var(--green); }
+    .sec-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(30,38,24,0.5); }
+
+    .block { border-bottom: 1px solid var(--hair); }
+
+    /* What happens */
+    .wh-head { padding: 36px 40px 0; }
+    .h-sec { font-family: var(--display); font-weight: 700; font-size: 60px; letter-spacing: -0.03em; color: var(--forest); padding: 16px 40px 40px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--hair); }
+    .cell { padding: 40px; display: flex; flex-direction: column; gap: 18px; }
+    .cell.br { border-right: 1px solid var(--hair); }
+    .cell p { font-size: 19px; line-height: 1.65; }
+    .cell .ink { color: var(--forest); }
+    .cell .mut { color: rgba(30,38,24,0.7); }
+    .cell .mono-accent { font-family: var(--mono); font-size: 14px; color: var(--green); line-height: 1.65; }
+
+    /* Who */
+    .who { padding: 100px 40px; border-bottom: 1px solid var(--hair); text-align: center; }
+    .who .sec-head { justify-content: center; margin-bottom: 28px; }
+    .h-who { font-family: var(--display); font-weight: 800; font-size: 76px; line-height: 1.02;
+      letter-spacing: -0.04em; color: var(--forest); max-width: 15ch; margin: 0 auto 22px; }
+    .who-sub { font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em; color: rgba(30,38,24,0.55); }
+
+    /* Testimonials */
+    .tst-head { padding: 36px 40px; }
+    .three-col { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--hair); }
+    .tcell { padding: 34px; display: flex; flex-direction: column; gap: 20px; }
+    .tcell.br { border-right: 1px solid var(--hair); }
+    .tcell.bb { border-bottom: 1px solid var(--hair); }
+    .tcell .q { font-size: 19px; line-height: 1.55; color: var(--forest); flex: 1; }
+    .tcell .a { font-family: var(--mono); font-size: 12px; color: rgba(30,38,24,0.55); }
+    .tcell.accent { justify-content: center; background: rgba(96,164,132,0.04); }
+    .tcell.accent p { font-family: var(--display); font-weight: 600; font-size: 26px; line-height: 1.2; color: var(--forest); }
+
+    /* About */
+    .about { border-bottom: 1px solid var(--hair); display: grid; grid-template-columns: 1fr 1fr; }
+    .about-left { padding: 60px 40px; border-right: 1px solid var(--hair); }
+    .h-about { font-family: var(--display); font-weight: 700; font-size: 54px; letter-spacing: -0.03em; color: var(--forest); margin-bottom: 24px; }
+    .about-left p { font-size: 18px; color: rgba(30,38,24,0.72); line-height: 1.8; }
+    .about-left p + p { margin-top: 14px; }
+    .about-right { position: relative; display: flex; align-items: center; justify-content: center;
+      padding: 40px; min-height: 420px;
+      background: radial-gradient(circle at 50% 50%, rgba(96,164,132,0.06), transparent 70%); }
+    #donut-ascii { margin: 0; font-family: var(--mono); font-size: 12px; line-height: 12px;
+      white-space: pre; user-select: none; color: var(--green); text-shadow: 0 0 12px rgba(96,164,132,0.5); }
+
+    /* CTA */
+    .cta { padding: 120px 40px; text-align: center; position: relative; overflow: hidden; }
+    .cta-glow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(100% 120% at 50% 100%, rgba(96,164,132,0.1), transparent 60%); }
+    .cta-inner { position: relative; z-index: 2; }
+    .h-cta { font-family: var(--display); font-weight: 800; font-size: 88px; letter-spacing: -0.04em; color: var(--forest); margin-bottom: 40px; }
+    .btn-cta { display: inline-block; font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em;
+      color: var(--bg); background: var(--green); padding: 18px 44px;
+      box-shadow: 0 12px 44px rgba(96,164,132,0.4); transition: transform 0.2s; }
+    .btn-cta:hover { transform: translateY(-3px); }
+
+    /* Footer */
+    .footer { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px;
+      border-top: 1px solid var(--hair); font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.06em; color: rgba(30,38,24,0.45); flex-wrap: wrap; gap: 12px; }
+    .footer .links { display: flex; gap: 24px; }
+    .footer a { color: rgba(30,38,24,0.6); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero h1 { font-size: clamp(3rem, 15vw, 132px); }
+      .intro p { font-size: clamp(1.7rem, 6.4vw, 44px); }
+      .h-sec { font-size: clamp(2.1rem, 8.5vw, 60px); }
+      .h-who { font-size: clamp(2.5rem, 10.5vw, 76px); }
+      .h-about { font-size: clamp(1.9rem, 8vw, 54px); }
+      .h-cta { font-size: clamp(2.6rem, 12vw, 88px); }
+
+      .two-col, .three-col, .about { grid-template-columns: 1fr; }
+      .cell.br, .about-left { border-right: none; }
+      .about-left { border-bottom: 1px solid var(--hair); }
+      .cell:first-child { border-bottom: 1px solid var(--hair); }
+      .tcell { border-right: none !important; border-bottom: 1px solid var(--hair); }
+      .about-right { min-height: 320px; }
+      #donut-ascii { font-size: 9px; line-height: 9px; }
+    }
+    @media (max-width: 560px) {
+      .hero-inner, .intro, .who, .cta { padding-left: 22px; padding-right: 22px; }
+      .wh-head, .h-sec, .tst-head { padding-left: 22px; padding-right: 22px; }
+      .cell, .tcell, .about-left, .about-right { padding: 28px 22px; }
+      .intro { padding-top: 60px; padding-bottom: 60px; }
+      .who { padding-top: 70px; padding-bottom: 70px; }
+      .cta { padding-top: 80px; padding-bottom: 80px; }
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Tenor Sans', serif;
-      font-weight: 400;
-      line-height: 1.15;
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 5vw;
-      background: rgba(255,249,240,0.93);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .logo img { height: 42px; display: block; }
-
-    a.nav-btn {
-      font-family: 'Pontano Sans', sans-serif;
-      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--bg); background: var(--green);
-      text-decoration: none; padding: 0.55rem 1.6rem;
-      transition: background 0.22s;
-    }
-    a.nav-btn:hover { background: var(--forest); }
-
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100svh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 10rem 5vw 6rem;
-      position: relative; overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute; bottom: -15%; right: -8%;
-      width: 55vw; height: 55vw;
-      max-width: 650px; max-height: 650px;
-      border-radius: 50%;
-      border: 1px solid rgba(96,164,132,0.18);
-      pointer-events: none;
-    }
-
-    .hero-label {
-      font-family: 'Pontano Sans', sans-serif;
-      font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 1.6rem;
-      opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
-    }
-
-    .hero h1 {
-      font-family: 'Tenor Sans', serif;
-      font-size: clamp(2.6rem, 10vw, 6.5rem);
-      color: var(--black);
-      opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards;
-    }
-
-    .hero-sub {
-      margin-top: 1.6rem;
-      font-size: clamp(1rem, 3vw, 1.6rem); color: var(--muted); max-width: 46ch;
-      opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards;
-    }
-
-    .hero-actions {
-      margin-top: 2.8rem;
-      opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards;
-    }
-
-    /* ─── BUTTONS ─── */
-    a.btn {
-      display: inline-block;
-      font-family: 'Pontano Sans', sans-serif;
-      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
-      text-decoration: none; padding: 0.9rem 2.6rem;
-      transition: background 0.22s, transform 0.18s;
-    }
-
-    a.btn-dark  { background: var(--forest); color: var(--bg); }
-    a.btn-dark:hover  { background: var(--black); transform: translateY(-2px); }
-
-    a.btn-green { background: var(--green); color: var(--bg); }
-    a.btn-green:hover { background: var(--forest); transform: translateY(-2px); }
-
-    a.btn-light { background: var(--bg); color: var(--forest); border: 1px solid var(--forest); }
-    a.btn-light:hover { background: var(--forest); color: var(--bg); }
-
-    /* ─── RULE ─── */
-    .rule { border: none; border-top: 1px solid var(--line); }
-
-    /* ─── SECTION WRAPPER ─── */
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 7rem 5vw; }
-
-    .section-label {
-      font-family: 'Pontano Sans', sans-serif;
-      font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 2rem;
-    }
-
-    /* ─── INTRO ─── */
-    .intro p {
-      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
-      color: var(--forest); max-width: 62ch;
-    }
-    .intro p + p { margin-top: 1.3rem; }
-
-    /* ─── WHAT HAPPENS ─── */
-    .what-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3.5rem 8rem; margin-top: 2.5rem;
-    }
-    .what-grid h2 {
-      grid-column: 1 / -1;
-      font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--black);
-    }
-    .what-grid .col {
-      display: flex; flex-direction: column; justify-content: space-between;
-      gap: 0.9rem;
-    }
-    .what-grid .col p { color: var(--forest); font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
-
-    /* ─── WHO BAND ─── */
-    .who-band { background: var(--forest); padding: 7rem 5vw; }
-    .who-inner { max-width: 1080px; margin: 0 auto; }
-    .who-band .section-label { color: rgba(255,249,240,0.4); }
-    .who-band h2 {
-      font-size: clamp(2rem, 4vw, 3.4rem); color: var(--bg); margin-bottom: 1.2rem;
-    }
-    .who-band p { color: rgba(255,249,240,0.75); font-size: 1.05rem; max-width: 52ch; }
-
-    /* ─── TESTIMONIALS ─── */
-    .t-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1.4rem; margin-top: 3rem;
-    }
-
-    .t-card {
-      background: #fff; border: 1px solid var(--line);
-      padding: 2rem 1.8rem;
-      display: flex; flex-direction: column; gap: 1.2rem;
-      opacity: 0; transform: translateY(18px);
-      transition: opacity 0.55s, transform 0.55s, box-shadow 0.3s;
-    }
-    .t-card.visible { opacity: 1; transform: translateY(0); }
-    .t-card.visible:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 32px rgba(30,38,24,0.09);
-    }
-    .t-card:nth-child(2) { transition-delay: 0.08s; }
-    .t-card:nth-child(3) { transition-delay: 0.16s; }
-    .t-card:nth-child(4) { transition-delay: 0.24s; }
-    .t-card:nth-child(5) { transition-delay: 0.32s; }
-
-    .t-avatar {
-      width: 62px; height: 62px; border-radius: 50%;
-      overflow: hidden; flex-shrink: 0;
-      background: rgba(96,164,132,0.1);
-      border: 2px dashed rgba(96,164,132,0.3);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .t-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .t-avatar .ph { font-size: 0.55rem; letter-spacing: 0.05em; text-align: center; color: var(--green); line-height: 1.4; padding: 4px; }
-
-    .t-quote { font-size: 0.97rem; font-style: italic; line-height: 1.65; color: var(--forest); flex: 1; }
-    .t-name { font-family: 'Tenor Sans', serif; font-size: 0.95rem; color: var(--black); }
-    .t-role { font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
-
-    /* ─── JOHN PHOTO SECTION ─── */
-    .john-section {
-      max-width: 1080px; margin: 0 auto;
-      padding: 5rem 5vw 7rem;
-    }
-
-    .photo-frame {
-      aspect-ratio: 16/9;
-      background: rgba(96,164,132,0.07);
-      border: 2px dashed rgba(96,164,132,0.28);
-      overflow: hidden; position: relative;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .photo-frame img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .photo-frame .ph {
-      display: flex; flex-direction: column; align-items: center;
-      text-align: center; color: var(--green);
-      font-size: 0.73rem; letter-spacing: 0.1em; line-height: 1.7;
-    }
-    .photo-frame .ph-icon { font-size: 2rem; opacity: 0.4; margin-bottom: 0.4rem; }
-
-    .john-text { margin-top: 3.2rem; }
-    .john-text h2 {
-      font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--black); margin-bottom: 1.4rem;
-    }
-    .john-text p:not(.section-label) {
-      color: var(--forest); margin-bottom: 1rem;
-      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-    }
-    .john-text p:last-of-type { margin-bottom: 2rem; }
-
-    /* ─── CTA BAND ─── */
-    .cta-band { background: var(--green); padding: 7rem 5vw; text-align: center; }
-    .cta-band h2 {
-      font-size: clamp(2rem, 4.5vw, 3.6rem); color: var(--bg); margin-bottom: 2.4rem;
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--black); color: rgba(255,249,240,0.5);
-      padding: 2.2rem 5vw;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    footer p { font-size: 0.78rem; }
-    .footer-links { display: flex; gap: 2.2rem; }
-    footer a { font-size: 0.78rem; color: rgba(255,249,240,0.6); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--green); }
-
-    /* ─── CUSTOM CURSOR ─── */
-    * { cursor: none; }
-
-    #cursor {
-      position: fixed;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--green);
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-      mix-blend-mode: multiply;
-    }
-
-    #cursor.grow {
-      width: 28px; height: 28px;
-      opacity: 0.5;
-    }
-
-    /* ─── CARD HOVER LIFT ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    /* ─── CARD HOVER LIFT ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 720px) {
-      .what-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .what-grid h2 { grid-column: 1; }
-      .john-section { grid-template-columns: 1fr; }
-      footer { flex-direction: column; align-items: flex-start; }
-      .wrap { padding: 4rem 5vw; }
-      .who-band { padding: 4rem 5vw; }
-      .cta-band { padding: 4rem 5vw; }
-      .hero { padding: 8rem 5vw 4rem; }
-      .john-section { padding: 3rem 5vw 4rem; }
-    }
-
-    /* ─── HIDE CURSOR ON TOUCH ─── */
-    @media (hover: none) and (pointer: coarse) {
-      #cursor { display: none; }
-      * { cursor: auto; }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-row { animation: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- CUSTOM CURSOR -->
-  <div id="cursor"></div>
+<div class="page">
 
-  <!-- NAV -->
-  <nav>
-    <a class="logo" href="#">
-      <img src="images/logo.png" alt="Space to Be" />
-    </a>
-    <a class="nav-btn" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Get in touch</a>
-  </nav>
+  <!-- faint grid overlay -->
+  <div class="grid-overlay"></div>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <h1>What is possible?</h1>
-    <p class="hero-sub">Space to Be is one-to-one space with John.</p>
-    <div class="hero-actions">
-      <a class="btn btn-green" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Get in touch</a>
+  <div class="col">
+
+    <!-- NAV -->
+    <div class="nav">
+      <span class="wordmark">Space to Be</span>
+      <a class="btn-ghost" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Get in touch</a>
     </div>
-  </section>
 
-  <hr class="rule" />
+    <!-- HERO (ASCII flow field) -->
+    <div id="hero" class="hero">
+      <div class="hero-ascii-wrap">
+        <pre id="hero-ascii" aria-hidden="true"></pre>
+      </div>
+      <div class="hero-inner">
+        <p class="kicker">One-to-one space with John</p>
+        <h1>What is possible?</h1>
+        <div class="hero-row">
+          <p>Support that only arrives through real relationship. A space to see clearly, and to meet every kind of change.</p>
+          <a class="btn-solid" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Begin</a>
+        </div>
+      </div>
+    </div>
 
-  <!-- INTRO -->
-  <div class="wrap intro">
-    <p class="reveal">I offer the kind of support that only arrives through real relationship.</p>
-    <p class="reveal reveal-delay-1">Whether we meet only once or a hundred times, my intention is to support you to meet every kind of change.</p>
+    <!-- MARQUEE -->
+    <div class="ticker">
+      <div class="ticker-row">
+        <span class="w">MEDITATION</span><span class="d">◇</span><span class="w">CREATIVITY</span><span class="d">◇</span><span class="w">LIVED EXPERIENCE</span><span class="d">◇</span><span class="w">CHANGE</span><span class="d">◇</span><span class="w">CLARITY</span><span class="d">◇</span>
+        <span class="w">MEDITATION</span><span class="d">◇</span><span class="w">CREATIVITY</span><span class="d">◇</span><span class="w">LIVED EXPERIENCE</span><span class="d">◇</span><span class="w">CHANGE</span><span class="d">◇</span><span class="w">CLARITY</span><span class="d">◇</span>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro">
+      <p>Whether we meet once or a hundred times — my intention is to support you to meet every kind of change.</p>
+    </div>
+
+    <!-- WHAT HAPPENS -->
+    <div class="block">
+      <div class="sec-head wh-head">
+        <span class="sec-idx">01</span>
+        <span class="sec-label">what happens</span>
+      </div>
+      <h2 class="h-sec">How we work together</h2>
+      <div class="two-col">
+        <div class="cell br">
+          <p class="ink">I trust your intelligence.</p>
+          <p class="mut">Together we become curious about what's true.</p>
+          <p class="mut">You develop ways to stay connected to your whole intelligence.</p>
+        </div>
+        <div class="cell">
+          <p class="ink">Each session responds to where you are.</p>
+          <p class="mut">You build the capacity to be with what's happening while it's happening, and see it clearly.</p>
+          <p class="mono-accent">Offered on a donation basis</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO -->
+    <div class="who">
+      <div class="sec-head">
+        <span class="sec-idx">02</span>
+        <span class="sec-label">who this is for</span>
+      </div>
+      <h2 class="h-who">Founders, creatives &amp; people in transition.</h2>
+      <p class="who-sub">people navigating change — inner and outer</p>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="block">
+      <div class="sec-head tst-head">
+        <span class="sec-idx">03</span>
+        <span class="sec-label">what people say</span>
+      </div>
+      <div class="three-col">
+        <div class="tcell br bb">
+          <p class="q">“John has this rare capacity to make you feel at ease, accepted, and guided.”</p>
+          <p class="a">Laura F — writer &amp; teacher</p>
+        </div>
+        <div class="tcell br bb">
+          <p class="q">“John's words are clear, lucid, and deeply supportive.”</p>
+          <p class="a">Manansh S — founder &amp; UX researcher</p>
+        </div>
+        <div class="tcell bb">
+          <p class="q">“John's spiritual friendship changed how I experience life itself.”</p>
+          <p class="a">Sean P — founder &amp; industrial designer</p>
+        </div>
+        <div class="tcell br">
+          <p class="q">“John helped me understand what I was really looking for and make it real.”</p>
+          <p class="a">Daniel G — artist &amp; musician</p>
+        </div>
+        <div class="tcell br">
+          <p class="q">“What I love most is how genuine and supportive John is.”</p>
+          <p class="a">Carolina M — founder &amp; fashion designer</p>
+        </div>
+        <div class="tcell accent">
+          <p>Real relationship, over time.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT (ASCII donut) -->
+    <div class="about">
+      <div class="about-left">
+        <div class="sec-head" style="margin-bottom:28px;">
+          <span class="sec-idx">04</span>
+          <span class="sec-label">about</span>
+        </div>
+        <h2 class="h-about">Who I am</h2>
+        <p>My name is John. I believe good relationships are essential for societies to thrive — and that our relationship to ourselves is the place to begin.</p>
+        <p>My work sits at the intersection of meditation, creativity, and lived experience — trained as a mindfulness teacher, exploring through practice, travel, writing, and building.</p>
+      </div>
+      <div class="about-right">
+        <pre id="donut-ascii" aria-hidden="true"></pre>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <div class="cta-glow"></div>
+      <div class="cta-inner">
+        <p class="kicker" style="margin-bottom:24px;">Ready when you are</p>
+        <h2 class="h-cta">Ready to begin?</h2>
+        <a class="btn-cta" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Get in touch</a>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <span>© 2026 Space to Be</span>
+      <div class="links">
+        <a href="https://j-hn.info/" target="_blank" rel="noopener">John's Website</a>
+        <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>
+      </div>
+    </div>
+
   </div>
+</div>
 
-  <hr class="rule" />
+<script>
+(function () {
+  var ACCENT = '#60A484';
+  var ASCII_OPACITY = 0.7; // client preferred the stronger end of the 0.5–0.7 range
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var animate = !reduce.matches;
+  reduce.addEventListener && reduce.addEventListener('change', function (e) { animate = !e.matches; });
 
-  <!-- WHAT HAPPENS -->
-  <div class="wrap">
-    <p class="section-label reveal">What happens</p>
-    <div class="what-grid">
-      <h2 class="reveal reveal-delay-1">How we work together</h2>
-      <div class="col reveal reveal-delay-2">
-        <p>I trust your intelligence.</p>
-        <p>Together we become curious about what's true.</p>
-        <p>You develop ways to stay connected to your whole intelligence.</p>
-      </div>
-      <div class="col reveal reveal-delay-3">
-        <p>Each session responds to where you are.</p>
-        <p>Overall, you're building the capacity to be with what's happening while it's happening, see it clearly, and trust your own intelligence.</p>
-        <p>Space is offered on a donation-basis.</p>
-      </div>
-    </div>
-  </div>
+  var charW = 13 * 0.6;   // Space Mono glyph advance at 13px
+  var lineH = 13;
 
-  <!-- WHO -->
-  <div class="who-band">
-    <div class="who-inner">
-      <p class="section-label reveal">Who this is for</p>
-      <h2 class="reveal reveal-delay-1">Founders, creatives, and people in transition.</h2>
-      <p class="reveal reveal-delay-2">I work with people navigating change.<br>Inner and outer.</p>
-    </div>
-  </div>
+  // ── Hero flow field ──
+  (function () {
+    var pre = document.getElementById('hero-ascii');
+    var wrap = pre && pre.parentElement;
+    if (!pre || !wrap) return;
+    var ramp = ' .:-=+*#%@';
+    var cols = 20, rows = 12;
+    var mouse = { mx: -999, my: -999 };
+    var t = 0, last = 0;
 
-  <!-- TESTIMONIALS -->
-  <div class="wrap">
-    <p class="section-label">What people say</p>
-    <div class="t-grid">
-
-      <div class="t-card">
-        <div class="t-avatar">
-          <!-- Save as images/laura.jpg -->
-          <img src="images/laura.jpg" alt="Laura F" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-          <p class="ph" style="display:none">Upload<br>laura.jpg</p>
-        </div>
-        <p class="t-quote">"John has this rare capacity to make you feel at ease, accepted, and guided."</p>
-        <div>
-          <p class="t-name">Laura F</p>
-          <p class="t-role">Writer &amp; teacher</p>
-        </div>
-      </div>
-
-      <div class="t-card">
-        <div class="t-avatar">
-          <!-- Save as images/manansh.png -->
-          <img src="images/manansh.png" alt="Manansh" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-          <p class="ph" style="display:none">Upload<br>manansh.png</p>
-        </div>
-        <p class="t-quote">"John's words are clear, lucid, and deeply supportive."</p>
-        <div>
-          <p class="t-name">Manansh S</p>
-          <p class="t-role">Founder &amp; UX researcher</p>
-        </div>
-      </div>
-
-      <div class="t-card">
-        <div class="t-avatar">
-          <!-- Save as images/clfx.png -->
-          <img src="images/clfx.png" alt="Sean P" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-          <p class="ph" style="display:none">Upload<br>clfx.png</p>
-        </div>
-        <p class="t-quote">"John's spiritual friendship changed how I experience life itself."</p>
-        <div>
-          <p class="t-name">Sean P</p>
-          <p class="t-role">Founder &amp; industrial designer</p>
-        </div>
-      </div>
-
-      <div class="t-card">
-        <div class="t-avatar">
-          <!-- Save as images/dani.png -->
-          <img src="images/dani.png" alt="Daniel G" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-          <p class="ph" style="display:none">Upload<br>dani.png</p>
-        </div>
-        <p class="t-quote">"John helped me understand what I was really looking for and make it real."</p>
-        <div>
-          <p class="t-name">Daniel G</p>
-          <p class="t-role">Artist &amp; musician</p>
-        </div>
-      </div>
-
-      <div class="t-card">
-        <div class="t-avatar">
-          <!-- Save as images/CArolina.jpeg -->
-          <img src="images/carolina.png" alt="Carolina M" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-          <p class="ph" style="display:none">Upload<br>carolina.png</p>
-        </div>
-        <p class="t-quote">"What I love most is how genuine and supportive John is."</p>
-        <div>
-          <p class="t-name">Carolina M</p>
-          <p class="t-role">Founder &amp; fashion designer</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <hr class="rule" />
-
-  <!-- JOHN PHOTO -->
-  <div class="john-section">
-    <div class="photo-frame">
-      <!-- Save as images/DSC00393.jpg -->
-      <img src="images/DSC00393.jpg" alt="John O"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-      <div class="ph" style="display:none">
-        <span class="ph-icon">&#9654;</span>
-        Upload DSC00393.jpg
-      </div>
-    </div>
-
-    <div class="john-text reveal">
-      <p class="section-label">About</p>
-      <h2>Who I am</h2>
-      <p>My name is John.</p>
-      <p>I believe good relationships are essential for societies to thrive — and that our relationship to ourselves is the place to begin.</p>
-      <p>My work sits at the intersection of meditation, creativity, and lived experience.</p>
-      <p>I'm trained as a mindfulness meditation teacher, and have spent years exploring through practice, travel, writing, and building.</p>
-    </div>
-  </div>
-
-  <!-- CTA BAND -->
-  <div class="cta-band">
-    <h2>Ready to get started?</h2>
-    <a class="btn btn-green" href="https://si4bpovlbw4.typeform.com/to/QsTdbuGn" target="_blank" rel="noopener">Get in touch</a>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 Space to Be</p>
-    <div class="footer-links">
-      <a href="https://j-hn.info/" target="_blank" rel="noopener">John's Website</a>
-      <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>
-    </div>
-  </footer>
-
-  <script>
-    // ── CUSTOM CURSOR (desktop only) ──
-    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    const cursor = document.getElementById('cursor');
-    if (!isTouchDevice) {
-      let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-      let tx = cx, ty = cy;
-
-      document.addEventListener('mousemove', e => {
-        tx = e.clientX; ty = e.clientY;
-      });
-
-      document.querySelectorAll('a, button').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
-      });
-
-      (function animateCursor() {
-        cx += (tx - cx) * 0.18;
-        cy += (ty - cy) * 0.18;
-        cursor.style.left = cx + 'px';
-        cursor.style.top  = cy + 'px';
-        requestAnimationFrame(animateCursor);
-      })();
+    function measure() {
+      var box = wrap.getBoundingClientRect();
+      cols = Math.max(20, Math.floor(box.width / charW));
+      rows = Math.max(12, Math.floor(box.height / lineH));
     }
+    measure();
+    window.addEventListener('resize', measure);
 
-    // ── HERO PARALLAX (desktop only) ──
-    const hero = document.getElementById('hero');
-    if (!isTouchDevice) {
-      window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const heroH1  = hero.querySelector('h1');
-        const heroSub = hero.querySelector('.hero-sub');
-        const heroAct = hero.querySelector('.hero-actions');
-        if (scrolled < window.innerHeight) {
-          const offset = scrolled * 0.22;
-          if (heroH1)  heroH1.style.transform  = `translateY(${offset}px)`;
-          if (heroSub) heroSub.style.transform  = `translateY(${offset * 0.8}px)`;
-          if (heroAct) heroAct.style.transform  = `translateY(${offset * 0.6}px)`;
+    var hero = document.getElementById('hero');
+    hero.addEventListener('mousemove', function (e) {
+      var r = pre.getBoundingClientRect();
+      mouse.mx = (e.clientX - r.left) / charW;
+      mouse.my = (e.clientY - r.top) / lineH;
+    });
+    hero.addEventListener('mouseleave', function () { mouse.mx = -999; mouse.my = -999; });
+
+    pre.style.opacity = String(ASCII_OPACITY);
+    pre.style.color = ACCENT;
+
+    function loop(now) {
+      requestAnimationFrame(loop);
+      if (now - last < 55) return; // ~18fps
+      last = now;
+      if (animate) t += 0.09;
+      var mx = mouse.mx, my = mouse.my;
+      var out = '';
+      for (var y = 0; y < rows; y++) {
+        for (var x = 0; x < cols; x++) {
+          var v = Math.sin(x * 0.14 + t) + Math.sin(y * 0.19 - t * 0.8) + Math.sin((x + y) * 0.09 + t * 1.2);
+          var dx = x - mx, dy = (y - my) * 1.9;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 40) v += 2.4 * Math.sin(d * 0.42 - t * 3.2) * Math.exp(-d * 0.05);
+          var idx = Math.floor(((v + 3) / 6) * (ramp.length - 1));
+          if (idx < 0) idx = 0; else if (idx > ramp.length - 1) idx = ramp.length - 1;
+          out += ramp[idx];
         }
-      }, { passive: true });
+        out += '\n';
+      }
+      pre.textContent = out;
     }
+    requestAnimationFrame(loop);
+  })();
 
-    // ── SCROLL REVEAL ──
-    const revealEls = document.querySelectorAll('.reveal');
-    const revealObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          revealObs.unobserve(e.target);
+  // ── About donut (Andy Sloane's rotating torus) ──
+  (function () {
+    var pre = document.getElementById('donut-ascii');
+    if (!pre) return;
+    var chars = '.,-~:;=!*#$@';
+    var W = 62, H = 30;
+    var A = 0, B = 0, last = 0;
+    pre.style.color = ACCENT;
+    pre.style.textShadow = '0 0 12px ' + ACCENT;
+
+    function loop(now) {
+      requestAnimationFrame(loop);
+      if (now - last < 40) return; // ~25fps
+      last = now;
+      if (animate) { A += 0.05; B += 0.025; }
+      var b = new Array(W * H).fill(' ');
+      var z = new Array(W * H).fill(0);
+      var cA = Math.cos(A), sA = Math.sin(A), cB = Math.cos(B), sB = Math.sin(B);
+      for (var j = 0; j < 6.28; j += 0.08) {
+        var ct = Math.cos(j), st = Math.sin(j);
+        for (var i = 0; i < 6.28; i += 0.02) {
+          var sp = Math.sin(i), cp = Math.cos(i);
+          var h = ct + 2;
+          var D = 1 / (sp * h * sA + st * cA + 5);
+          var tt = sp * h * cA - st * sA;
+          var x = Math.floor(W / 2 + (W / 3.6) * D * (cp * h * cB - tt * sB));
+          var y = Math.floor(H / 2 + (H / 2.3) * D * (cp * h * sB + tt * cB));
+          var o = x + W * y;
+          var lum = Math.floor(8 * ((st * sA - sp * ct * cA) * cB - sp * ct * sA - st * cA - cp * ct * sB));
+          if (y >= 0 && y < H && x >= 0 && x < W && D > z[o]) {
+            z[o] = D;
+            b[o] = chars[lum > 0 ? lum : 0];
+          }
         }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => revealObs.observe(el));
-
-    // ── TESTIMONIAL CARD SCROLL REVEAL ──
-    const cards = document.querySelectorAll('.t-card');
-    const cardObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
-    cards.forEach(c => cardObs.observe(c));
-  </script>
-
+      }
+      var out = '';
+      for (var k = 0; k < W * H; k++) out += (k % W === W - 1) ? '\n' : b[k];
+      pre.textContent = out;
+    }
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
 </body>
 </html>
