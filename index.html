@@ -179,6 +179,17 @@
     .footer .links { display: flex; gap: 24px; }
     .footer a { color: rgba(30,38,24,0.6); }
 
+    /* session: narrower spec column against the prose column */
+    .two-col.session-grid { grid-template-columns: 2fr 3fr; }
+
+    /* how it unfolds: three parallel steps */
+    .unfold-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hair); }
+    .ucell { padding: 40px; border-right: 1px solid var(--hair); }
+    .ucell:last-child { border-right: none; }
+    .u-mark { display: block; font-family: var(--mono); font-size: 14px; color: var(--green); margin-bottom: 16px; }
+    .ucell h3 { font-family: var(--display); font-weight: 600; font-size: 24px; letter-spacing: -0.01em; color: var(--forest); margin-bottom: 10px; }
+    .ucell p { font-size: 17px; line-height: 1.65; color: rgba(30,38,24,0.7); }
+
     /* session link to the form */
     a.session-link { transition: color 0.2s ease; }
     a.session-link:hover { color: var(--green); }
@@ -214,7 +225,9 @@
       .h-about { font-size: clamp(1.9rem, 8vw, 54px); }
       .h-cta { font-size: clamp(2.6rem, 12vw, 88px); }
 
-      .two-col, .three-col, .about { grid-template-columns: 1fr; }
+      .two-col, .two-col.session-grid, .three-col, .about, .unfold-grid { grid-template-columns: 1fr; }
+      .ucell { border-right: none; border-bottom: 1px solid var(--hair); }
+      .ucell:last-child { border-bottom: none; }
       .cell.br, .about-left { border-right: none; }
       .about-left { border-bottom: 1px solid var(--hair); }
       .cell:first-child { border-bottom: 1px solid var(--hair); }
@@ -225,7 +238,7 @@
     @media (max-width: 560px) {
       .hero-inner, .intro, .who, .cta { padding-left: 22px; padding-right: 22px; }
       .h-sec { padding-left: 22px; padding-right: 22px; }
-      .cell, .tcell, .about-left, .about-right { padding: 28px 22px; }
+      .cell, .tcell, .ucell, .about-left, .about-right { padding: 28px 22px; }
       .intro { padding-top: 60px; padding-bottom: 60px; }
       .who { padding-top: 70px; padding-bottom: 70px; }
       .cta { padding-top: 80px; padding-bottom: 80px; }
@@ -303,7 +316,6 @@
         <div class="cell">
           <p class="ink">Each session responds to where you are.</p>
           <p class="mut">You build the capacity to be with what's happening while it's happening, and see it clearly.</p>
-          <p class="mono-accent">Offered on a <span class="dtip" tabindex="0" role="note" aria-label="What donation basis means">donation basis<span class="dtip-pop">Space is primarily offered over six-week <em>flows</em>, on a donation basis, after mutual discernment. This follows the spirit of dāna — the practice, ancient in Buddhist tradition, of offering the work freely and letting it be supported through generosity. Giving in this way is itself a practice of honesty, generosity, and skilfully looking after oneself. For a sense of scale, most people offer between $900 and $1,500 per six-week <em>flow</em>, and $150–250 per ongoing session.</span></span></p>
         </div>
       </div>
     </div>
@@ -311,16 +323,38 @@
     <!-- SESSION -->
     <div class="block">
       <h2 class="h-sec">What a session looks like</h2>
-      <div class="two-col">
+      <div class="two-col session-grid">
         <div class="cell br">
           <p class="mono-accent">~60 minutes</p>
           <p class="mono-accent">Zoom or in-person</p>
-          <p class="mono-accent">We open with a short meditation practice. Afterwards depends on you, what you need, and what I sense could be of benefit.</p>
+          <p class="mono-accent">Offered on a <span class="dtip" tabindex="0" role="note" aria-label="What donation basis means">donation basis<span class="dtip-pop">Space is primarily offered over six-week <em>flows</em>, on a donation basis, after mutual discernment. This follows the spirit of dāna — the practice, ancient in Buddhist tradition, of offering the work freely and letting it be supported through generosity. Giving in this way is itself a practice of honesty, generosity, and skilfully looking after oneself. For a sense of scale, most people offer between $900 and $1,500 per six-week <em>flow</em>, and $150–250 per ongoing session.</span></span></p>
+          <p class="mono-accent">I reply within 2–3 days</p>
         </div>
         <div class="cell">
-          <p class="ink"><a class="session-link" href="/start.html">Start with a free 20-minute conversation. <span class="arr" aria-hidden="true">↗</span></a></p>
-          <p class="mut">We'll explore what you're looking for and what I can honestly offer. If there's a mutual fit, we begin a six-week flow of sessions. If not, that's a good outcome too.</p>
-          <p class="mut">After six weeks, some friendships continue into another flow. Others move to ongoing sessions — weekly or every two weeks, at a rhythm of your own. Trust first, then flexibility. And when a friendship is complete, it can taper gently: an occasional session as a touchstone, whenever one is needed.</p>
+          <p class="mut">We open with a short meditation practice. Afterwards depends on you, what you need, and what I sense could be of benefit.</p>
+          <p class="ink"><a class="session-link" href="/start.html">Start with a free 20-minute conversation <span class="arr" aria-hidden="true">↗</span></a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW IT UNFOLDS -->
+    <div class="block">
+      <h2 class="h-sec">How it unfolds</h2>
+      <div class="unfold-grid">
+        <div class="ucell">
+          <span class="u-mark" aria-hidden="true">◇</span>
+          <h3>A conversation</h3>
+          <p>Free, 20 minutes. We explore what you're looking for and whether there's a mutual fit.</p>
+        </div>
+        <div class="ucell">
+          <span class="u-mark" aria-hidden="true">◇</span>
+          <h3>A flow</h3>
+          <p>Six weeks of weekly sessions — trust and a foundation of practice.</p>
+        </div>
+        <div class="ucell">
+          <span class="u-mark" aria-hidden="true">◇</span>
+          <h3>A rhythm of your own</h3>
+          <p>Another flow, or ongoing sessions — weekly or fortnightly. When complete, a touchstone now and then.</p>
         </div>
       </div>
     </div>
