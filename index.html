@@ -179,6 +179,12 @@
     .footer .links { display: flex; gap: 24px; }
     .footer a { color: rgba(30,38,24,0.6); }
 
+    /* session link to the form */
+    a.session-link { transition: color 0.2s ease; }
+    a.session-link:hover { color: var(--green); }
+    a.session-link .arr { color: var(--green); display: inline-block; transition: transform 0.2s ease; }
+    a.session-link:hover .arr { transform: translate(3px, -3px); }
+
     /* Wonderfool letter form */
     .letter-form { display: flex; max-width: 480px; margin: 0 auto; }
     .letter-form input { flex: 1; min-width: 0; font-family: var(--body); font-size: 16px;
@@ -309,7 +315,7 @@
           <p class="mono-accent">We open with a short meditation practice. Afterwards depends on you, what you need, and what I sense could be of benefit.</p>
         </div>
         <div class="cell">
-          <p class="ink">Start with a free 20-minute conversation.</p>
+          <p class="ink"><a class="session-link" href="/start.html">Start with a free 20-minute conversation. <span class="arr" aria-hidden="true">↗</span></a></p>
           <p class="mut">We'll explore what you're looking for and what I can honestly offer. If there's a mutual fit, we begin a six-week flow of sessions. If not, that's a good outcome too.</p>
         </div>
       </div>
