@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exploring the body–heart–mind — a practice map · Space to Be</title>
+  <meta name="description" content="A practice map: body, heart and mind as three places to rest attention, the rhythm of effort and rest that moves between them, and some suggestions on form." />
+
+  <link rel="canonical" href="https://spacetobe.xyz/practice-map/" />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Space to Be" />
+  <meta property="og:url" content="https://spacetobe.xyz/practice-map/" />
+  <meta property="og:title" content="Exploring the body–heart–mind — a practice map" />
+  <meta property="og:description" content="Three places to rest attention, and the rhythm that moves between them." />
+  <meta property="og:image" content="https://spacetobe.xyz/images/practice-map-hero.jpg" />
+  <meta property="og:image:alt" content="A lone figure walking a field toward banded hills" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Exploring the body–heart–mind — a practice map" />
+  <meta name="twitter:description" content="Three places to rest attention, and the rhythm that moves between them." />
+  <meta name="twitter:image" content="https://spacetobe.xyz/images/practice-map-hero.jpg" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/favicon-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-180.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Same tokens as the home page — this is one site. */
+    :root {
+      --bg: #FFF9F0;
+      --forest: #1E2618;
+      --green: #60A484;
+      --hair: rgba(30,38,24,0.08);
+      --display: 'Bricolage Grotesque', sans-serif;
+      --body: 'Space Grotesk', sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { background: var(--bg); font-family: var(--body); color: var(--forest);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: rgba(96,164,132,0.28); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    .page { position: relative; background: var(--bg); overflow: hidden; }
+    .grid-overlay {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(30,38,24,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,38,24,0.028) 1px, transparent 1px);
+      background-size: 64px 64px;
+      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 100%);
+      mask-image: radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 100%);
+    }
+    .col { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
+      border-left: 1px solid var(--hair); border-right: 1px solid var(--hair); }
+
+    /* Nav */
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 22px 28px; border-bottom: 1px solid var(--hair); }
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .brand-logo { width: 26px; height: 26px; display: block; flex-shrink: 0; }
+    .wordmark { font-family: var(--display); font-weight: 600; font-size: 20px; letter-spacing: -0.01em; color: var(--forest); }
+    .btn-ghost { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--green);
+      border: 1px solid rgba(96,164,132,0.4); padding: 10px 18px; white-space: nowrap; transition: all 0.2s; }
+    .btn-ghost:hover { background: var(--green); color: var(--bg); }
+
+    /* Hero */
+    .hero { position: relative; min-height: 78vh; overflow: hidden;
+      border-bottom: 1px solid var(--hair); display: flex; align-items: center; }
+    .hero-ascii-wrap { position: absolute; inset: 0; z-index: 0;
+      -webkit-mask-image: radial-gradient(120% 120% at 50% 45%, #000 30%, transparent 92%);
+      mask-image: radial-gradient(120% 120% at 50% 45%, #000 30%, transparent 92%); }
+    #hero-ascii { margin: 0; font-family: var(--mono); font-size: 13px; line-height: 13px;
+      white-space: pre; user-select: none; color: var(--green); opacity: 0.4; }
+    .hero-inner { position: relative; z-index: 2; padding: 56px 40px; width: 100%; }
+    .kicker { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--green); margin-bottom: 26px; }
+    .hero .kicker { color: var(--forest); text-shadow: 0 0 10px var(--bg), 0 0 3px var(--bg); }
+    .h-hero { font-family: var(--display); font-weight: 700; font-size: clamp(2.5rem, 7.4vw, 96px);
+      line-height: 0.98; letter-spacing: -0.032em; color: var(--forest); max-width: 14ch; overflow-wrap: break-word; }
+    .hero-row { display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 24px 48px; margin-top: 38px; flex-wrap: wrap; }
+    .hero-copy { flex: 1 1 32rem; max-width: 48ch; }
+    .hero-row p { font-size: 20px; font-weight: 500; color: rgba(30,38,24,0.94);
+      line-height: 1.62; text-shadow: 0 0 10px var(--bg), 0 0 3px var(--bg); }
+    .hero-row p + p { margin-top: 14px; }
+    .hero-note { flex: 0 1 17rem; font-family: var(--mono); font-size: 13px; line-height: 1.7;
+      letter-spacing: 0.06em; color: var(--forest); text-shadow: 0 0 10px var(--bg), 0 0 3px var(--bg); }
+
+    /* Marquee */
+    .ticker { overflow: hidden; border-bottom: 1px solid var(--hair); padding: 12px 0; background: rgba(96,164,132,0.03); }
+    .ticker-row { display: flex; width: max-content; font-family: var(--mono); font-size: 13px;
+      letter-spacing: 0.06em; color: rgba(30,38,24,0.5); animation: marquee 52s linear infinite; }
+    .ticker-row .w { padding: 0 20px; }
+    .ticker-row .d { color: var(--green); }
+
+    .block { border-bottom: 1px solid var(--hair); }
+
+    /* Full-bleed image bands — the only colour on an otherwise quiet page.
+       The pictures are vivid; left raw they shout over a cream-and-forest
+       palette. The filter pulls them back so they read as art direction rather
+       than as something borrowed. Delete the two filter lines for them raw. */
+    .band { position: relative; border-bottom: 1px solid var(--hair); background: rgba(96,164,132,0.05); }
+    .band img { width: 100%; height: clamp(96px, 13vh, 132px); object-fit: cover;
+      filter: saturate(0.72); }
+    /* one full plate at the top; after that the pictures act as spectral rules
+       between territories, so the colour paces the page instead of shouting */
+    .band.tall img { height: clamp(230px, 40vh, 360px); filter: none; }
+    /* the cairn is a portrait photograph turned on its side */
+    .band-rot { position: relative; height: clamp(96px, 13vh, 132px); overflow: hidden; }
+    .band-rot img { position: absolute; top: 50%; left: 50%; height: 64rem;
+      width: clamp(96px, 13vh, 132px); object-fit: cover;
+      transform: translate(-50%, -50%) rotate(90deg); }
+
+    /* Statement */
+    .intro { padding: 84px 40px; border-bottom: 1px solid var(--hair); }
+    .intro p { font-family: var(--display); font-weight: 500; font-size: clamp(1.7rem, 5.4vw, 42px);
+      line-height: 1.24; letter-spacing: -0.02em; color: var(--forest); max-width: 26ch; }
+
+    /* A section of prose */
+    .sec { padding: 60px 40px; }
+    .h-sec { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 6.4vw, 54px);
+      letter-spacing: -0.03em; color: var(--forest); margin-bottom: 26px; }
+    .sec .kicker { margin-bottom: 18px; }
+    .sec p { font-size: 18px; line-height: 1.75; color: rgba(30,38,24,0.72); max-width: 56ch; }
+    .sec p + p { margin-top: 16px; }
+    .sec p em { font-style: italic; color: var(--forest); }
+
+    /* Two qualities, side by side */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--hair); }
+    .cell { padding: 40px; display: flex; flex-direction: column; gap: 14px; }
+    .cell.br { border-right: 1px solid var(--hair); }
+    .cell h3 { font-family: var(--display); font-weight: 600; font-size: 26px; letter-spacing: -0.02em; color: var(--forest); }
+    .cell p { font-size: 18px; line-height: 1.7; color: rgba(30,38,24,0.72); }
+    .u-mark { display: block; font-family: var(--mono); font-size: 14px; color: var(--green); }
+
+    /* Cultivate / rest */
+    .ways { border-top: 1px solid var(--hair); }
+    .way { display: grid; grid-template-columns: 10rem 1fr; gap: 10px 32px; align-items: baseline;
+      padding: 26px 40px; border-bottom: 1px solid var(--hair); }
+    .way:last-child { border-bottom: none; }
+    .way-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--green); }
+    .way-label.rest { color: rgba(30,38,24,0.45); }
+    .way h3 { font-family: var(--display); font-weight: 600; font-size: 21px;
+      letter-spacing: -0.015em; color: var(--forest); margin-bottom: 8px; }
+    .way p { font-size: 17px; line-height: 1.7; color: rgba(30,38,24,0.72); max-width: 54ch; }
+
+    /* What is revealed */
+    .reveal { padding: 44px 40px; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+      background: rgba(96,164,132,0.05); }
+    .reveal .kicker { margin-bottom: 12px; }
+    .reveal h3 { font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 6vw, 46px);
+      letter-spacing: -0.03em; color: var(--forest); margin-bottom: 14px; }
+    .reveal p { font-size: 18px; line-height: 1.7; color: rgba(30,38,24,0.72); max-width: 54ch; }
+    .reveal p em { font-style: italic; color: var(--forest); }
+
+    /* Posture */
+    .spec { border-top: 1px solid var(--hair); }
+    .spec-row { display: grid; grid-template-columns: 10rem 1fr; gap: 6px 32px; align-items: baseline;
+      padding: 20px 40px; border-bottom: 1px solid var(--hair); }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-row dt { font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--green); }
+    .spec-row dd { font-size: 17px; line-height: 1.7; color: rgba(30,38,24,0.72); max-width: 62ch; }
+
+    /* Three ways in */
+    .doors { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hair); }
+    .door { padding: 36px 40px; border-right: 1px solid var(--hair);
+      display: flex; flex-direction: column; gap: 10px; transition: background 0.2s ease; }
+    .door:last-child { border-right: none; }
+    .door:hover { background: rgba(96,164,132,0.06); }
+    .door .when { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(30,38,24,0.45); }
+    .door h3 { font-family: var(--display); font-weight: 600; font-size: 22px;
+      letter-spacing: -0.02em; color: var(--forest); }
+    .door .arrow { color: var(--green); display: inline-block; transition: transform 0.2s ease; }
+    .door:hover .arrow { transform: translateX(5px); }
+
+    /* Closing + CTA */
+    .close { padding: 84px 40px; border-bottom: 1px solid var(--hair); }
+    .close p.big { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem, 5vw, 38px);
+      line-height: 1.24; letter-spacing: -0.025em; color: var(--forest); max-width: 28ch; margin-bottom: 22px; }
+    .close p.sub { font-size: 18px; line-height: 1.75; color: rgba(30,38,24,0.72); max-width: 54ch; }
+
+    .cta { padding: 100px 40px; text-align: center; }
+    .h-cta { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 9vw, 76px);
+      letter-spacing: -0.04em; color: var(--forest); margin-bottom: 34px; }
+    .btn-cta { display: inline-block; font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em;
+      color: var(--bg); background: var(--green); padding: 18px 44px; transition: transform 0.2s; }
+    .btn-cta:hover { transform: translateY(-3px); }
+    .cta .elsewhere { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+      color: rgba(30,38,24,0.5); margin-top: 26px; }
+    .cta .elsewhere a { color: var(--green); border-bottom: 1px solid rgba(96,164,132,0.4); }
+
+    /* Footer */
+    .footer { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px;
+      border-top: 1px solid var(--hair); font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.06em; color: rgba(30,38,24,0.45); flex-wrap: wrap; gap: 12px; }
+    .footer .links { display: flex; gap: 24px; }
+    .footer a { color: rgba(30,38,24,0.6); }
+
+    /* Contact form overlay — same behaviour as the home page */
+    .form-overlay { position: fixed; inset: 0; z-index: 1000; background: var(--bg);
+      opacity: 0; visibility: hidden; transform: translateY(14px);
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease; }
+    .form-overlay.open { opacity: 1; visibility: visible; transform: none; }
+    .form-frame { width: 100%; height: 100%; border: none; display: block; }
+    body.form-open { overflow: hidden; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .two-col, .doors { grid-template-columns: 1fr; }
+      .cell.br { border-right: none; border-bottom: 1px solid var(--hair); }
+      .door { border-right: none; border-bottom: 1px solid var(--hair); }
+      .door:last-child { border-bottom: none; }
+    }
+    @media (max-width: 620px) {
+      /* a 10rem label column leaves nothing for the prose on a phone */
+      .way, .spec-row { grid-template-columns: 1fr; gap: 6px; }
+    }
+    @media (max-width: 560px) {
+      .hero-inner, .intro, .sec, .close, .cta, .reveal { padding-left: 22px; padding-right: 22px; }
+      .cell, .way, .spec-row, .door { padding-left: 22px; padding-right: 22px; }
+      .intro, .close { padding-top: 56px; padding-bottom: 56px; }
+      .sec { padding-top: 44px; padding-bottom: 44px; }
+      .cta { padding-top: 72px; padding-bottom: 72px; }
+      /* the long brand line stands down; the logo carries it */
+      .wordmark { display: none; }
+      /* the field has to sit further back under a narrow column of copy.
+         !important because the script sets the opacity inline. */
+      #hero-ascii { opacity: 0.22 !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-row { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- faint grid overlay -->
+  <div class="grid-overlay"></div>
+
+  <div class="col">
+
+    <!-- NAV -->
+    <div class="nav">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="/images/logo.png" alt="Space to Be logo" />
+        <span class="wordmark">One-to-One Meditation Teaching and Spiritual Friendship</span>
+      </a>
+      <a class="btn-ghost" href="/start.html">Get in touch</a>
+    </div>
+
+    <!-- HERO -->
+    <div id="hero" class="hero">
+      <div class="hero-ascii-wrap">
+        <pre id="hero-ascii" aria-hidden="true"></pre>
+      </div>
+      <div class="hero-inner">
+        <p class="kicker">A practice map</p>
+        <h1 class="h-hero">Exploring the body–heart–mind.</h1>
+        <div class="hero-row">
+          <div class="hero-copy">
+            <p>This is a map, not a method. It describes territory — what the body, the heart and the mind actually are as places to rest attention — so that you can find your own way.</p>
+            <p>Nothing here asks you to believe anything. Every claim is written to be tested against your own experience, and to be let go of if it doesn't land.</p>
+          </div>
+          <p class="hero-note">No experience needed. Nothing to believe.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="ticker">
+      <div class="ticker-row">
+        <span class="w">BODY</span><span class="d">◇</span><span class="w">HEART</span><span class="d">◇</span><span class="w">MIND</span><span class="d">◇</span><span class="w">PRESENCE</span><span class="d">◇</span><span class="w">RESONANCE</span><span class="d">◇</span><span class="w">SPACIOUSNESS</span><span class="d">◇</span>
+        <span class="w">BODY</span><span class="d">◇</span><span class="w">HEART</span><span class="d">◇</span><span class="w">MIND</span><span class="d">◇</span><span class="w">PRESENCE</span><span class="d">◇</span><span class="w">RESONANCE</span><span class="d">◇</span><span class="w">SPACIOUSNESS</span><span class="d">◇</span>
+        <span class="w">BODY</span><span class="d">◇</span><span class="w">HEART</span><span class="d">◇</span><span class="w">MIND</span><span class="d">◇</span><span class="w">PRESENCE</span><span class="d">◇</span><span class="w">RESONANCE</span><span class="d">◇</span><span class="w">SPACIOUSNESS</span><span class="d">◇</span>
+        <span class="w">BODY</span><span class="d">◇</span><span class="w">HEART</span><span class="d">◇</span><span class="w">MIND</span><span class="d">◇</span><span class="w">PRESENCE</span><span class="d">◇</span><span class="w">RESONANCE</span><span class="d">◇</span><span class="w">SPACIOUSNESS</span><span class="d">◇</span>
+      </div>
+    </div>
+
+    <figure class="band tall">
+      <img src="/images/practice-map-hero.jpg" alt="A lone figure walking a field toward banded hills"
+           style="object-position: center 78%;" loading="eager" decoding="async" width="960" height="1200" />
+    </figure>
+
+    <!-- STATEMENT -->
+    <div class="intro">
+      <p>The map is not the territory.</p>
+    </div>
+
+    <!-- THE RHYTHM -->
+    <div class="block">
+      <div class="sec">
+        <p class="kicker">The rhythm</p>
+        <h2 class="h-sec">Effort and rest.</h2>
+        <p>Each territory has two ways of approach. First you might <em>cultivate</em> — a deliberate practice, something to do. Then you might <em>rest</em> — stop efforting, and let what is already here reveal itself.</p>
+        <p>They are not stages, and you don't graduate from one to the next. You already have what these practices point at: presence, resonance and spaciousness are uncovered, not manufactured.</p>
+      </div>
+      <div class="two-col">
+        <div class="cell br">
+          <span class="u-mark" aria-hidden="true">◇</span>
+          <h3>Gentleness</h3>
+          <p>A softening. A way of treating ourselves and others as precious, and a counter to the harshness that can creep in when we apply effort. Without it, practice becomes another place where we're hard on ourselves.</p>
+        </div>
+        <div class="cell">
+          <span class="u-mark" aria-hidden="true">◇</span>
+          <h3>Precision</h3>
+          <p>An exactness. A way of meeting experience with complete contact, and a counter to the dullness that can arise when we grow complacent. Without it, practice can become a place to hide from what's true.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="kicker">What follows</p>
+      <h3>Letting go.</h3>
+      <p>Not a technique but a result: right effort, the absence of aggression, the natural release of clinging. It happens naturally, once gentleness and precision are in tune.</p>
+    </div>
+
+    <!-- THE BODY -->
+    <figure class="band">
+      <img src="/images/practice-map-body.jpg" alt="A stable ground map — banded terrain in earth tones"
+           style="object-position: center 50%;" loading="lazy" decoding="async" width="960" height="1200" />
+    </figure>
+    <div class="block" id="body" style="scroll-margin-top: 8px;">
+      <div class="sec">
+        <p class="kicker">Grounding</p>
+        <h2 class="h-sec">The body</h2>
+        <p>The body is always in contact with the present. It is a field of changing sensation with its own non-conceptual intelligence — grounded, immediate, already here.</p>
+        <p>But we rarely stay with it. We fix our attention elsewhere, often to avoid what feels uncomfortable, and lose awareness of that which is never anywhere but now.</p>
+      </div>
+      <div class="ways">
+        <div class="way">
+          <span class="way-label">Cultivate</span>
+          <div>
+            <h3>Turn toward sensation</h3>
+            <p>Body scans and walking meditation. Allow your attention to fill the body, deepening your capacity to be with the pleasant, the unpleasant and the neutral alike.</p>
+          </div>
+        </div>
+        <div class="way">
+          <span class="way-label rest">Rest</span>
+          <div>
+            <h3>Let awareness diffuse</h3>
+            <p>Rest your attention. Let the body's natural sensitivity become a ground you relax into, and trust its intelligence to hold your life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="kicker">What is revealed</p>
+      <h3>Presence.</h3>
+      <p>You don't have to <em>do</em> being here. You already are. What's left is embodiment without striving — a trust that the body can be rested in, exactly as it is.</p>
+    </div>
+
+    <!-- THE HEART -->
+    <figure class="band">
+      <img src="/images/practice-map-heart.jpg" alt="A resonance map — concentric rings radiating from a centre"
+           style="object-position: center 45%;" loading="lazy" decoding="async" width="960" height="1200" />
+    </figure>
+    <div class="block" id="heart" style="scroll-margin-top: 8px;">
+      <div class="sec">
+        <p class="kicker">Resonating</p>
+        <h2 class="h-sec">The heart</h2>
+        <p>The heart is an organ of attunement. It resonates — with our own experience, with others, with the wider world — and it carries its own knowing: a reservoir of care, compassion and courage.</p>
+        <p>Its capacity to feel is endlessly deep, and because it is so deep, we often find our hearts closing to protect us from the fullness of it. Opening the heart is not done by force.</p>
+      </div>
+      <div class="ways">
+        <div class="way">
+          <span class="way-label">Cultivate</span>
+          <div>
+            <h3>Wish well, on purpose</h3>
+            <p>Loving-kindness. Deliberate warmth, turned toward yourself and then outward, until gentleness begins to feel natural rather than performed.</p>
+          </div>
+        </div>
+        <div class="way">
+          <span class="way-label rest">Rest</span>
+          <div>
+            <h3>Let the heart resonate</h3>
+            <p>Begin in the body, then bring awareness to the heart and let its qualities respond on their own.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="kicker">What is revealed</p>
+      <h3>Resonance.</h3>
+      <p>You are not generating the care. You are discovering that the heart does this on its own — it resonates and responds, if you let it. Warmth reaches as readily to an animal, a tree or a place as to a person.</p>
+    </div>
+
+    <!-- THE MIND -->
+    <figure class="band">
+      <img src="/images/practice-map-mind.jpg" alt="An open-space map — starfield crossed by bands of colour"
+           style="object-position: center 50%;" loading="lazy" decoding="async" width="960" height="1200" />
+    </figure>
+    <div class="block" id="mind" style="scroll-margin-top: 8px;">
+      <div class="sec">
+        <p class="kicker">Opening</p>
+        <h2 class="h-sec">The mind</h2>
+        <p>The mind thinks — that is what it does. Usually we don't notice we're thinking; we're simply lost to it.</p>
+        <p>Our culture teaches us to meet a complex world through concept and abstraction, and that never quite satisfies, because the world is not a concept. It is an unfathomable, changing reality.</p>
+      </div>
+      <div class="ways">
+        <div class="way">
+          <span class="way-label">Cultivate</span>
+          <div>
+            <h3>Note thinking as thinking</h3>
+            <p>When you notice you've been thinking, note it, and return. Thought becomes one phenomenon among many — not reality itself.</p>
+          </div>
+        </div>
+        <div class="way">
+          <span class="way-label rest">Rest</span>
+          <div>
+            <h3>Open into space</h3>
+            <p>Through body, then heart, then a recognition of the mind as naturally spacious. Let phenomena arise and pass by themselves.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="kicker">What is revealed</p>
+      <h3>Spaciousness.</h3>
+      <p>The noticing was always happening in something already open. Thoughts arise and pass without your control; you don't have to run the show. What remains is a sense of spaciousness, and rest.</p>
+    </div>
+
+    <!-- POSTURE -->
+    <figure class="band">
+      <div class="band-rot">
+        <img src="/images/practice-map-posture.jpg" alt="A balanced cairn of stones against bands of colour"
+             loading="lazy" decoding="async" width="960" height="1200" />
+      </div>
+    </figure>
+    <div class="block">
+      <div class="sec">
+        <p class="kicker">On the posture</p>
+        <h2 class="h-sec">Some suggestions on form</h2>
+        <p>Find the same balance in physical form: precision with gentleness.<br />Wakeful and at ease, at the same time.</p>
+      </div>
+      <dl class="spec">
+        <div class="spec-row"><dt>Place</dt><dd>Indoors is good. Outdoors can be better — a garden, a doorway, a park bench, or simply the window open. Weather, birdsong and traffic can be part of practice.</dd></div>
+        <div class="spec-row"><dt>Seat</dt><dd>Chair, cushion, bench or floor — all of them work. Aim to have your hips a little higher than your knees, so the lower back keeps its natural curve.</dd></div>
+        <div class="spec-row"><dt>Spine</dt><dd>Upright without strain. Think of lengthening from the crown of the head. Uprightness here is dignity, not rigidity.</dd></div>
+        <div class="spec-row"><dt>Hands</dt><dd>Resting palms down on the thighs or cradled in the lap.</dd></div>
+        <div class="spec-row"><dt>Face</dt><dd>Relaxed muscles of the face, mouth closed or lips just separated, tongue soft. Breathe through the nose if you can.</dd></div>
+        <div class="spec-row"><dt>Eyes</dt><dd>Open with a soft, unfocused gaze a metre or so ahead, or closed. Try both over a stretch of days; they produce noticeably different practices.</dd></div>
+        <div class="spec-row"><dt>Pain</dt><dd>Move. Look after your body. Enduring real pain teaches nothing except that practice hurts. Lie down, stand, walk. Do what you have to do.</dd></div>
+      </dl>
+    </div>
+
+    <!-- MAKING IT YOUR OWN -->
+    <figure class="band">
+      <img src="/images/practice-map-yours.jpg" alt="A standing figure at the centre of radiating bands of light"
+           style="object-position: center 84%;" loading="lazy" decoding="async" width="960" height="1200" />
+    </figure>
+    <div class="block" id="yours" style="scroll-margin-top: 8px;">
+      <div class="sec">
+        <p class="kicker">The point of a map</p>
+        <h2 class="h-sec">Making it your own</h2>
+        <p>A map is no use if you only ever read it. The three territories are yours to explore in whatever order and rhythm your practice asks for. Let your practice become a friend.</p>
+        <p>Twenty minutes is standard, and sitting daily matters far more than sitting long. On a hard day, five minutes counts. When you lapse — everyone lapses — simply begin again. Beginning again is not a failure. It is the practice.</p>
+      </div>
+      <div class="doors">
+        <a class="door" href="#body">
+          <span class="when">If overwhelmed</span>
+          <h3>Begin with the body <span class="arrow" aria-hidden="true">→</span></h3>
+        </a>
+        <a class="door" href="#heart">
+          <span class="when">If angry</span>
+          <h3>Begin with the heart <span class="arrow" aria-hidden="true">→</span></h3>
+        </a>
+        <a class="door" href="#mind">
+          <span class="when">If scattered</span>
+          <h3>Begin with the mind <span class="arrow" aria-hidden="true">→</span></h3>
+        </a>
+      </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div class="close">
+      <p class="big">We build a habit only to find what needs no habit at all.</p>
+      <p class="sub">What you were reaching for was never produced by any of this. Presence, resonance, spaciousness — they are here all the time.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <p class="kicker">Practising with someone</p>
+      <h2 class="h-cta">Want company on the map?</h2>
+      <a class="btn-cta" href="/start.html">Get in touch</a>
+      <p class="kicker" style="margin-top:26px;margin-bottom:0;">Start with a free 20-minute conversation</p>
+      <p class="elsewhere">Practising in a group is its own thing — that happens over at <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <span>© 2026 Space to Be</span>
+      <div class="links">
+        <a href="https://j-hn.info/" target="_blank" rel="noopener">John's Website</a>
+        <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Contact form overlay (start.html embedded) -->
+<div class="form-overlay" id="formOverlay" aria-hidden="true">
+  <iframe id="formFrame" class="form-frame" title="Get in touch — Space to Be" src="/start.html" loading="lazy"></iframe>
+</div>
+
+<script>
+// ── Open/close the contact form overlay (same contract as the home page) ──
+(function () {
+  var overlay = document.getElementById('formOverlay');
+  var frame = document.getElementById('formFrame');
+  if (!overlay || !frame) return;
+  function openForm(e) {
+    if (e) e.preventDefault();
+    document.body.classList.add('form-open');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    try { frame.contentWindow.postMessage('spacetobe:open', '*'); } catch (_) {}
+  }
+  function closeForm() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('form-open');
+  }
+  document.querySelectorAll('a[href="/start.html"]').forEach(function (a) { a.addEventListener('click', openForm); });
+  window.addEventListener('message', function (ev) { if (ev.data === 'spacetobe:close-form') closeForm(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) closeForm(); });
+})();
+
+// ── Hero flow field — the same ASCII field as the home page ──
+(function () {
+  var ACCENT = '#60A484';
+  var ASCII_OPACITY = 0.4;   // lower than the home page: more copy sits over it
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var animate = !reduce.matches;
+  reduce.addEventListener && reduce.addEventListener('change', function (e) { animate = !e.matches; });
+
+  var charW = 13 * 0.6;   // Space Mono glyph advance at 13px
+  var lineH = 13;
+
+  var pre = document.getElementById('hero-ascii');
+  var wrap = pre && pre.parentElement;
+  var hero = document.getElementById('hero');
+  if (!pre || !wrap || !hero) return;
+
+  var ramp = ' .:-=+*#%@';
+  var cols = 20, rows = 12;
+  var mouse = { mx: -999, my: -999 };
+  var t = 0, last = 0;
+
+  function measure() {
+    var box = wrap.getBoundingClientRect();
+    cols = Math.max(20, Math.floor(box.width / charW));
+    rows = Math.max(12, Math.floor(box.height / lineH));
+  }
+  measure();
+  window.addEventListener('resize', measure);
+
+  hero.addEventListener('mousemove', function (e) {
+    var r = pre.getBoundingClientRect();
+    mouse.mx = (e.clientX - r.left) / charW;
+    mouse.my = (e.clientY - r.top) / lineH;
+  });
+  hero.addEventListener('mouseleave', function () { mouse.mx = -999; mouse.my = -999; });
+
+  pre.style.opacity = String(ASCII_OPACITY);
+  pre.style.color = ACCENT;
+
+  function loop(now) {
+    requestAnimationFrame(loop);
+    if (now - last < 55) return; // ~18fps
+    last = now;
+    if (animate) t += 0.09;
+    var mx = mouse.mx, my = mouse.my;
+    var out = '';
+    for (var y = 0; y < rows; y++) {
+      for (var x = 0; x < cols; x++) {
+        var v = Math.sin(x * 0.14 + t) + Math.sin(y * 0.19 - t * 0.8) + Math.sin((x + y) * 0.09 + t * 1.2);
+        var dx = x - mx, dy = (y - my) * 1.9;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 40) v += 2.4 * Math.sin(d * 0.42 - t * 3.2) * Math.exp(-d * 0.05);
+        var idx = Math.floor(((v + 3) / 6) * (ramp.length - 1));
+        if (idx < 0) idx = 0; else if (idx > ramp.length - 1) idx = ramp.length - 1;
+        out += ramp[idx];
+      }
+      out += '\n';
+    }
+    pre.textContent = out;
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
