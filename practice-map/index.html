@@ -111,15 +111,15 @@
        palette. The filter pulls them back so they read as art direction rather
        than as something borrowed. Delete the two filter lines for them raw. */
     .band { position: relative; border-bottom: 1px solid var(--hair); background: rgba(96,164,132,0.05); }
-    .band img { width: 100%; height: clamp(96px, 13vh, 132px); object-fit: cover;
+    .band img { width: 100%; height: clamp(130px, 18vh, 184px); object-fit: cover;
       filter: saturate(0.72); }
     /* one full plate at the top; after that the pictures act as spectral rules
        between territories, so the colour paces the page instead of shouting */
     .band.tall img { height: clamp(230px, 40vh, 360px); filter: none; }
     /* the cairn is a portrait photograph turned on its side */
-    .band-rot { position: relative; height: clamp(96px, 13vh, 132px); overflow: hidden; }
+    .band-rot { position: relative; height: clamp(130px, 18vh, 184px); overflow: hidden; }
     .band-rot img { position: absolute; top: 50%; left: 50%; height: 64rem;
-      width: clamp(96px, 13vh, 132px); object-fit: cover;
+      width: clamp(130px, 18vh, 184px); object-fit: cover;
       transform: translate(-50%, -50%) rotate(90deg); }
 
     /* Statement */
@@ -162,8 +162,11 @@
     .way p { font-size: 17px; line-height: 1.7; color: rgba(30,38,24,0.72); max-width: 54ch; }
 
     /* What is revealed */
-    .reveal { padding: 44px 40px; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
-      background: rgba(96,164,132,0.05); }
+    /* A reveal always follows a .block, which already draws the rule above it.
+       The gap below sets it apart from the next picture, because that picture
+       opens the section after it rather than closing this one. */
+    .reveal { padding: 44px 40px; border-bottom: 1px solid var(--hair);
+      background: rgba(96,164,132,0.05); margin-bottom: clamp(20px, 3.4vh, 36px); }
     .reveal .kicker { margin-bottom: 12px; }
     .reveal h3 { font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 6vw, 46px);
       letter-spacing: -0.03em; color: var(--forest); margin-bottom: 14px; }
