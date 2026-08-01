@@ -136,6 +136,11 @@
     .sec p + p { margin-top: 16px; }
     .sec p em { font-style: italic; color: var(--forest); }
 
+    /* lead-in to the two qualities */
+    .lead { padding: 0 40px 34px; }
+    .lead .kicker { margin-bottom: 12px; }
+    .lead p { font-size: 19px; line-height: 1.7; color: rgba(30,38,24,0.72); max-width: 52ch; }
+
     /* Two qualities, side by side */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--hair); }
     .cell { padding: 40px; display: flex; flex-direction: column; gap: 14px; }
@@ -232,6 +237,7 @@
     @media (max-width: 560px) {
       .hero-inner, .intro, .sec, .close, .cta, .reveal { padding-left: 22px; padding-right: 22px; }
       .cell, .way, .spec-row, .door { padding-left: 22px; padding-right: 22px; }
+      .lead { padding-left: 22px; padding-right: 22px; }
       .intro, .close { padding-top: 56px; padding-bottom: 56px; }
       .sec { padding-top: 44px; padding-bottom: 44px; }
       .cta { padding-top: 72px; padding-bottom: 72px; }
@@ -309,6 +315,10 @@
         <h2 class="h-sec">Effort and rest.</h2>
         <p>Each territory has two ways of approach. First you might <em>cultivate</em> — a deliberate practice, something to do. Then you might <em>rest</em> — stop efforting, and let what is already here reveal itself.</p>
         <p>They are not stages, and you don't graduate from one to the next. You already have what these practices point at: presence, resonance and spaciousness are uncovered, not manufactured.</p>
+      </div>
+      <div class="lead">
+        <p class="kicker">The balance</p>
+        <p>Two qualities hold a practice in balance. When they come into tune, a third follows on its own.</p>
       </div>
       <div class="two-col">
         <div class="cell br">
