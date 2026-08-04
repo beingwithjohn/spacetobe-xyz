@@ -7,19 +7,37 @@
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'LT Remark';
+      src: url('/fonts/LT.Remark-Regular.otf') format('opentype');
+      font-style: normal;
+      font-weight: 400 500;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'LT Remark';
+      src: url('/fonts/LT.Remark-Bold.otf') format('opentype');
+      font-style: normal;
+      font-weight: 600 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'LT Remark';
+      src: url('/fonts/LT.Remark-Black.otf') format('opentype');
+      font-style: normal;
+      font-weight: 800 900;
+      font-display: swap;
+    }
     :root {
       --bg: #FFF9F0;
       --ink: #1E2618;
       --green: #60A484;
       --mute: rgba(30,38,24,0.55);
       --line: rgba(30,38,24,0.28);
-      --display: 'Bricolage Grotesque', sans-serif;
-      --body: 'Space Grotesk', sans-serif;
-      --mono: 'Space Mono', monospace;
+      --display: 'LT Remark', Georgia, serif;
+      --body: 'LT Remark', Georgia, serif;
+      --mono: 'LT Remark', Georgia, serif;
     }
     * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
