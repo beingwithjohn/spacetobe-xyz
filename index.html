@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-screen="start">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Decide the entry gate before anything paints. If this throws, the gate never
+       shows and the offer is visible immediately — the safe way round. -->
+  <script>try{if(!sessionStorage.getItem("stb-entered")){document.documentElement.setAttribute("data-gate","1");}}catch(e){}</script>
+
   <title>Space to Be — One-to-One with John Ooi</title>
-  <meta name="description" content="One-to-one space with John — the kind of support that only arrives through real relationship, to meet every kind of change." />
+  <meta name="description" content="One-to-one meditation and spiritual friendship with John Ooi. Start with a free 20-minute conversation. Offered on a donation basis." />
+  <link rel="canonical" href="https://spacetobe.xyz/" />
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Space to Be" />
   <meta property="og:url" content="https://spacetobe.xyz/" />
   <meta property="og:title" content="Space to Be — One-to-One with John Ooi" />
-  <meta property="og:description" content="One-to-one space with John — the kind of support that only arrives through real relationship, to meet every kind of change." />
+  <meta property="og:description" content="One-to-one meditation and spiritual friendship. Start with a free 20-minute conversation." />
   <meta property="og:image" content="https://spacetobe.xyz/images/social-preview.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -20,608 +25,481 @@
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Space to Be — One-to-One with John Ooi" />
-  <meta name="twitter:description" content="One-to-one space with John — the kind of support that only arrives through real relationship, to meet every kind of change." />
+  <meta name="twitter:description" content="One-to-one meditation and spiritual friendship. Start with a free 20-minute conversation." />
   <meta name="twitter:image" content="https://spacetobe.xyz/images/social-preview.jpg" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/otf" href="/fonts/LT.Remark-Regular.otf" crossorigin />
 
   <style>
     @font-face {
       font-family: 'LT Remark';
       src: url('/fonts/LT.Remark-Regular.otf') format('opentype');
-      font-style: normal;
-      font-weight: 400 500;
-      font-display: swap;
+      font-style: normal; font-weight: 400 500; font-display: swap;
     }
     @font-face {
       font-family: 'LT Remark';
       src: url('/fonts/LT.Remark-Bold.otf') format('opentype');
-      font-style: normal;
-      font-weight: 600 700;
-      font-display: swap;
+      font-style: normal; font-weight: 600 700; font-display: swap;
     }
     @font-face {
       font-family: 'LT Remark';
       src: url('/fonts/LT.Remark-Black.otf') format('opentype');
-      font-style: normal;
-      font-weight: 800 900;
-      font-display: swap;
+      font-style: normal; font-weight: 800 900; font-display: swap;
     }
     :root {
       --bg: #FFF9F0;
       --forest: #1E2618;
       --green: #60A484;
       --hair: rgba(30,38,24,0.08);
+      --mut: rgba(30,38,24,0.66);
+      --faint: rgba(30,38,24,0.48);
       --display: 'LT Remark', Georgia, serif;
       --body: 'LT Remark', Georgia, serif;
       --mono: 'LT Remark', Georgia, serif;
+      /* one easing for everything that moves */
+      --ease: cubic-bezier(.22,1,.36,1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html, body { height: 100%; }
+    /* one screen at a time: nothing on this site scrolls */
     body { background: var(--bg); font-family: var(--body); color: var(--forest);
+      overflow: hidden; overscroll-behavior: none;
       -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    img { display: block; max-width: 100%; }
     ::selection { background: rgba(96,164,132,0.28); }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    .page { position: relative; background: var(--bg); overflow: hidden; }
+    .stage { position: relative; height: 100svh; overflow: hidden; }
     .grid-overlay {
-      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
       background-image:
         linear-gradient(rgba(30,38,24,0.028) 1px, transparent 1px),
         linear-gradient(90deg, rgba(30,38,24,0.028) 1px, transparent 1px);
       background-size: 64px 64px;
-      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 100%);
-      mask-image: radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 45%, transparent 100%);
+      mask-image: radial-gradient(120% 100% at 50% 0%, #000 45%, transparent 100%);
     }
-    .col { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
-      border-left: 1px solid var(--hair); border-right: 1px solid var(--hair); }
 
-    /* Nav */
-    .nav { display: flex; align-items: center; justify-content: space-between;
-      padding: 22px 28px; border-bottom: 1px solid var(--hair); }
-    .brand { display: flex; align-items: center; gap: 11px; }
-    .brand-logo { width: 26px; height: 26px; display: block; flex-shrink: 0; }
-    .wordmark { font-family: var(--display); font-weight: 600; font-size: 20px; letter-spacing: -0.01em; color: var(--forest); }
-    .btn-ghost { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--green);
-      border: 1px solid rgba(96,164,132,0.4); padding: 10px 18px; transition: all 0.2s; }
+    /* ── the ring ────────────────────────────────────────────────────────────
+       Drawn in CSS rather than using images/logo.png, whose centre is opaque
+       white and would read as a hole punched in the paper. Proportions are the
+       logo's: the stroke is ~27% of the diameter. */
+    /* box-sizing is border-box globally, so the stroke sits inside the 1em box
+       and the hole comes out at 0.46em — the logo's ratio is 0.45. */
+    .ring { width: 1em; height: 1em; border-radius: 50%;
+      border: 0.27em solid var(--green); flex: none; }
+
+    /* A resting breath is roughly six seconds, and the out-breath is the longer
+       half. Peaking at 38% gives 2.3s in, 3.7s out. */
+    @keyframes breathe {
+      0%   { transform: scale(1);    opacity: .80; }
+      38%  { transform: scale(1.07); opacity: 1;   }
+      100% { transform: scale(1);    opacity: .80; }
+    }
+
+    /* ── the gate ────────────────────────────────────────────────────────────
+       Shut by default; the <head> script opens it on a first visit, so the page
+       is never painted and then covered. gate-guard retires it after 14s with no
+       JavaScript at all, so a dead script can never trap anyone behind it. */
+    #gate { position: absolute; inset: 0; z-index: 40; background: var(--bg);
+      display: grid; place-content: center; justify-items: center;
+      gap: clamp(30px, 7vh, 60px); cursor: pointer;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 900ms var(--ease), visibility 0s linear 900ms; }
+    html[data-gate="1"] #gate { opacity: 1; visibility: visible; pointer-events: auto;
+      animation: gate-guard 14s linear forwards; }
+    @keyframes gate-guard {
+      0%, 94% { opacity: 1; visibility: visible; pointer-events: auto; }
+      100%    { opacity: 0; visibility: hidden; pointer-events: none; }
+    }
+    #gate .ring { font-size: clamp(112px, 26vmin, 184px);
+      animation: breathe 6s var(--ease) infinite; will-change: transform; }
+    #gate .enter { font-size: clamp(11px, 2.6vw, 12.5px); font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint);
+      transition: color 400ms ease; }
+    #gate .enter::after { content: ""; display: block; height: 1px; margin-top: 10px;
+      background: currentColor; transform: scaleX(0);
+      transition: transform 600ms var(--ease); }
+    #gate:hover .enter, #gate:focus-visible .enter { color: var(--forest); }
+    #gate:hover .enter::after, #gate:focus-visible .enter::after { transform: scaleX(1); }
+    #gate:focus-visible { outline: none; }
+
+    /* ── screens ─────────────────────────────────────────────────────────── */
+    .screen { position: absolute; inset: 0; display: grid; overflow: hidden;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 480ms var(--ease), visibility 0s linear 480ms; }
+    .screen[data-active="1"] { opacity: 1; visibility: visible; pointer-events: auto;
+      transition: opacity 620ms var(--ease) 80ms; }
+    .inner { grid-area: 1 / 1; align-self: center; width: 100%;
+      max-width: 62rem; margin: 0 auto;
+      padding: calc(env(safe-area-inset-top) + 74px) clamp(22px, 5vw, 56px)
+               calc(env(safe-area-inset-bottom) + 80px); }
+
+    /* ── chrome ──────────────────────────────────────────────────────────── */
+    .topbar { position: absolute; top: 0; left: 0; right: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: calc(env(safe-area-inset-top) + 17px) clamp(22px, 5vw, 56px) 17px; }
+    .topbar .mark { display: flex; align-items: center; gap: 10px; }
+    .topbar .ring { font-size: 21px; }
+    .topbar .name { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+    .btn-ghost { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--green);
+      border: 1px solid rgba(96,164,132,0.4); padding: 9px 16px; white-space: nowrap;
+      transition: background 220ms ease, color 220ms ease; }
     .btn-ghost:hover { background: var(--green); color: var(--bg); }
 
-    /* Hero */
-    .hero { position: relative; min-height: 88vh; overflow: hidden;
-      border-bottom: 1px solid var(--hair); display: flex; align-items: center; }
-    .hero-ascii-wrap { position: absolute; inset: 0; z-index: 0;
-      -webkit-mask-image: radial-gradient(120% 120% at 50% 45%, #000 30%, transparent 92%);
-      mask-image: radial-gradient(120% 120% at 50% 45%, #000 30%, transparent 92%); }
-    #hero-ascii { margin: 0; font-family: 'Space Mono', monospace; font-size: 13px; line-height: 13px;
-      white-space: pre; user-select: none; color: var(--green); opacity: 0.7; }
-    .hero-inner { position: relative; z-index: 2; padding: 0 40px; width: 100%; }
-    .kicker { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--green); margin-bottom: 26px; }
-    .hero h1 { font-family: var(--display); font-weight: 700; font-size: 132px; line-height: 0.92;
-      letter-spacing: -0.03em; color: var(--forest); max-width: 13ch; }
-    .hero-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-top: 38px; flex-wrap: wrap; }
-    .hero-row p { font-size: 21px; font-weight: 500; color: rgba(30,38,24,0.94); max-width: 46ch; line-height: 1.62; text-shadow: 0 0 10px var(--bg), 0 0 3px var(--bg); }
-    .hero .kicker { color: var(--forest); text-shadow: 0 0 10px var(--bg), 0 0 3px var(--bg); }
+    .tabs { position: absolute; bottom: 0; left: 0; right: 0; z-index: 20;
+      display: flex; justify-content: center; gap: clamp(2px, 1.6vw, 20px);
+      padding: 14px clamp(10px, 4vw, 56px) calc(env(safe-area-inset-bottom) + 15px);
+      background: linear-gradient(to top, var(--bg) 60%, rgba(255,249,240,0)); }
+    .tabs button { font-size: clamp(10px, 2.7vw, 11.5px); font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint);
+      padding: 8px clamp(5px, 1.6vw, 9px); position: relative; transition: color 240ms ease; }
+    .tabs button:hover, .tabs button[aria-current="true"] { color: var(--forest); }
+    .tabs button::after { content: ""; position: absolute; left: 5px; right: 5px; bottom: 2px;
+      height: 1px; background: var(--green); transform: scaleX(0);
+      transition: transform 340ms var(--ease); }
+    .tabs button[aria-current="true"]::after { transform: scaleX(1); }
 
-    .btn-solid { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--bg);
-      background: var(--green); padding: 15px 30px; white-space: nowrap; display: inline-block;
-      box-shadow: 0 10px 40px rgba(96,164,132,0.35); transition: transform 0.2s; }
-    .btn-solid:hover { transform: translateY(-3px); }
+    /* ── type ────────────────────────────────────────────────────────────── */
+    .kicker { font-size: clamp(11px, 2.6vw, 12.5px); font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--green); }
+    h1 { font-weight: 800; font-size: clamp(2.7rem, 12vmin, 6rem);
+      line-height: 0.92; letter-spacing: -0.035em; }
+    h2 { font-weight: 700; font-size: clamp(1.65rem, 6.2vmin, 2.9rem);
+      line-height: 1.06; letter-spacing: -0.03em; max-width: 24ch; }
+    .lede { font-size: clamp(1rem, 2.7vmin, 1.35rem); line-height: 1.5; max-width: 33ch; }
+    /* a cap on the measure: the step text ran to 826px — about 110 characters —
+       on a 1280 desktop before this */
+    .body { font-size: clamp(0.92rem, 2.2vmin, 1.06rem); line-height: 1.6; color: var(--mut);
+      max-width: 58ch; }
+    .note { font-size: clamp(10.5px, 2.4vw, 12px); font-weight: 500; letter-spacing: 0.06em;
+      line-height: 1.7; color: var(--faint); }
 
-    /* Marquee */
-    .ticker { overflow: hidden; border-bottom: 1px solid var(--hair); padding: 12px 0; background: rgba(96,164,132,0.03); }
-    .ticker-row { display: flex; width: max-content; font-family: var(--mono); font-size: 13px;
-      letter-spacing: 0.06em; color: rgba(30,38,24,0.5); animation: marquee 52s linear infinite; }
-    .ticker-row .w { padding: 0 20px; }
-    .ticker-row .d { color: var(--green); }
+    /* the one action, on every screen */
+    .cta { display: inline-flex; align-items: center; gap: 12px; font-size: clamp(12px, 2.7vw, 13.5px);
+      font-weight: 600; letter-spacing: 0.06em; color: var(--bg); background: var(--green);
+      padding: 15px 26px; transition: transform 280ms var(--ease), box-shadow 280ms var(--ease); }
+    .cta .arw { transition: transform 280ms var(--ease); }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 14px 32px -14px rgba(96,164,132,.75); }
+    .cta:hover .arw { transform: translateX(4px); }
 
-    /* Intro — the statement, with the portrait bleeding to three edges */
-    .intro { display: grid; grid-template-columns: 1fr minmax(0, 44%); align-items: center;
-      min-height: 420px; border-bottom: 1px solid var(--hair); }
-    .intro-copy { padding: 90px 40px; }
-    .intro p { font-family: var(--display); font-weight: 500; font-size: 44px; line-height: 1.24;
-      letter-spacing: -0.02em; color: var(--forest); max-width: 26ch; }
-    /* no padding of its own: it meets the top, right and bottom of the section */
-    .intro-portrait { align-self: stretch; position: relative; overflow: hidden;
-      background: rgba(96,164,132,0.06); }
-    .intro-portrait img { position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover; object-position: 52% 42%; }
+    /* ── start ───────────────────────────────────────────────────────────── */
+    #s-start .inner { display: grid; gap: clamp(13px, 2.5vh, 24px); justify-items: start; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+    .proof { display: grid; gap: 5px; padding-top: clamp(9px, 2vh, 18px);
+      border-top: 1px solid var(--hair); width: 100%; max-width: 44ch; }
+    .proof q { font-size: clamp(0.94rem, 2.3vmin, 1.08rem); line-height: 1.45; }
+    .proof cite { font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+      font-style: normal; color: var(--faint); }
 
-    .block { border-bottom: 1px solid var(--hair); }
+    /* ── how ─────────────────────────────────────────────────────────────── */
+    .steps { display: grid; gap: 1px; background: var(--hair);
+      margin-top: clamp(13px, 2.8vh, 26px); }
+    .step { background: var(--bg); padding: clamp(12px, 2.3vh, 20px) 0;
+      display: grid; grid-template-columns: 2.4rem 1fr; gap: 3px 16px; align-items: baseline; }
+    .step .n { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--green); }
+    .step h3 { font-weight: 700; font-size: clamp(1rem, 2.5vmin, 1.24rem); letter-spacing: -0.015em; }
+    .step p { grid-column: 2; }
+    .facts { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: clamp(13px, 2.8vh, 24px);
+      padding-top: clamp(11px, 2.2vh, 18px); border-top: 1px solid var(--hair); }
 
-    /* What happens */
-    .h-sec { font-family: var(--display); font-weight: 700; font-size: 60px; letter-spacing: -0.03em; color: var(--forest); padding: 48px 40px 40px; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--hair); }
-    .cell { padding: 40px; display: flex; flex-direction: column; gap: 18px; }
-    .cell.br { border-right: 1px solid var(--hair); }
-    .cell p { font-size: 19px; line-height: 1.65; }
-    .cell .ink { color: var(--forest); }
-    .cell .mut { color: rgba(30,38,24,0.7); }
-    .cell .mono-accent { font-family: var(--mono); font-size: 14px; color: var(--green); line-height: 1.65; }
-    /* donation-basis tooltip */
-    .dtip { position: relative; cursor: help; border-bottom: 1px dotted rgba(96,164,132,0.7); outline: none; }
-    .dtip-pop { position: absolute; left: 0; bottom: calc(100% + 12px); z-index: 60; width: min(360px, 82vw);
-      background: var(--bg); color: var(--forest); border: 1px solid var(--hair); padding: 16px 18px;
-      font-family: var(--body); font-weight: 400; font-size: 14px; line-height: 1.65;
-      letter-spacing: normal; text-transform: none; text-align: left; text-shadow: none;
-      box-shadow: 0 22px 55px -22px rgba(30,38,24,0.4);
-      opacity: 0; visibility: hidden; transform: translateY(6px);
-      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease; }
-    .dtip:hover .dtip-pop, .dtip:focus .dtip-pop, .dtip:focus-within .dtip-pop { opacity: 1; visibility: visible; transform: none; }
-    .dtip-pop em { font-style: italic; }
+    /* ── john ────────────────────────────────────────────────────────────── */
+    #s-john .inner { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+      gap: clamp(18px, 4vw, 44px); align-items: center; }
+    #s-john figure { aspect-ratio: 4 / 5; overflow: hidden; background: rgba(96,164,132,0.06); }
+    #s-john figure img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 40%; }
+    #s-john .copy { display: grid; gap: clamp(9px, 1.9vh, 17px); }
 
-    /* Who */
-    .who { padding: 100px 40px; border-bottom: 1px solid var(--hair); text-align: center; }
-    .who-eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--green); margin-bottom: 22px; }
-    .h-who { font-family: var(--display); font-weight: 800; font-size: 76px; line-height: 1.02;
-      letter-spacing: -0.04em; color: var(--forest); max-width: 15ch; margin: 0 auto 22px; }
-    .who-sub { font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em; color: rgba(30,38,24,0.55); }
+    /* ── words ───────────────────────────────────────────────────────────── */
+    .quotes { display: grid; gap: 1px; background: var(--hair); margin-top: clamp(11px, 2.4vh, 22px); }
+    .quotes blockquote { background: var(--bg); padding: clamp(9px, 1.8vh, 17px) 0;
+      display: grid; gap: 2px; }
+    .quotes q { font-size: clamp(0.9rem, 2.15vmin, 1.04rem); line-height: 1.44;
+      display: block; max-width: 62ch; }
+    .quotes cite { font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em;
+      font-style: normal; color: var(--faint); }
 
-    /* Testimonials */
-    .three-col { display: grid; grid-template-columns: repeat(3,1fr); }
-    .tcell { padding: 34px; display: flex; flex-direction: column; gap: 20px; }
-    .tcell.br { border-right: 1px solid var(--hair); }
-    .tcell.bb { border-bottom: 1px solid var(--hair); }
-    .tcell .q { font-size: 19px; line-height: 1.55; color: var(--forest); flex: 1; }
-    .tcell .a { font-family: var(--mono); font-size: 12px; color: rgba(30,38,24,0.55); }
-    .tcell.accent { justify-content: center; background: rgba(96,164,132,0.04); }
-    .tcell.accent p { font-family: var(--display); font-weight: 600; font-size: 26px; line-height: 1.2; color: var(--forest); }
-    a.cta-tile { text-decoration: none; color: var(--green); font-family: var(--mono);
-      font-size: 16px; letter-spacing: 0.06em; flex-direction: row; align-items: center;
-      justify-content: center; gap: 12px; transition: background 0.2s ease, color 0.2s ease; }
-    a.cta-tile:hover { background: var(--green); color: var(--bg); }
-    a.cta-tile .arrow { transition: transform 0.2s ease; }
-    a.cta-tile:hover .arrow { transform: translateX(5px); }
+    /* ── cost ────────────────────────────────────────────────────────────── */
+    #s-cost .inner { display: grid; gap: clamp(11px, 2.2vh, 20px); justify-items: start; }
+    .figures { display: flex; flex-wrap: wrap; gap: 10px 28px; width: 100%;
+      padding: clamp(11px, 2.2vh, 18px) 0;
+      border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+    .figures div { display: grid; gap: 1px; }
+    .figures b { font-weight: 700; font-size: clamp(1.02rem, 2.6vmin, 1.3rem); letter-spacing: -0.02em; }
+    .narrow { max-width: 50ch; }
 
-    /* About */
-    .about { border-bottom: 1px solid var(--hair); display: grid; grid-template-columns: 1fr 1fr; }
-    .about-left { padding: 60px 40px; border-right: 1px solid var(--hair); }
-    .h-about { font-family: var(--display); font-weight: 700; font-size: 54px; letter-spacing: -0.03em; color: var(--forest); margin-bottom: 24px; }
-    .about-left p { font-size: 18px; color: rgba(30,38,24,0.72); line-height: 1.8; }
-    .about-left p + p { margin-top: 14px; }
-    .about-right { position: relative; display: flex; align-items: center; justify-content: center;
-      padding: 40px; min-height: 420px;
-      background: radial-gradient(circle at 50% 50%, rgba(96,164,132,0.06), transparent 70%); }
-    #donut-ascii { margin: 0; font-family: 'Space Mono', monospace; font-size: 12px; line-height: 12px;
-      white-space: pre; user-select: none; color: var(--green); text-shadow: 0 0 12px rgba(96,164,132,0.5); }
-
-    /* CTA */
-    .cta { padding: 120px 40px; text-align: center; position: relative; overflow: hidden; }
-    .cta-inner { position: relative; z-index: 2; }
-    .h-cta { font-family: var(--display); font-weight: 800; font-size: 88px; letter-spacing: -0.04em; color: var(--forest); margin-bottom: 40px; }
-    .btn-cta { display: inline-block; font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em;
-      color: var(--bg); background: var(--green); padding: 18px 44px;
-      transition: transform 0.2s; }
-    .btn-cta:hover { transform: translateY(-3px); }
-
-    /* Footer */
-    .footer { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px;
-      border-top: 1px solid var(--hair); font-family: var(--mono); font-size: 11px;
-      letter-spacing: 0.06em; color: rgba(30,38,24,0.45); flex-wrap: wrap; gap: 12px; }
-    .footer .links { display: flex; gap: 24px; }
-    .footer a { color: rgba(30,38,24,0.6); }
-
-    /* session: narrower spec column against the prose column */
-    .two-col.session-grid { grid-template-columns: 2fr 3fr; }
-
-    /* how it unfolds: three parallel steps */
-    .unfold-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hair); }
-    .ucell { padding: 40px; border-right: 1px solid var(--hair); }
-    .ucell:last-child { border-right: none; }
-    .u-mark { display: block; font-family: var(--mono); font-size: 14px; color: var(--green); margin-bottom: 16px; }
-    .ucell h3 { font-family: var(--display); font-weight: 600; font-size: 24px; letter-spacing: -0.01em; color: var(--forest); margin-bottom: 10px; }
-    .ucell p { font-size: 17px; line-height: 1.65; color: rgba(30,38,24,0.7); }
-
-    /* session link to the form */
-    a.session-link { transition: color 0.2s ease; }
-    a.session-link:hover { color: var(--green); }
-    a.session-link .arr { color: var(--green); display: inline-block; transition: transform 0.2s ease; }
-    a.session-link:hover .arr { transform: translate(3px, -3px); }
-
-    /* Wonderfool letter form */
-    .letter-form { display: flex; max-width: 480px; margin: 0 auto; }
-    .letter-form input { flex: 1; min-width: 0; font-family: var(--body); font-size: 16px;
-      color: var(--forest); background: transparent; border: 1px solid var(--hair);
-      border-right: none; padding: 13px 16px; transition: border-color 0.2s; }
-    .letter-form input::placeholder { color: rgba(30,38,24,0.35); }
-    .letter-form input:focus { outline: none; border-color: var(--green); }
-    .letter-form button { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em;
-      color: var(--bg); background: var(--green); border: 1px solid var(--green);
-      padding: 13px 26px; cursor: pointer; transition: transform 0.2s; }
-    .letter-form button:hover { transform: translateY(-2px); }
-
-    /* Contact form overlay */
+    /* ── contact overlay: the contract start.html already speaks ─────────── */
     .form-overlay { position: fixed; inset: 0; z-index: 1000; background: var(--bg);
-      opacity: 0; visibility: hidden; transform: translateY(14px);
-      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease; }
-    .form-overlay.open { opacity: 1; visibility: visible; transform: none; }
-    .form-frame { width: 100%; height: 100%; border: none; display: block; }
-    body.form-open { overflow: hidden; }
+      opacity: 0; visibility: hidden; transform: translateY(12px);
+      transition: opacity 420ms var(--ease), transform 420ms var(--ease), visibility 0s linear 420ms; }
+    .form-overlay.open { opacity: 1; visibility: visible; transform: none;
+      transition: opacity 420ms var(--ease), transform 420ms var(--ease); }
+    .form-overlay iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .hero h1 { font-size: clamp(3rem, 15vw, 132px); }
-      .intro p { font-size: clamp(1.7rem, 6.4vw, 44px); }
-      .h-sec { font-size: clamp(2.1rem, 8.5vw, 60px); }
-      .h-who { font-size: clamp(2.5rem, 10.5vw, 76px); }
-      .h-about { font-size: clamp(1.9rem, 8vw, 54px); }
-      .h-cta { font-size: clamp(2.6rem, 12vw, 88px); }
-
-      .two-col, .two-col.session-grid, .three-col, .about, .unfold-grid { grid-template-columns: 1fr; }
-      .intro { grid-template-columns: 1fr; min-height: 0; }
-      .intro-portrait { height: clamp(260px, 46vh, 400px); }
-      .ucell { border-right: none; border-bottom: 1px solid var(--hair); }
-      .ucell:last-child { border-bottom: none; }
-      .cell.br, .about-left { border-right: none; }
-      .about-left { border-bottom: 1px solid var(--hair); }
-      .cell:first-child { border-bottom: 1px solid var(--hair); }
-      .tcell { border-right: none !important; border-bottom: 1px solid var(--hair); }
-      .about-right { min-height: 320px; }
-      #donut-ascii { font-size: 9px; line-height: 9px; }
+    /* ── narrow ──────────────────────────────────────────────────────────── */
+    @media (max-width: 46rem) {
+      #s-john .inner { grid-template-columns: 1fr; justify-items: start; gap: clamp(13px, 2.4vh, 20px); }
+      #s-john figure { width: clamp(104px, 32vw, 156px); }
+      .topbar .name { display: none; }
     }
-    @media (max-width: 560px) {
-      .hero-inner, .who, .cta { padding-left: 22px; padding-right: 22px; }
-      .intro-copy { padding-left: 22px; padding-right: 22px; }
-      .h-sec { padding-left: 22px; padding-right: 22px; }
-      .cell, .tcell, .ucell, .about-left, .about-right { padding: 28px 22px; }
-      .intro-copy { padding-top: 60px; padding-bottom: 60px; }
-      .who { padding-top: 70px; padding-bottom: 70px; }
-      .cta { padding-top: 80px; padding-bottom: 80px; }
-      /* hide the long brand line on mobile — the logo stands in for it */
-      .wordmark { display: none; }
-      /* donation tooltip: bottom-anchored card so it never overflows a phone */
-      .dtip-pop { position: fixed; left: 16px; right: 16px; bottom: 24px; top: auto; width: auto; }
+    /* 640-704px tall — iPhone SE and 8, and any browser with heavy chrome.
+       'How' is the tallest screen and overran by 20px here before this tier. */
+    @media (max-height: 44rem) {
+      .inner { padding-top: calc(env(safe-area-inset-top) + 66px);
+               padding-bottom: calc(env(safe-area-inset-bottom) + 70px); }
+      h2 { font-size: clamp(1.4rem, 5.4vmin, 2.2rem); }
+      .step { padding: 9px 0; }
+      .steps { margin-top: 12px; }
+      .facts { margin-top: 12px; padding-top: 9px; }
+      .quotes blockquote { padding: 8px 0; }
+      .figures { padding: 9px 0; }
     }
-
+    /* short viewports — landscape phones, and the tightest portrait ones */
+    @media (max-height: 34rem) {
+      .inner { padding-top: calc(env(safe-area-inset-top) + 60px);
+               padding-bottom: calc(env(safe-area-inset-bottom) + 62px); }
+      h1 { font-size: clamp(1.9rem, 8vmin, 3rem); }
+      h2 { font-size: clamp(1.35rem, 5vmin, 2rem); }
+    }
     @media (prefers-reduced-motion: reduce) {
-      .ticker-row { animation: none; }
+      #gate .ring { animation: none; }
+      html[data-gate="1"] #gate { animation: gate-guard 1ms linear 8s forwards; }
+      .screen, #gate, .cta, .tabs button::after, #gate .enter::after { transition-duration: 1ms; }
+      .cta:hover { transform: none; }
     }
   </style>
 </head>
 <body>
 
-<div class="page">
+<div class="stage">
+  <div class="grid-overlay" aria-hidden="true"></div>
 
-  <!-- faint grid overlay -->
-  <div class="grid-overlay"></div>
+  <div class="topbar">
+    <button class="mark" data-go="start" aria-label="Space to Be — back to the start">
+      <span class="ring" aria-hidden="true"></span>
+      <span class="name">Space to Be</span>
+    </button>
+    <a class="btn-ghost" href="/start.html">Get in touch</a>
+  </div>
 
-  <div class="col">
-
-    <!-- NAV -->
-    <div class="nav">
-      <span class="brand">
-        <img class="brand-logo" src="images/logo.png" alt="Space to Be logo" />
-        <span class="wordmark">One-to-One Meditation Teaching and Spiritual Friendship</span>
-      </span>
-      <a class="btn-ghost" href="/start.html">Get in touch</a>
-    </div>
-
-    <!-- HERO (ASCII flow field) -->
-    <div id="hero" class="hero">
-      <div class="hero-ascii-wrap">
-        <pre id="hero-ascii" aria-hidden="true"></pre>
+  <!-- ── the offer ─────────────────────────────────────────────────────── -->
+  <section class="screen" id="s-start" data-active="1" aria-label="Space to Be">
+    <div class="inner">
+      <p class="kicker">One-to-one Space with John</p>
+      <h1>Space to Be</h1>
+      <p class="lede">Support that only arrives through real relationship. A space to see clearly,
+        and to meet every kind of change.</p>
+      <div class="actions">
+        <a class="cta" href="/start.html">Begin with a free conversation <span class="arw" aria-hidden="true">→</span></a>
+        <p class="note">20 minutes, no cost, no obligation.<br />I read and answer every note myself.</p>
       </div>
-      <div class="hero-inner">
-        <p class="kicker">One-to-one Space with John</p>
-        <h1>Space to Be</h1>
-        <div class="hero-row">
-          <p>Support that only arrives through real relationship. A space to see clearly, and to meet every kind of change.</p>
-          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;">
-            <a class="btn-solid" href="/start.html">Begin</a>
-            <span class="kicker" style="margin-bottom:0;font-size:11px;">Start with a free 20-minute conversation</span>
-          </div>
+      <div class="proof">
+        <q>John's spiritual friendship changed how I experience life itself.</q>
+        <cite>Sean P — founder &amp; industrial designer</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── how it works ──────────────────────────────────────────────────── -->
+  <section class="screen" id="s-how" aria-label="How it works">
+    <div class="inner">
+      <p class="kicker">How it works</p>
+      <h2>Three steps, and you can stop after the first.</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="n">01</span>
+          <h3>A conversation</h3>
+          <p class="body">Free, 20 minutes. What you are looking for, and whether the two of us are a fit.</p>
+        </div>
+        <div class="step">
+          <span class="n">02</span>
+          <h3>A flow</h3>
+          <p class="body">Six weekly sessions — long enough for trust, and for a practice of your own to take hold.</p>
+        </div>
+        <div class="step">
+          <span class="n">03</span>
+          <h3>A rhythm of your own</h3>
+          <p class="body">Another flow, or ongoing sessions weekly or fortnightly. When it feels complete, a touchstone now and then.</p>
         </div>
       </div>
-    </div>
-
-    <!-- MARQUEE -->
-    <div class="ticker">
-      <div class="ticker-row">
-        <span class="w">MEDITATION</span><span class="d">◇</span><span class="w">CREATIVITY</span><span class="d">◇</span><span class="w">LIVED EXPERIENCE</span><span class="d">◇</span><span class="w">CHANGE</span><span class="d">◇</span><span class="w">CLARITY</span><span class="d">◇</span>
-        <span class="w">MEDITATION</span><span class="d">◇</span><span class="w">CREATIVITY</span><span class="d">◇</span><span class="w">LIVED EXPERIENCE</span><span class="d">◇</span><span class="w">CHANGE</span><span class="d">◇</span><span class="w">CLARITY</span><span class="d">◇</span>
-        <span class="w">MEDITATION</span><span class="d">◇</span><span class="w">CREATIVITY</span><span class="d">◇</span><span class="w">LIVED EXPERIENCE</span><span class="d">◇</span><span class="w">CHANGE</span><span class="d">◇</span><span class="w">CLARITY</span><span class="d">◇</span>
-        <span class="w">MEDITATION</span><span class="d">◇</span><span class="w">CREATIVITY</span><span class="d">◇</span><span class="w">LIVED EXPERIENCE</span><span class="d">◇</span><span class="w">CHANGE</span><span class="d">◇</span><span class="w">CLARITY</span><span class="d">◇</span>
+      <div class="facts">
+        <p class="note">~60 minutes a session</p>
+        <p class="note">Zoom, or in person</p>
+        <p class="note">Offered on a donation basis</p>
       </div>
     </div>
+  </section>
 
-    <!-- INTRO -->
-    <div class="intro">
-      <div class="intro-copy">
-        <p>Whether we meet once or a hundred times — my intention is to support you to meet every kind of change.</p>
-      </div>
-      <div class="intro-portrait">
+  <!-- ── who you would be sitting with ─────────────────────────────────── -->
+  <section class="screen" id="s-john" aria-label="John">
+    <div class="inner">
+      <figure>
         <img src="images/john-portrait.jpg" alt="John, sitting by a river under a tree"
              width="1500" height="1000" loading="lazy" decoding="async" />
+      </figure>
+      <div class="copy">
+        <p class="kicker">Who you would be sitting with</p>
+        <h2>John Ooi</h2>
+        <p class="body">I believe good relationships are essential for societies to thrive — and
+          that our relationship to ourselves is the place to begin.</p>
+        <p class="body">Trained as a mindfulness teacher. My work sits at the intersection of
+          meditation, creativity, and lived experience — practice, travel, writing, building.</p>
+        <p class="note">I work with founders, creatives, and people in transition.</p>
       </div>
     </div>
+  </section>
 
-    <!-- WHAT HAPPENS -->
-    <div class="block">
-      <h2 class="h-sec">How we work together</h2>
-      <div class="two-col">
-        <div class="cell br">
-          <p class="ink">I trust your intelligence.</p>
-          <p class="mut">Together we become curious about what's true.</p>
-          <p class="mut">You develop ways to stay connected to your whole intelligence.</p>
-        </div>
-        <div class="cell">
-          <p class="ink">Each session responds to where you are.</p>
-          <p class="mut">You build the capacity to be with what's happening, see it clearly, and respond skilfully.</p>
-        </div>
+  <!-- ── proof ─────────────────────────────────────────────────────────── -->
+  <section class="screen" id="s-words" aria-label="What people say">
+    <div class="inner">
+      <p class="kicker">In their words</p>
+      <h2>What people say.</h2>
+      <div class="quotes">
+        <blockquote><q>John has this rare capacity to make you feel at ease, accepted, and guided.</q>
+          <cite>Laura F — writer &amp; teacher</cite></blockquote>
+        <blockquote><q>John's words are clear, lucid, and deeply supportive.</q>
+          <cite>Manansh S — founder &amp; UX researcher</cite></blockquote>
+        <blockquote><q>John's spiritual friendship changed how I experience life itself.</q>
+          <cite>Sean P — founder &amp; industrial designer</cite></blockquote>
+        <blockquote><q>John helped me understand what I was really looking for and make it real.</q>
+          <cite>Daniel G — artist &amp; musician</cite></blockquote>
+        <blockquote><q>What I love most is how genuine and supportive John is.</q>
+          <cite>Carolina M — founder &amp; fashion designer</cite></blockquote>
       </div>
     </div>
+  </section>
 
-    <!-- HOW IT UNFOLDS -->
-    <div class="block">
-      <h2 class="h-sec">How it unfolds</h2>
-      <div class="unfold-grid">
-        <div class="ucell">
-          <span class="u-mark" aria-hidden="true">◇</span>
-          <h3>A conversation</h3>
-          <p>Free, 20 minutes. We explore what you're looking for and whether there's a mutual fit.</p>
-        </div>
-        <div class="ucell">
-          <span class="u-mark" aria-hidden="true">◇</span>
-          <h3>A flow</h3>
-          <p>Six weeks of weekly sessions — trust and a foundation of practice.</p>
-        </div>
-        <div class="ucell">
-          <span class="u-mark" aria-hidden="true">◇</span>
-          <h3>A rhythm of your own</h3>
-          <p>Another flow, or ongoing sessions — weekly or fortnightly. When complete, a touchstone now and then.</p>
-        </div>
+  <!-- ── the money, said plainly ───────────────────────────────────────── -->
+  <section class="screen" id="s-cost" aria-label="What it costs">
+    <div class="inner">
+      <p class="kicker">What it costs</p>
+      <h2>Offered on a donation basis.</h2>
+      <p class="body narrow">Space is offered over six-week flows, after mutual discernment. This
+        follows the spirit of <em>dāna</em> — the practice, ancient in Buddhist tradition, of
+        offering the work freely and letting it be supported through generosity.</p>
+      <div class="figures">
+        <div><b>$900–1,500</b><p class="note">per six-week flow</p></div>
+        <div><b>$150–250</b><p class="note">per ongoing session</p></div>
+        <div><b>Free</b><p class="note">the first conversation, always</p></div>
+      </div>
+      <p class="body narrow">Those are what most people offer, for a sense of scale — not a price.
+        If they are out of reach and the work is right for you, say so in your note.</p>
+      <div class="actions">
+        <a class="cta" href="/start.html">Begin with a free conversation <span class="arw" aria-hidden="true">→</span></a>
       </div>
     </div>
+  </section>
 
-    <!-- SESSION -->
-    <div class="block">
-      <h2 class="h-sec">What a session looks like</h2>
-      <div class="two-col session-grid">
-        <div class="cell br">
-          <p class="mono-accent">~60 minutes</p>
-          <p class="mono-accent">Zoom or in-person</p>
-          <p class="mono-accent">Offered on a <span class="dtip" tabindex="0" role="note" aria-label="What donation basis means">donation basis<span aria-hidden="true" style="margin-left:.3em;font-size:.82em;opacity:.65;">ⓘ</span><span class="dtip-pop">Space is offered over six-week <em>flows</em>, on a donation basis, after mutual discernment. This follows the spirit of dāna — the practice, ancient in Buddhist tradition, of offering the work freely and letting it be supported through generosity.</span></span></p>
-        </div>
-        <div class="cell">
-          <p class="mut">We open with a short meditation practice. Afterwards depends on you, what you need, and what I sense could be of benefit.</p>
-          <p class="ink"><a class="session-link" href="/start.html">Start with a free 20-minute conversation <span class="arr" aria-hidden="true">↗</span></a></p>
-        </div>
-      </div>
-    </div>
+  <nav class="tabs" aria-label="Sections">
+    <button data-go="start" aria-current="true">Start</button>
+    <button data-go="how">How</button>
+    <button data-go="john">John</button>
+    <button data-go="words">Words</button>
+    <button data-go="cost">Cost</button>
+  </nav>
 
-    <!-- WHO -->
-    <div class="who">
-      <p class="who-eyebrow">Who I work with</p>
-      <h2 class="h-who">Founders, creatives, &amp; people in transition.</h2>
-      <p class="who-sub">people navigating change — inner and outer</p>
-    </div>
-
-    <!-- ABOUT (ASCII donut) -->
-    <div class="about">
-      <div class="about-left">
-        <h2 class="h-about">Who I am</h2>
-        <p>My name is John. I believe good relationships are essential for societies to thrive — and that our relationship to ourselves is the place to begin.</p>
-        <p>My work sits at the intersection of meditation, creativity, and lived experience — trained as a mindfulness teacher, exploring through practice, travel, writing, and building.</p>
-      </div>
-      <div class="about-right">
-        <pre id="donut-ascii" aria-hidden="true"></pre>
-      </div>
-    </div>
-
-    <!-- TESTIMONIALS -->
-    <div class="block">
-      <div class="three-col">
-        <div class="tcell br bb">
-          <p class="q">“John has this rare capacity to make you feel at ease, accepted, and guided.”</p>
-          <p class="a">Laura F — writer &amp; teacher</p>
-        </div>
-        <div class="tcell br bb">
-          <p class="q">“John's words are clear, lucid, and deeply supportive.”</p>
-          <p class="a">Manansh S — founder &amp; UX researcher</p>
-        </div>
-        <div class="tcell bb">
-          <p class="q">“John's spiritual friendship changed how I experience life itself.”</p>
-          <p class="a">Sean P — founder &amp; industrial designer</p>
-        </div>
-        <div class="tcell br">
-          <p class="q">“John helped me understand what I was really looking for and make it real.”</p>
-          <p class="a">Daniel G — artist &amp; musician</p>
-        </div>
-        <div class="tcell br">
-          <p class="q">“What I love most is how genuine and supportive John is.”</p>
-          <p class="a">Carolina M — founder &amp; fashion designer</p>
-        </div>
-        <a class="tcell accent cta-tile" href="/start.html">Get Started <span class="arrow" aria-hidden="true">→</span></a>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="cta">
-      <div class="cta-inner">
-        <p class="kicker" style="margin-bottom:24px;">Ready when you are</p>
-        <h2 class="h-cta">Ready to begin?</h2>
-        <a class="btn-cta" href="/start.html">Get in touch</a>
-        <p class="kicker" style="margin-top:26px;margin-bottom:0;">Begin with a free 20-minute conversation</p>
-        <p class="kicker" style="margin-top:10px;margin-bottom:0;color:rgba(30,38,24,0.55);">I reply to enquiries within 2–3 days</p>
-      </div>
-    </div>
-
-    <!-- WONDERFOOL LETTER -->
-    <div class="block" style="padding:56px 40px;text-align:center;border-top:1px solid var(--hair);background:rgba(96,164,132,0.03);">
-      <p class="kicker" style="margin-bottom:6px;">The Wonderfool letter</p>
-      <p style="font-size:16px;color:rgba(30,38,24,0.7);margin-bottom:22px;">Letters on being, every 1st and 3rd Tuesday.</p>
-      <form class="letter-form" id="letterForm">
-        <input type="email" required placeholder="you@somewhere" aria-label="Email address" autocomplete="email" />
-        <button type="submit">Subscribe</button>
-      </form>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      <span>© 2026 Space to Be</span>
-      <div class="links">
-        <a href="https://j-hn.info/" target="_blank" rel="noopener">John's Website</a>
-        <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>
-      </div>
-    </div>
-
+  <div id="gate" role="button" tabindex="0" aria-label="Enter">
+    <span class="ring" aria-hidden="true"></span>
+    <span class="enter">Click to enter</span>
   </div>
 </div>
 
-<!-- Contact form overlay (start.html embedded) -->
 <div class="form-overlay" id="formOverlay" aria-hidden="true">
-  <iframe id="formFrame" class="form-frame" title="Get in touch — Space to Be" src="/start.html"></iframe>
+  <iframe id="formFrame" title="Get in touch — Space to Be" src="/start.html" loading="lazy"></iframe>
 </div>
 
 <script>
-// ── Open/close the contact form overlay (smooth, preserves page scroll) ──
 (function () {
-  var overlay = document.getElementById('formOverlay');
-  var frame = document.getElementById('formFrame');
-  if (!overlay || !frame) return;
-  function openForm(e) {
-    if (e) e.preventDefault();
-    document.body.classList.add('form-open');
-    overlay.classList.add('open');
-    overlay.setAttribute('aria-hidden', 'false');
-    try { frame.contentWindow.postMessage('spacetobe:open', '*'); } catch (_) {}
-  }
-  function closeForm() {
-    overlay.classList.remove('open');
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('form-open');
-  }
-  // any CTA that links to the form opens it in-place instead of navigating
-  document.querySelectorAll('a[href="/start.html"]').forEach(function (a) { a.addEventListener('click', openForm); });
-  window.addEventListener('message', function (ev) { if (ev.data === 'spacetobe:close-form') closeForm(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) closeForm(); });
-})();
+  "use strict";
+  var root = document.documentElement;
+  var SCREENS = ["start", "how", "john", "words", "cost"];
 
-// ── Wonderfool letter: hand the email to Substack ──
-(function () {
-  var f = document.getElementById('letterForm');
-  if (!f) return;
-  f.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = f.querySelector('input[type=email]').value.trim();
-    if (!email) return;
-    window.open('https://wonderfool.substack.com/subscribe?email=' + encodeURIComponent(email), '_blank', 'noopener');
+  // ---- screens -------------------------------------------------------------
+  var layers = {}, tabs = {}, current = "start";
+  SCREENS.forEach(function (k) { layers[k] = document.getElementById("s-" + k); });
+  [].forEach.call(document.querySelectorAll(".tabs button"), function (b) {
+    tabs[b.getAttribute("data-go")] = b;
   });
-})();
-</script>
 
-<script>
-(function () {
-  var ACCENT = '#60A484';
-  var ASCII_OPACITY = 0.7; // client preferred the stronger end of the 0.5–0.7 range
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var animate = !reduce.matches;
-  reduce.addEventListener && reduce.addEventListener('change', function (e) { animate = !e.matches; });
-
-  var charW = 13 * 0.6;   // Space Mono glyph advance at 13px
-  var lineH = 13;
-
-  // ── Hero flow field ──
-  (function () {
-    var pre = document.getElementById('hero-ascii');
-    var wrap = pre && pre.parentElement;
-    if (!pre || !wrap) return;
-    var ramp = ' .:-=+*#%@';
-    var cols = 20, rows = 12;
-    var mouse = { mx: -999, my: -999 };
-    var t = 0, last = 0;
-
-    function measure() {
-      var box = wrap.getBoundingClientRect();
-      cols = Math.max(20, Math.floor(box.width / charW));
-      rows = Math.max(12, Math.floor(box.height / lineH));
+  function show(key, push) {
+    if (!layers[key] || key === current) return;
+    layers[current].removeAttribute("data-active");
+    layers[key].setAttribute("data-active", "1");
+    if (tabs[current]) tabs[current].setAttribute("aria-current", "false");
+    if (tabs[key]) tabs[key].setAttribute("aria-current", "true");
+    current = key;
+    root.setAttribute("data-screen", key);
+    if (push) {
+      try { history.pushState({ s: key }, "", key === "start" ? "./" : "#" + key); } catch (e) {}
     }
-    measure();
-    window.addEventListener('resize', measure);
+  }
 
-    var hero = document.getElementById('hero');
-    hero.addEventListener('mousemove', function (e) {
-      var r = pre.getBoundingClientRect();
-      mouse.mx = (e.clientX - r.left) / charW;
-      mouse.my = (e.clientY - r.top) / lineH;
+  [].forEach.call(document.querySelectorAll("[data-go]"), function (el) {
+    el.addEventListener("click", function () { show(el.getAttribute("data-go"), true); });
+  });
+  window.addEventListener("popstate", function (e) {
+    var k = (e.state && e.state.s) || (location.hash || "").replace("#", "") || "start";
+    show(SCREENS.indexOf(k) > -1 ? k : "start", false);
+  });
+  // arrows step through, like a deck
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    if (root.getAttribute("data-gate") === "1") return;
+    var i = SCREENS.indexOf(current) + (e.key === "ArrowRight" ? 1 : -1);
+    if (i >= 0 && i < SCREENS.length) show(SCREENS[i], true);
+  });
+
+  // honour a deep link on load
+  var initial = (location.hash || "").replace("#", "");
+  if (SCREENS.indexOf(initial) > -1 && initial !== "start") show(initial, false);
+
+  // ---- the gate ------------------------------------------------------------
+  // Armed in <head> before first paint; this only takes it down.
+  var gate = document.getElementById("gate");
+  function enter() {
+    if (root.getAttribute("data-gate") !== "1") return;
+    root.removeAttribute("data-gate");
+  }
+  if (gate) {
+    gate.addEventListener("click", enter);
+    gate.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); enter(); }
     });
-    hero.addEventListener('mouseleave', function () { mouse.mx = -999; mouse.my = -999; });
-
-    pre.style.opacity = String(ASCII_OPACITY);
-    pre.style.color = ACCENT;
-
-    function loop(now) {
-      requestAnimationFrame(loop);
-      if (now - last < 55) return; // ~18fps
-      last = now;
-      if (animate) t += 0.09;
-      var mx = mouse.mx, my = mouse.my;
-      var out = '';
-      for (var y = 0; y < rows; y++) {
-        for (var x = 0; x < cols; x++) {
-          var v = Math.sin(x * 0.14 + t) + Math.sin(y * 0.19 - t * 0.8) + Math.sin((x + y) * 0.09 + t * 1.2);
-          var dx = x - mx, dy = (y - my) * 1.9;
-          var d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 40) v += 2.4 * Math.sin(d * 0.42 - t * 3.2) * Math.exp(-d * 0.05);
-          var idx = Math.floor(((v + 3) / 6) * (ramp.length - 1));
-          if (idx < 0) idx = 0; else if (idx > ramp.length - 1) idx = ramp.length - 1;
-          out += ramp[idx];
-        }
-        out += '\n';
-      }
-      pre.textContent = out;
+    if (root.getAttribute("data-gate") === "1") {
+      // written on arrival, not on entry: a visitor who never clicks still saw it
+      try { sessionStorage.setItem("stb-entered", "1"); } catch (e) {}
+      try { gate.focus({ preventScroll: true }); } catch (e) {}
     }
-    requestAnimationFrame(loop);
-  })();
+  }
 
-  // ── About donut (Andy Sloane's rotating torus) ──
-  (function () {
-    var pre = document.getElementById('donut-ascii');
-    if (!pre) return;
-    var chars = '.,-~:;=!*#$@';
-    var W = 62, H = 30;
-    var A = 0, B = 0, last = 0;
-    pre.style.color = ACCENT;
-    pre.style.textShadow = '0 0 12px ' + ACCENT;
-
-    function loop(now) {
-      requestAnimationFrame(loop);
-      if (now - last < 40) return; // ~25fps
-      last = now;
-      if (animate) { A += 0.05; B += 0.025; }
-      var b = new Array(W * H).fill(' ');
-      var z = new Array(W * H).fill(0);
-      var cA = Math.cos(A), sA = Math.sin(A), cB = Math.cos(B), sB = Math.sin(B);
-      for (var j = 0; j < 6.28; j += 0.08) {
-        var ct = Math.cos(j), st = Math.sin(j);
-        for (var i = 0; i < 6.28; i += 0.02) {
-          var sp = Math.sin(i), cp = Math.cos(i);
-          var h = ct + 2;
-          var D = 1 / (sp * h * sA + st * cA + 5);
-          var tt = sp * h * cA - st * sA;
-          var x = Math.floor(W / 2 + (W / 3.6) * D * (cp * h * cB - tt * sB));
-          var y = Math.floor(H / 2 + (H / 2.3) * D * (cp * h * sB + tt * cB));
-          var o = x + W * y;
-          var lum = Math.floor(8 * ((st * sA - sp * ct * cA) * cB - sp * ct * sA - st * cA - cp * ct * sB));
-          if (y >= 0 && y < H && x >= 0 && x < W && D > z[o]) {
-            z[o] = D;
-            b[o] = chars[lum > 0 ? lum : 0];
-          }
-        }
-      }
-      var out = '';
-      for (var k = 0; k < W * H; k++) out += (k % W === W - 1) ? '\n' : b[k];
-      pre.textContent = out;
-    }
-    requestAnimationFrame(loop);
-  })();
+  // ---- contact overlay -----------------------------------------------------
+  var overlay = document.getElementById("formOverlay"), frame = document.getElementById("formFrame");
+  if (overlay && frame) {
+    var openForm = function (e) {
+      if (e) e.preventDefault();
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+      try { frame.contentWindow.postMessage("spacetobe:open", "*"); } catch (_) {}
+    };
+    var closeForm = function () {
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+    };
+    [].forEach.call(document.querySelectorAll('a[href="/start.html"]'), function (a) {
+      a.addEventListener("click", openForm);
+    });
+    window.addEventListener("message", function (ev) {
+      if (ev.data === "spacetobe:close-form") closeForm();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && overlay.classList.contains("open")) closeForm();
+    });
+  }
 })();
 </script>
 </body>
