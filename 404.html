@@ -1,157 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Page Not Found — Space to Be</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Pontano+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:     #FFF9F0;
-      --green:  #60A484;
-      --forest: #1E2618;
-      --black:  #0F0F0F;
-      --line:   rgba(30,38,24,0.14);
-      --muted:  rgba(30,38,24,0.5);
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--forest);
-      font-family: 'Pontano Sans', sans-serif;
-      font-weight: 400;
-      line-height: 1.75;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    h1, h2 {
-      font-family: 'Tenor Sans', serif;
-      font-weight: 400;
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 5vw;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .logo img { height: 42px; display: block; }
-
-    a.nav-btn {
-      font-family: 'Pontano Sans', sans-serif;
-      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--bg); background: var(--green);
-      text-decoration: none; padding: 0.55rem 1.6rem;
-      transition: background 0.22s;
-    }
-    a.nav-btn:hover { background: var(--forest); }
-
-    /* ─── MAIN ─── */
-    main {
-      flex: 1;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 4rem 5vw;
-    }
-
-    .four-oh-four {
-      font-family: 'Tenor Sans', serif;
-      font-size: clamp(6rem, 20vw, 14rem);
-      line-height: 1;
-      color: var(--green);
-      opacity: 0.18;
-      user-select: none;
-      margin-bottom: -2rem;
-      position: relative;
-      z-index: 0;
-    }
-
-    .message {
-      position: relative; z-index: 1;
-      opacity: 0; animation: fadeUp 0.7s 0.2s ease forwards;
-    }
-
-    .message h1 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      color: var(--black); margin-bottom: 1rem;
-    }
-
-    .message p {
-      font-size: 1.05rem; color: var(--muted);
-      max-width: 40ch; margin: 0 auto 2.5rem;
-    }
-
-    a.btn-green {
-      display: inline-block;
-      font-family: 'Pontano Sans', sans-serif;
-      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
-      text-decoration: none; padding: 0.9rem 2.6rem;
-      background: var(--green); color: var(--bg);
-      transition: background 0.22s, transform 0.18s;
-    }
-    a.btn-green:hover { background: var(--forest); transform: translateY(-2px); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--black); color: rgba(255,249,240,0.5);
-      padding: 2.2rem 5vw;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    footer p { font-size: 0.78rem; }
-    .footer-links { display: flex; gap: 2.2rem; }
-    footer a { font-size: 0.78rem; color: rgba(255,249,240,0.6); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--green); }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 500px) {
-      footer { flex-direction: column; align-items: flex-start; }
-    }
+    :root{--paper:#F5F2EA;--ink:#1D241A;--green:#60A484;--shell:min(calc(100% - clamp(32px,7vw,112px)),76rem)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;overflow:hidden}
+    body{background:var(--paper);color:var(--ink);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    header{position:fixed;z-index:2;top:0;left:50%;width:var(--shell);height:64px;display:flex;align-items:center;justify-content:space-between;transform:translateX(-50%)}
+    .brand{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:600;letter-spacing:-.04em}
+    .mark{width:26px;height:26px;color:var(--green)}
+    .mark circle{fill:none;stroke:currentColor;stroke-width:7}
+    .home-link{padding-bottom:3px;border-bottom:1px solid rgba(29,36,26,.34);font-size:14px}
+    main{position:relative;width:var(--shell);height:100%;margin:auto;display:grid;align-content:center}
+    h1{position:relative;z-index:1;max-width:9.6ch;font-size:clamp(4rem,10.2vw,9rem);font-weight:400;line-height:.88;letter-spacing:-.065em}
+    .ring{position:absolute;z-index:0;top:50%;right:-5%;width:clamp(250px,40vw,520px);aspect-ratio:1;color:var(--green);transform:translateY(-50%);opacity:.8}
+    .ring::before{content:'';position:absolute;inset:-28%;border-radius:50%;background:radial-gradient(circle,rgba(96,164,132,.34),rgba(96,164,132,.1) 48%,transparent 72%);filter:blur(30px)}
+    .ring svg{position:relative;width:100%;height:100%;animation:breathe 13s ease-in-out infinite}
+    .note{position:absolute;left:0;bottom:clamp(30px,5vh,54px);z-index:1;max-width:34ch;font-size:clamp(.92rem,1.4vw,1.12rem);line-height:1.55;color:rgba(29,36,26,.66)}
+    @keyframes breathe{0%,100%{transform:scale(.88)}42%{transform:scale(1.08)}}
+    @media(max-width:42rem){header{height:56px}.brand{font-size:16px}.home-link{font-size:12px}h1{font-size:clamp(3.7rem,17vw,6rem)}.ring{right:-38%;width:78vw;opacity:.56}.note{right:0}}
+    @media(prefers-reduced-motion:reduce){.ring svg{animation:none}}
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav>
-    <a class="logo" href="/">
-      <img src="images/logo.png" alt="Space to Be" />
-    </a>
-    <a class="nav-btn" href="/start.html">Get in touch</a>
-  </nav>
-
-  <!-- MAIN -->
+  <header>
+    <a class="brand" href="index.html" aria-label="Space to Be — home"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"></circle></svg><span>Space to Be</span></a>
+    <a class="home-link" href="index.html">Return home →</a>
+  </header>
   <main>
-    <p class="four-oh-four">404</p>
-    <div class="message">
-      <h1>Page not found</h1>
-      <p>This page doesn't exist or may have moved. Let's get you back.</p>
-      <a class="btn-green" href="/">Back to home</a>
-    </div>
+    <h1>This space isn’t here.</h1>
+    <div class="ring" aria-hidden="true"><svg viewBox="0 0 320 320"><circle cx="160" cy="160" r="71" fill="none" stroke="currentColor" stroke-width="46"></circle></svg></div>
+    <p class="note">The page may have moved. There is still space to begin again.</p>
   </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 Space to Be</p>
-    <div class="footer-links">
-      <a href="https://j-hn.info/" target="_blank" rel="noopener">John's Website</a>
-      <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>
-    </div>
-  </footer>
-
 </body>
 </html>

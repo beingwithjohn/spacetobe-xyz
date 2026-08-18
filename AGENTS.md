@@ -6,10 +6,10 @@ GitHub Pages from `main` on `beingwithjohn/spacetobe-xyz`, CNAME `spacetobe.xyz`
 
 | Path | What it is |
 |---|---|
-| `index.html` | the home page — an **app shell**: an entry gate plus five no-scroll screens, one file |
+| `index.html` | the home page — a continuous editorial landing page with an entry threshold, one file |
 | `start.html` | the contact form; also embedded as an iframe overlay by the other pages |
 | `practice-map/` | the practice map, Space to Be's own version of the Beings Club one |
-| `404.html` | predates the current design system — still on the old fonts |
+| `404.html` | the no-scroll not-found page, using the same palette and ring system |
 | `images/` | all assets |
 
 ## Deploying
@@ -25,28 +25,44 @@ until [ "$(curl -fsS https://spacetobe.xyz/ | shasum | cut -d' ' -f1)" = "$(shas
 
 ## The design system
 
-Defined once in `index.html`'s `:root`. Any new page copies these verbatim — that is what
-makes it feel like one site.
+Defined in `index.html`'s `:root`. The site is a quiet editorial sibling of j-hn.info and
+Beings Club: warm mineral paper, forest ink, restrained hairlines, and one clean sans-serif
+system. LT Remark is reserved for a single warm interruption inside major headlines. Do not
+introduce a third typographic voice or use LT Remark for whole sections.
 
-```
---bg #FFF9F0   --forest #1E2618   --green #60A484   --hair rgba(30,38,24,0.08)
---display 'Bricolage Grotesque'   --body 'Space Grotesk'   --mono 'Space Mono'
-```
+The green ring is the brand and primary visual gesture. Its loading sequence belongs to the
+threshold; on entry it breathes once, travels into the hero field, and dissolves into the
+abstract green-and-gold atmosphere. On the landing itself, the explicit ring appears only as
+the small top-left logo. Do not scatter extra rings through ordinary content or introduce a
+competing decorative system.
 
-Structural idiom: a `.page` with a faint 64px `.grid-overlay`, a 1240px `.col` with hairline
-left/right borders, and sections separated by single hairlines. Eyebrows are mono, uppercase
-or sentence case, green. Headings are Bricolage, tight tracking. Breakpoints at 900px and
-560px. The ASCII flow field in the hero and the rotating torus in "Who I am" are the site's
-signature — reuse them rather than introducing new decoration.
+The home page is a fixed, single-viewport experience. For you, How, John, and Money open as
+full-canvas editorial sheets while the same header and exploration navigation persist. The
+interface floats directly on the canvas: there is no visible top bar or bottom bar. Desktop
+uses an explicit unnumbered navigation; mobile uses one clear EXPLORE SPACE TO BE control
+that reveals the four destinations. The rectangular conversation CTA is also a persistent
+overlay across Home and all four sheets; the enquiry iframe covers it once someone begins
+writing. Every sheet should fit without scrolling at normal
+viewports. A very-short-height emergency tier may scroll the active sheet so zoom, landscape
+phones, and unusually short screens never make content inaccessible.
 
-`404.html` has **not** been brought into this system; it still loads Tenor Sans and Pontano
-Sans. Worth fixing, not yet done.
+The working palette is mineral paper, near-black ink, the green of the circle, and a restrained
+gold atmosphere used only in the home hero glow. The gold is part of the supplied design and
+should not be removed during simplification. The design-studio references show up through
+space, scale, mixed serif/sans typography, and tiny functional controls—not through a larger
+decorative palette.
+
+The circle is an inline SVG system, not a CSS border or bitmap. At the threshold, its opening
+sequence is deliberately finite: one breath, one move, one dissolve into atmospheric colour.
+It expresses space and arrival without becoming a separate experience to navigate. Keep the
+SVG inline when refining the handoff; an external image would make the movement and interaction
+harder to control.
 
 ## Things worth knowing
 
-**The contact overlay.** Every `a[href="/start.html"]` is intercepted and opens `start.html`
+**The contact overlay.** Every `a[href="start.html"]` is intercepted and opens `start.html`
 in a full-screen iframe instead of navigating. The iframe posts `spacetobe:close-form` to
-close. If you add a CTA, point it at `/start.html` and it joins the pattern for free.
+close. If you add a CTA, point it at `start.html` and it joins the pattern for free.
 
 **Images must be resized before committing.** The portrait in the intro section came from a
 2.2MB original; it ships at 1500px / 411KB as `images/john-portrait.jpg`. The 2127px
@@ -58,6 +74,11 @@ beingsclub.com's but rebuilt in this design system. Copy changes usually need ap
 both — they are separate repos and nothing syncs them. Beings Club's version is at
 `../Beings Club/practice-map/index.html`; read that repo's `AGENTS.md` first, because its
 six main pages are generated and must not be hand-edited.
+
+Its long-form layout uses the same mineral paper, forest ink, green SVG ring, Helvetica/LT
+Remark hierarchy, rectangular actions, and relative contact overlay as the landing page. It
+scrolls because it is a substantial reading object; congruence comes from the visual system,
+not by forcing the home page's one-screen behaviour onto the essay.
 
 **Image bands on the practice map.** One full plate at the top, unfiltered; after that the
 photographs run as thin desaturated "spectral rules" between territories, so the colour
@@ -71,38 +92,21 @@ comment above `.band` before enlarging them.
   are never actually shown. Proposal under consideration: a real grid near the top, the
   "if overwhelmed / if angry / if scattered" entry points moved up with it, nothing cut.
   This page is the cheapest place to prototype it — it is hand-maintained.
-- **`404.html`** is still on the pre-redesign fonts and palette.
 
-## The home page is an app shell
+## The home page
 
-`index.html` is no longer a scrolling page. It is a gate plus five screens, and **nothing on
-it scrolls** — `body` is `overflow:hidden`, `.stage` is `100svh`, and each `.screen` is an
-absolutely-positioned layer that crossfades. Only one carries `data-active="1"`.
+`index.html` is one unscrollable landing page with four supporting information sheets:
+recognition, practice, John, and money. Keep the landing visible behind the sheets.
 
-Screens: `start`, `how`, `john`, `words`, `cost`. Switched by the bottom tabs, the arrow keys,
-the browser Back button, and `#hash` deep links. There is one URL — no per-screen directories
-to maintain.
+**The entry gate** is one clean SVG ring with no instructional copy or interaction. It is shut
+by default in CSS and opened by the early `<head>` script on the first visit in a session.
+The ring breathes once over 2.2 seconds, then automatically moves into and dissolves through the hero's green-
+and-gold field while the landing interface fades in. `sessionStorage["stb-entered"]` is written
+when that handoff begins, so the short ident appears only once per browsing session.
 
-**Every screen must fit the viewport.** The floor is 360×640; `how` is the tallest and had to
-be tightened with a `@media (max-height: 44rem)` tier to fit. If you add copy, re-check that
-tier — measure `.inner`'s bounding box against `clientHeight` rather than eyeballing it, and
-note that the preview pane's screenshot canvas is bigger than the page, so screenshots lie
-about vertical fit.
-
-**The entry gate** is the breathing ring plus "click to enter". It follows the same contract
-as the Beings Club intro, for the same reasons:
-- shut by default in CSS — the `<head>` script opens it on a first visit, so the page is never
-  painted and then covered;
-- `@keyframes gate-guard` retires it after 14s with no JavaScript, so a dead script cannot
-  trap anyone behind it;
-- `sessionStorage["stb-entered"]` is written on *arrival*, not on click, so a visitor who
-  never clicks still only sees it once.
-
-**The ring is CSS, not `images/logo.png`.** The PNG's centre is opaque white and reads as a
-hole punched in the paper. `.ring` is a `1em` box with a `0.27em` border, which reproduces the
-logo's proportions (hole/outer = 0.46 against the original's 0.45) and lets it animate. The
-breath is 6s peaking at 38% — 2.3s in, 3.7s out, which is the way a resting breath actually
-goes.
+**The ring is SVG, not `images/logo.png`.** Keep this loading ident simple: one stroked circle,
+one breath, one move into light. It respects reduced-motion preferences and should not regain
+orbiting elements, metaballs, prompts, or a click-to-enter state.
 
 The old scrolling page is in git history if any of this needs walking back:
 `git log --oneline -- index.html`.

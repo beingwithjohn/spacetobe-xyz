@@ -23,45 +23,37 @@
   <meta name="twitter:description" content="Three places to rest attention, and the rhythm that moves between them." />
   <meta name="twitter:image" content="https://spacetobe.xyz/images/practice-map-hero.jpg" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="/images/favicon-512.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-180.png" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../images/favicon-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon-180.png" />
+  <link rel="preload" as="font" type="font/otf" href="../fonts/LT.Remark-Regular.otf" crossorigin />
 
   <style>
     @font-face {
       font-family: 'LT Remark';
-      src: url('/fonts/LT.Remark-Regular.otf') format('opentype');
+      src: url('../fonts/LT.Remark-Regular.otf') format('opentype');
       font-style: normal;
       font-weight: 400 500;
       font-display: swap;
     }
     @font-face {
       font-family: 'LT Remark';
-      src: url('/fonts/LT.Remark-Bold.otf') format('opentype');
+      src: url('../fonts/LT.Remark-Bold.otf') format('opentype');
       font-style: normal;
       font-weight: 600 700;
       font-display: swap;
     }
-    @font-face {
-      font-family: 'LT Remark';
-      src: url('/fonts/LT.Remark-Black.otf') format('opentype');
-      font-style: normal;
-      font-weight: 800 900;
-      font-display: swap;
-    }
     /* Same tokens as the home page — this is one site. */
     :root {
-      --bg: #FFF9F0;
-      --forest: #1E2618;
+      --bg: #F5F2EA;
+      --forest: #1D241A;
       --green: #60A484;
-      --hair: rgba(30,38,24,0.08);
+      --hair: rgba(29,36,26,0.14);
       --display: 'LT Remark', Georgia, serif;
-      --body: 'LT Remark', Georgia, serif;
-      --mono: 'LT Remark', Georgia, serif;
+      --body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --mono: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --shell: min(calc(100% - clamp(32px,7vw,112px)),76rem);
+      --ease: cubic-bezier(.22,1,.36,1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -71,18 +63,7 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
     ::selection { background: rgba(96,164,132,0.28); }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
     .page { position: relative; background: var(--bg); overflow: hidden; }
-    .grid-overlay {
-      position: absolute; inset: 0; z-index: 1; pointer-events: none;
-      background-image:
-        linear-gradient(rgba(30,38,24,0.028) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(30,38,24,0.028) 1px, transparent 1px);
-      background-size: 64px 64px;
-      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 100%);
-      mask-image: radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 100%);
-    }
     .col { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
       border-left: 1px solid var(--hair); border-right: 1px solid var(--hair); }
 
@@ -99,11 +80,6 @@
     /* Hero */
     .hero { position: relative; min-height: 78vh; overflow: hidden;
       border-bottom: 1px solid var(--hair); display: flex; align-items: center; }
-    .hero-ascii-wrap { position: absolute; inset: 0; z-index: 0;
-      -webkit-mask-image: radial-gradient(120% 120% at 50% 45%, #000 30%, transparent 92%);
-      mask-image: radial-gradient(120% 120% at 50% 45%, #000 30%, transparent 92%); }
-    #hero-ascii { margin: 0; font-family: 'Space Mono', monospace; font-size: 13px; line-height: 13px;
-      white-space: pre; user-select: none; color: var(--green); opacity: 0.4; }
     .hero-inner { position: relative; z-index: 2; padding: 56px 40px; width: 100%; }
     .kicker { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--green); margin-bottom: 26px; }
     .hero .kicker { color: var(--forest); text-shadow: 0 0 10px var(--bg), 0 0 3px var(--bg); }
@@ -267,12 +243,80 @@
       .cta { padding-top: 72px; padding-bottom: 72px; }
       /* the long brand line stands down; the logo carries it */
       .wordmark { display: none; }
-      /* the field has to sit further back under a narrow column of copy.
-         !important because the script sets the opacity inline. */
-      #hero-ascii { opacity: 0.22 !important; }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .ticker-row { animation: none; }
+
+    /* The long-form sibling of the landing page: same palette, type and ring. */
+    .col{max-width:none;border:0}
+    .nav{position:relative;z-index:5;width:var(--shell);margin:0 auto;padding:18px 0;border:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+    .brand{justify-self:start;gap:11px;font-weight:600;font-size:18px;letter-spacing:-.04em}
+    .simple-mark{width:26px;height:26px;flex:none}
+    .simple-mark circle{fill:none;stroke:var(--green);stroke-width:7}
+    .brand-name{white-space:nowrap}
+    .map-tagline{font-size:clamp(11px,.9vw,13px);font-weight:500;letter-spacing:.015em;opacity:.68;text-align:center}
+    .btn-ghost{justify-self:end;padding:3px 0;border:0;border-bottom:1px solid rgba(29,36,26,.34);font-family:var(--body);font-size:14px;letter-spacing:-.015em;color:var(--forest)}
+    .btn-ghost:hover{background:none;color:var(--forest)}
+
+    .hero{width:var(--shell);min-height:calc(100svh - 62px);margin:0 auto;border:0;overflow:visible}
+    .hero-inner{padding:clamp(72px,11vh,118px) 0 clamp(58px,9vh,96px)}
+    .map-hero-mark{position:absolute;z-index:0;right:-8%;top:50%;width:clamp(280px,39vw,520px);aspect-ratio:1;transform:translateY(-48%);color:var(--green);opacity:.82;pointer-events:none}
+    .map-hero-mark::before{content:'';position:absolute;inset:-30%;border-radius:50%;background:radial-gradient(circle,rgba(96,164,132,.34),rgba(96,164,132,.12) 46%,rgba(96,164,132,0) 72%);filter:blur(32px)}
+    .map-hero-mark svg{position:relative;width:100%;height:100%;filter:drop-shadow(0 0 22px rgba(96,164,132,.2))}
+    .kicker{font-family:var(--body);font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--forest);opacity:.56;margin-bottom:24px}
+    .hero .kicker{color:var(--forest);text-shadow:none}
+    .h-hero{position:relative;z-index:2;font-family:var(--display);font-weight:400;font-size:clamp(3.8rem,7.8vw,7.3rem);line-height:.94;letter-spacing:-.035em;max-width:13.5ch}
+    .hero-row{position:relative;z-index:2;align-items:flex-end;gap:30px 70px;margin-top:clamp(38px,7vh,68px)}
+    .hero-copy{max-width:46ch}
+    .hero-row p{font-family:var(--body);font-size:clamp(1rem,1.45vw,1.22rem);font-weight:400;line-height:1.58;color:rgba(29,36,26,.74);text-shadow:none}
+    .hero-note{font-size:11px!important;font-weight:600!important;line-height:1.5!important;letter-spacing:.08em!important;text-transform:uppercase;color:var(--forest)!important;opacity:.58}
+
+    .ticker{width:var(--shell);margin:0 auto;padding:14px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);background:none}
+    .ticker-row{width:100%;display:flex;justify-content:space-between;animation:none;font-family:var(--body);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(29,36,26,.62)}
+    .ticker-row a{transition:color 180ms ease}
+    .ticker-row a:hover{color:var(--green)}
+    .ticker-row .d{color:rgba(29,36,26,.25)}
+
+    .band,.block,.intro,.reveal,.close,.cta,.footer{width:var(--shell);margin-left:auto;margin-right:auto}
+    .band{border-left:0;border-right:0}
+    .intro{padding:clamp(70px,10vh,110px) 0}
+    .intro p{font-weight:400;font-size:clamp(2.4rem,6vw,5.6rem);line-height:1.05;letter-spacing:-.03em}
+    .sec{padding:clamp(64px,9vh,96px) 0}
+    .h-sec{font-weight:400;font-size:clamp(3rem,6.6vw,6rem);line-height:.98;margin-bottom:28px}
+    .sec p,.lead p,.cell p,.way p,.reveal p,.spec-row dd,.close p.sub{font-family:var(--body);font-size:clamp(.98rem,1.32vw,1.1rem);line-height:1.68;color:rgba(29,36,26,.68)}
+    .lead{padding:34px 0}
+    .two-col{gap:0}
+    .cell{padding:42px 40px 42px 0}
+    .cell+ .cell{padding-left:40px;padding-right:0}
+    .cell h3,.way h3,.door h3{font-family:var(--body);font-weight:500;letter-spacing:-.025em}
+    .ways,.spec,.doors{border-top:1px solid var(--hair)}
+    .way,.spec-row{padding:25px 0}
+    .way-label,.spec-row dt,.door .when{font-family:var(--body);font-size:10px;font-weight:600;letter-spacing:.12em}
+    .reveal{padding:clamp(44px,6vh,64px);background:rgba(96,164,132,.055);margin-bottom:clamp(28px,4vh,48px)}
+    .reveal h3{font-weight:400;font-size:clamp(2.7rem,5vw,4.8rem)}
+    .door{padding:38px 38px 38px 0}
+    .door+ .door{padding-left:38px}
+    .close{padding:clamp(76px,10vh,110px) 0}
+    .close p.big{font-weight:400;font-size:clamp(2.5rem,5.4vw,5rem);line-height:1.08;max-width:22ch}
+    .cta{padding:clamp(88px,13vh,138px) 0;text-align:left}
+    .h-cta{font-weight:400;font-size:clamp(3.4rem,8vw,7.2rem);line-height:.94;max-width:10ch}
+    .btn-cta{font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.005em;color:var(--bg);background:var(--forest);padding:20px 30px;min-width:min(390px,100%);text-align:left}
+    .cta .elsewhere,.footer{font-family:var(--body)}
+    .footer{padding:22px 0}
+
+    @media(max-width:50rem){
+      .nav{grid-template-columns:1fr auto}.map-tagline{display:none}
+      .hero{min-height:78svh;overflow:hidden}
+      .map-hero-mark{right:-34%;top:54%;width:clamp(260px,78vw,390px);opacity:.54}
+      .h-hero{font-size:clamp(3.5rem,15vw,5.8rem)}
+      .hero-inner{padding:64px 0}
+      .hero-row{margin-top:34px}
+      .ticker-row{gap:18px;justify-content:flex-start;overflow:hidden}
+      .cell,.cell+ .cell,.door,.door+ .door{padding:32px 0}
+      .reveal{padding:42px 22px}
+    }
+    @media(max-width:35rem){
+      .brand{font-size:16px}.simple-mark{width:24px;height:24px}.btn-ghost{font-size:12px}
+      .hero-copy p+ p{display:none}
+      .band,.block,.intro,.reveal,.close,.cta,.footer,.ticker{width:calc(100% - 32px)}
     }
   </style>
 </head>
@@ -280,25 +324,21 @@
 
 <div class="page">
 
-  <!-- faint grid overlay -->
-  <div class="grid-overlay"></div>
-
   <div class="col">
 
     <!-- NAV -->
     <div class="nav">
-      <a class="brand" href="/">
-        <img class="brand-logo" src="/images/logo.png" alt="Space to Be logo" />
-        <span class="wordmark">One-to-One Meditation Teaching and Spiritual Friendship</span>
+      <a class="brand" href="../index.html">
+        <svg class="simple-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"></circle></svg>
+        <span class="brand-name">Space to Be</span>
       </a>
-      <a class="btn-ghost" href="/start.html">Get in touch</a>
+      <p class="map-tagline">A practice map for body, heart and mind</p>
+      <a class="btn-ghost" href="../start.html">Begin a conversation →</a>
     </div>
 
     <!-- HERO -->
     <div id="hero" class="hero">
-      <div class="hero-ascii-wrap">
-        <pre id="hero-ascii" aria-hidden="true"></pre>
-      </div>
+      <div class="map-hero-mark" aria-hidden="true"><svg viewBox="0 0 320 320"><circle cx="160" cy="160" r="71" fill="none" stroke="currentColor" stroke-width="46"></circle></svg></div>
       <div class="hero-inner">
         <p class="kicker">A practice map</p>
         <h1 class="h-hero">Exploring the body–heart–mind.</h1>
@@ -315,15 +355,12 @@
     <!-- MARQUEE -->
     <div class="ticker">
       <div class="ticker-row">
-        <span class="w">BODY</span><span class="d">◇</span><span class="w">HEART</span><span class="d">◇</span><span class="w">MIND</span><span class="d">◇</span><span class="w">PRESENCE</span><span class="d">◇</span><span class="w">RESONANCE</span><span class="d">◇</span><span class="w">SPACIOUSNESS</span><span class="d">◇</span>
-        <span class="w">BODY</span><span class="d">◇</span><span class="w">HEART</span><span class="d">◇</span><span class="w">MIND</span><span class="d">◇</span><span class="w">PRESENCE</span><span class="d">◇</span><span class="w">RESONANCE</span><span class="d">◇</span><span class="w">SPACIOUSNESS</span><span class="d">◇</span>
-        <span class="w">BODY</span><span class="d">◇</span><span class="w">HEART</span><span class="d">◇</span><span class="w">MIND</span><span class="d">◇</span><span class="w">PRESENCE</span><span class="d">◇</span><span class="w">RESONANCE</span><span class="d">◇</span><span class="w">SPACIOUSNESS</span><span class="d">◇</span>
-        <span class="w">BODY</span><span class="d">◇</span><span class="w">HEART</span><span class="d">◇</span><span class="w">MIND</span><span class="d">◇</span><span class="w">PRESENCE</span><span class="d">◇</span><span class="w">RESONANCE</span><span class="d">◇</span><span class="w">SPACIOUSNESS</span><span class="d">◇</span>
+        <a href="#body">Body</a><span class="d">/</span><a href="#heart">Heart</a><span class="d">/</span><a href="#mind">Mind</a><span class="d">/</span><a href="#yours">Make it yours</a>
       </div>
     </div>
 
     <figure class="band tall">
-      <img src="/images/practice-map-hero.jpg" alt="A lone figure walking a field toward banded hills"
+      <img src="../images/practice-map-hero.jpg" alt="A lone figure walking a field toward banded hills"
            style="object-position: center 78%;" loading="eager" decoding="async" width="960" height="1200" />
     </figure>
 
@@ -366,7 +403,7 @@
 
     <!-- THE BODY -->
     <figure class="band">
-      <img src="/images/practice-map-body.jpg" alt="A stable ground map — banded terrain in earth tones"
+      <img src="../images/practice-map-body.jpg" alt="A stable ground map — banded terrain in earth tones"
            style="object-position: center 50%;" loading="lazy" decoding="async" width="960" height="1200" />
     </figure>
     <div class="block" id="body" style="scroll-margin-top: 8px;">
@@ -400,7 +437,7 @@
 
     <!-- THE HEART -->
     <figure class="band">
-      <img src="/images/practice-map-heart.jpg" alt="A resonance map — concentric rings radiating from a centre"
+      <img src="../images/practice-map-heart.jpg" alt="A resonance map — concentric rings radiating from a centre"
            style="object-position: center 45%;" loading="lazy" decoding="async" width="960" height="1200" />
     </figure>
     <div class="block" id="heart" style="scroll-margin-top: 8px;">
@@ -434,7 +471,7 @@
 
     <!-- THE MIND -->
     <figure class="band">
-      <img src="/images/practice-map-mind.jpg" alt="An open-space map — starfield crossed by bands of colour"
+      <img src="../images/practice-map-mind.jpg" alt="An open-space map — starfield crossed by bands of colour"
            style="object-position: center 50%;" loading="lazy" decoding="async" width="960" height="1200" />
     </figure>
     <div class="block" id="mind" style="scroll-margin-top: 8px;">
@@ -469,7 +506,7 @@
     <!-- POSTURE -->
     <figure class="band">
       <div class="band-rot">
-        <img src="/images/practice-map-posture.jpg" alt="A balanced cairn of stones against bands of colour"
+        <img src="../images/practice-map-posture.jpg" alt="A balanced cairn of stones against bands of colour"
              loading="lazy" decoding="async" width="960" height="1200" />
       </div>
     </figure>
@@ -492,7 +529,7 @@
 
     <!-- MAKING IT YOUR OWN -->
     <figure class="band">
-      <img src="/images/practice-map-yours.jpg" alt="A standing figure at the centre of radiating bands of light"
+      <img src="../images/practice-map-yours.jpg" alt="A standing figure at the centre of radiating bands of light"
            style="object-position: center 84%;" loading="lazy" decoding="async" width="960" height="1200" />
     </figure>
     <div class="block" id="yours" style="scroll-margin-top: 8px;">
@@ -528,7 +565,7 @@
     <div class="cta">
       <p class="kicker">Practising with someone</p>
       <h2 class="h-cta">Want company on the map?</h2>
-      <a class="btn-cta" href="/start.html">Get in touch</a>
+      <a class="btn-cta" href="../start.html">Begin with a free conversation →</a>
       <p class="kicker" style="margin-top:26px;margin-bottom:0;">Start with a free 20-minute conversation</p>
       <p class="elsewhere">Practising in a group is its own thing — that happens over at <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>.</p>
     </div>
@@ -546,8 +583,8 @@
 </div>
 
 <!-- Contact form overlay (start.html embedded) -->
-<div class="form-overlay" id="formOverlay" aria-hidden="true">
-  <iframe id="formFrame" class="form-frame" title="Get in touch — Space to Be" src="/start.html" loading="lazy"></iframe>
+<div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a free conversation" aria-hidden="true">
+  <iframe id="formFrame" class="form-frame" title="Begin with a free conversation — Space to Be" src="../start.html?v=20260818" loading="lazy"></iframe>
 </div>
 
 <script>
@@ -555,85 +592,27 @@
 (function () {
   var overlay = document.getElementById('formOverlay');
   var frame = document.getElementById('formFrame');
+  var opener = null;
+  var localFile = location.protocol === 'file:';
+  var messageOrigin = localFile ? '*' : location.origin;
   if (!overlay || !frame) return;
   function openForm(e) {
     if (e) e.preventDefault();
+    opener = e && e.currentTarget;
     document.body.classList.add('form-open');
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden', 'false');
-    try { frame.contentWindow.postMessage('spacetobe:open', '*'); } catch (_) {}
+    try { frame.contentWindow.postMessage('spacetobe:open', messageOrigin); } catch (_) {}
   }
   function closeForm() {
     overlay.classList.remove('open');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('form-open');
+    if (opener) opener.focus({ preventScroll: true });
   }
-  document.querySelectorAll('a[href="/start.html"]').forEach(function (a) { a.addEventListener('click', openForm); });
-  window.addEventListener('message', function (ev) { if (ev.data === 'spacetobe:close-form') closeForm(); });
+  document.querySelectorAll('a[href="../start.html"]').forEach(function (a) { a.addEventListener('click', openForm); });
+  window.addEventListener('message', function (ev) { if (ev.source === frame.contentWindow && (localFile || ev.origin === location.origin) && ev.data === 'spacetobe:close-form') closeForm(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) closeForm(); });
-})();
-
-// ── Hero flow field — the same ASCII field as the home page ──
-(function () {
-  var ACCENT = '#60A484';
-  var ASCII_OPACITY = 0.4;   // lower than the home page: more copy sits over it
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var animate = !reduce.matches;
-  reduce.addEventListener && reduce.addEventListener('change', function (e) { animate = !e.matches; });
-
-  var charW = 13 * 0.6;   // Space Mono glyph advance at 13px
-  var lineH = 13;
-
-  var pre = document.getElementById('hero-ascii');
-  var wrap = pre && pre.parentElement;
-  var hero = document.getElementById('hero');
-  if (!pre || !wrap || !hero) return;
-
-  var ramp = ' .:-=+*#%@';
-  var cols = 20, rows = 12;
-  var mouse = { mx: -999, my: -999 };
-  var t = 0, last = 0;
-
-  function measure() {
-    var box = wrap.getBoundingClientRect();
-    cols = Math.max(20, Math.floor(box.width / charW));
-    rows = Math.max(12, Math.floor(box.height / lineH));
-  }
-  measure();
-  window.addEventListener('resize', measure);
-
-  hero.addEventListener('mousemove', function (e) {
-    var r = pre.getBoundingClientRect();
-    mouse.mx = (e.clientX - r.left) / charW;
-    mouse.my = (e.clientY - r.top) / lineH;
-  });
-  hero.addEventListener('mouseleave', function () { mouse.mx = -999; mouse.my = -999; });
-
-  pre.style.opacity = String(ASCII_OPACITY);
-  pre.style.color = ACCENT;
-
-  function loop(now) {
-    requestAnimationFrame(loop);
-    if (now - last < 55) return; // ~18fps
-    last = now;
-    if (animate) t += 0.09;
-    var mx = mouse.mx, my = mouse.my;
-    var out = '';
-    for (var y = 0; y < rows; y++) {
-      for (var x = 0; x < cols; x++) {
-        var v = Math.sin(x * 0.14 + t) + Math.sin(y * 0.19 - t * 0.8) + Math.sin((x + y) * 0.09 + t * 1.2);
-        var dx = x - mx, dy = (y - my) * 1.9;
-        var d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 40) v += 2.4 * Math.sin(d * 0.42 - t * 3.2) * Math.exp(-d * 0.05);
-        var idx = Math.floor(((v + 3) / 6) * (ramp.length - 1));
-        if (idx < 0) idx = 0; else if (idx > ramp.length - 1) idx = ramp.length - 1;
-        out += ramp[idx];
-      }
-      out += '\n';
-    }
-    pre.textContent = out;
-  }
-  requestAnimationFrame(loop);
 })();
 </script>
 </body>
