@@ -18,7 +18,7 @@ The SVG circle breathes once over 2.2 seconds, moves into the background field o
 
 ## Home
 
-**Meditation and spiritual friendship for people in transition**
+**MEDITATION AND SPIRITUAL FRIENDSHIP FOR PEOPLE IN TRANSITION**
 
 # For when life no longer feels like yours, and you want that to change.
 
