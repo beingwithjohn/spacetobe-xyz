@@ -88,11 +88,21 @@ Image description: John sitting beside a river beneath a tree.
 
 ## Money
 
-# This work is offered freely, in the spirit of dāna.
+# This work is freely given.
 
-There is no fee and no expected amount. After our sixth meeting, I’ll invite you to support the work with whatever feels honest and right.
+Link: Why is this work freely given?
+
+There is no fee and no expected amount. After our sixth meeting, I’ll invite you to give whatever you freely choose.
 
 What you give does not change the care I offer. If context would help, you can ask what others have given.
+
+### About dāna
+
+# Why this work is freely given
+
+This work is offered in the spirit of dāna, the Pāli word for giving. I offer it freely because I want to protect the relationship from some of the ways money can distort how we meet one another.
+
+The first six meetings are complete in themselves, not an introduction to something you must later buy. Afterwards, if you choose to give, what you offer is received as a gift, not payment or a measure of the care you received.
 
 ## Enquiry flow
 

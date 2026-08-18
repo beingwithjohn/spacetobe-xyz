@@ -39,7 +39,7 @@
       --controls:46px;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none;background:var(--paper)}
+    html,body{width:100%;height:100%;height:100dvh;overflow:hidden;overscroll-behavior:none;background:var(--paper)}
     body{color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
     a{color:inherit;text-decoration:none}
     a:hover{color:inherit}
@@ -182,7 +182,7 @@
 
     .money-layout{height:100%;display:grid;grid-template-columns:1fr;grid-template-rows:1fr auto;gap:clamp(28px,5vh,56px);justify-items:start;text-align:left}
     .money-statement{align-self:center;font-family:var(--display);font-size:clamp(2.1rem,min(3.9vw,7.2vh),3.8rem);line-height:1.24;letter-spacing:-.02em;max-width:none}
-    .money-statement em{font-style:italic;border-bottom:2px solid rgba(96,164,132,.6)}
+    .money-statement .text-button{display:block;width:max-content;margin-top:clamp(16px,2.4vh,24px);font-size:clamp(10px,.78vw,12px);letter-spacing:0}
     .money-notes{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);border-top:1px solid rgba(29,36,26,.12);padding-top:clamp(16px,3vh,26px)}
     .money-notes .body-copy{max-width:60ch;font-size:clamp(.85rem,1.1vw,1.05rem);line-height:1.6;opacity:.65}
 
@@ -194,19 +194,21 @@
     .explore-links button:hover,.explore-links button[aria-current="page"]{opacity:1}
     .mobile-menu-toggle{display:none}
 
-    .form-overlay,.training-overlay{position:fixed;inset:0;z-index:300;background:var(--paper);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 400ms var(--ease),transform 400ms var(--ease),visibility 0s linear 400ms}
-    .form-overlay.open,.training-overlay.open{opacity:1;visibility:visible;transform:none;transition:opacity 400ms var(--ease),transform 400ms var(--ease)}
+    .form-overlay,.training-overlay,.dana-overlay{position:fixed;inset:0;z-index:300;background:var(--paper);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 400ms var(--ease),transform 400ms var(--ease),visibility 0s linear 400ms}
+    .form-overlay.open,.training-overlay.open,.dana-overlay.open{opacity:1;visibility:visible;transform:none;transition:opacity 400ms var(--ease),transform 400ms var(--ease)}
     .form-overlay iframe{width:100%;height:100%;border:0;display:block}
-    .training-overlay{display:grid;place-content:center;padding:24px}
-    .training-card{width:min(740px,calc(100vw - 48px));padding:clamp(24px,5vw,54px);border:1px solid rgba(29,36,26,.1)}
-    .training-card header{display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .training-card h2{margin-top:21px;font-family:var(--sans);font-size:clamp(2rem,4vw,3.6rem);font-weight:500;letter-spacing:-.05em;line-height:.92}
-    .training-card p{margin-top:22px;font-size:clamp(.72rem,1.2vw,.92rem);line-height:1.52;opacity:.68}
+    .training-overlay,.dana-overlay{display:grid;place-content:center;padding:24px}
+    .training-card,.dana-card{width:min(740px,calc(100vw - 48px));padding:clamp(24px,5vw,54px);border:1px solid rgba(29,36,26,.1)}
+    .training-card header,.dana-card header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .training-card h2,.dana-card h2{margin-top:21px;font-family:var(--sans);font-size:clamp(2rem,4vw,3.6rem);font-weight:500;letter-spacing:-.05em;line-height:.92}
+    .training-card p,.dana-card p{margin-top:22px;font-size:clamp(.72rem,1.2vw,.92rem);line-height:1.52;opacity:.68}
     .close-overlay{font-family:var(--sans);font-size:9px}
 
     @media(min-width:50.01rem){:root{--controls:0px}.panel-controls{display:none}}
     @media(max-width:50rem){
-      :root{--shell:calc(100% - 32px);--header:56px;--controls:50px}
+      :root{--shell:calc(100% - 32px);--header:calc(56px + env(safe-area-inset-top));--controls:calc(50px + env(safe-area-inset-bottom))}
+      .site-header{height:var(--header);padding-top:env(safe-area-inset-top)}
+      .header-inner{height:56px}
       .header-inner{display:flex;justify-content:space-between}
       .brand{font-size:16px}
       .simple-mark{width:24px;height:24px}
@@ -218,12 +220,12 @@
       .panel-head .body-copy{font-size:.75rem}
       .hero-footer{bottom:calc(var(--controls) + 78px)}
       .home-meta{font-size:9px;letter-spacing:.055em}
-      .hero-main{display:flex;align-items:center}
-      .hero-mark{top:58%;left:50%;width:clamp(230px,68vw,320px);transform:translate(-42%,-50%)}
+      .hero-main{display:flex;align-items:flex-start;padding-top:clamp(128px,24vh,202px)}
+      .hero-mark{top:52%;left:50%;width:clamp(230px,68vw,320px);transform:translate(-42%,-50%)}
       .hero h1{max-width:9ch;font-size:clamp(2.9rem,13.5vw,4.55rem)}
       .hero-footer{grid-template-columns:1fr;padding:0}
       .hero-footer>.body-copy{max-width:39ch;font-size:.78rem}
-      .persistent-action{right:16px;bottom:66px;width:min(205px,calc(100% - 32px))}
+      .persistent-action{right:16px;bottom:calc(68px + env(safe-area-inset-bottom));width:min(205px,calc(100% - 32px))}
       .cta{min-height:44px;padding:0 15px;font-size:11px}
       .recognition-layout,.practice-layout{gap:14px}
 
@@ -234,7 +236,7 @@
       .practice-note{flex-wrap:wrap;gap:10px 24px}
       .quote-lead{--quote-field:3.54em}
       .john-layout{grid-template-columns:1fr}
-      .portrait{width:clamp(100px,26vw,140px)}
+      .portrait{width:clamp(112px,30vw,132px)}
       .john-copy{width:var(--shell);padding:calc(var(--header) + 10px) 0 calc(var(--controls) + 14px);row-gap:20px;align-content:center;grid-template-columns:1fr}
       .john-row{grid-template-columns:1fr;gap:14px}
       .panel:not(.hero) .panel-head>.body-copy{margin-left:0;max-width:none}
@@ -243,11 +245,12 @@
       .money-statement{font-size:clamp(1.5rem,6.5vw,2rem)}
       .panel:not(.hero) .panel-inner{padding:calc(var(--header) + 14px) 0 138px}
       .panel:not(.hero) .panel-head{grid-template-columns:1fr;gap:10px;align-items:start}
-      .sheet-close{left:16px;bottom:14px}
-      .panel-controls{inset:auto 16px 14px auto;height:auto}
+      .sheet-close{left:16px;bottom:calc(14px + env(safe-area-inset-bottom))}
+      .panel-controls{inset:auto 16px calc(14px + env(safe-area-inset-bottom)) auto;height:auto}
       .controls-inner{width:auto;height:auto}
-      .mobile-menu-toggle{min-height:43px;padding:0 15px;display:inline-flex;align-items:center;background:var(--ink);color:var(--paper);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;box-shadow:0 8px 24px rgba(29,36,26,.12)}
-      .explore-links{position:fixed;right:16px;bottom:128px;width:min(280px,calc(100vw - 32px));padding:6px;display:grid;gap:0;border:1px solid rgba(29,36,26,.1);background:var(--paper);box-shadow:0 12px 36px rgba(29,36,26,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 220ms ease,transform 320ms var(--ease),visibility 0s linear 320ms}
+      .mobile-menu-toggle{min-height:43px;padding:0 15px;display:inline-flex;align-items:center;border:1px solid rgba(29,36,26,.28);background:rgba(245,242,234,.94);color:var(--ink);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;box-shadow:0 8px 24px rgba(29,36,26,.06);backdrop-filter:blur(12px);transition:background 220ms ease,color 220ms ease,border-color 220ms ease}
+      .panel-controls.open .mobile-menu-toggle{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+      .explore-links{position:fixed;right:16px;bottom:calc(128px + env(safe-area-inset-bottom));width:min(280px,calc(100vw - 32px));padding:6px;display:grid;gap:0;border:1px solid rgba(29,36,26,.1);background:var(--paper);box-shadow:0 12px 36px rgba(29,36,26,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 220ms ease,transform 320ms var(--ease),visibility 0s linear 320ms}
       .panel-controls.open .explore-links{opacity:1;visibility:visible;transform:none;transition:opacity 220ms ease,transform 320ms var(--ease)}
       .explore-links button{min-height:44px;padding:0 10px;border-bottom:1px solid rgba(29,36,26,.14);font-size:10px;text-align:left;opacity:.72}
       .explore-links button:last-child{border-bottom:0}
@@ -257,7 +260,7 @@
       .panel-title{font-size:clamp(2rem,7.8vh,3.4rem)}
 
       .hero-mark{width:clamp(150px,30vh,200px)}
-      .hero-main{align-items:flex-start;padding-top:clamp(92px,16vh,110px)}
+      .hero-main{align-items:flex-start;padding-top:clamp(102px,20vh,136px)}
       .hero h1{font-size:clamp(2.1rem,7.6vh,3.4rem)}
       .hero-footer{padding-top:7px}
       .recognition-layout,.practice-layout{gap:8px}
@@ -287,11 +290,11 @@
       .sheet-close{position:fixed}
     }
     @media(max-width:50rem) and (max-height:42rem){
-      .portrait{width:clamp(92px,15vh,100px)}
+      .portrait{width:clamp(86px,14vh,92px)}
     }
     @media(prefers-reduced-motion:reduce){
       .gate-breathe{animation:none}
-      .panel,#gate,.gate-mark,.gate-breathe,.hero-mark,.site-header,.home-meta,.hero-main,.hero-footer,.form-overlay,.training-overlay,.cta,.right-nav button,#quoteText,#quoteWho,.quote-count{transition-duration:1ms!important;transition-delay:0s!important}
+      .panel,#gate,.gate-mark,.gate-breathe,.hero-mark,.site-header,.home-meta,.hero-main,.hero-footer,.form-overlay,.training-overlay,.dana-overlay,.cta,.right-nav button,#quoteText,#quoteWho,.quote-count{transition-duration:1ms!important;transition-delay:0s!important}
     }
   </style>
 </head>
@@ -354,8 +357,8 @@
 
   <section class="panel money" id="money" data-title="Money" aria-labelledby="money-title" data-screen-label="Sheet 04: Money">
     <div class="shell panel-inner money-layout">
-      <p class="money-statement" id="money-title">This work is offered freely, in the spirit of <em>dāna.</em></p>
-      <div class="money-notes"><p class="body-copy">There is no fee and no expected amount. After our sixth meeting, I’ll invite you to support the work with whatever feels honest and right.</p><p class="body-copy">What you give does not change the care I offer. If context would help, you can ask what others have given.</p></div>
+      <p class="money-statement" id="money-title">This work is freely given.<button class="text-button" id="openDana">Why is this work freely given? ↗</button></p>
+      <div class="money-notes"><p class="body-copy">There is no fee and no expected amount. After our sixth meeting, I’ll invite you to give whatever you freely choose.</p><p class="body-copy">What you give does not change the care I offer. If context would help, you can ask what others have given.</p></div>
     </div>
   </section>
 </main>
@@ -377,6 +380,7 @@
 <div class="persistent-action"><a class="cta" href="start.html">Begin with a free conversation</a></div>
 
 <div class="training-overlay" id="trainingOverlay" role="dialog" aria-modal="true" aria-labelledby="trainingTitle" aria-hidden="true"><article class="training-card"><header><p class="eyebrow">John Ooi / background</p><button class="close-overlay" id="closeTraining">Close ✕</button></header><h2 id="trainingTitle">Training, practice and influences</h2><p>I have practised meditation since 2017. I continue to work personally with teachers.<br><br>My teacher training includes Jack Kornfield and Tara Brach’s Mindfulness Meditation Teacher Certification Program and Dharma Moon’s Mindfulness Meditation Teacher Training with David Nichtern.<br><br>My practice draws most deeply from Plum Village and the Karma Kagyu lineages, alongside an interfaith upbringing and respect for many more contemplative traditions.<br><br>I think of my work as secular in the root sense of the word: <em>belonging to this age</em>.</p></article></div>
+<div class="dana-overlay" id="danaOverlay" role="dialog" aria-modal="true" aria-labelledby="danaTitle" aria-hidden="true"><article class="dana-card"><header><p class="eyebrow">Dāna / giving</p><button class="close-overlay" id="closeDana">Close ✕</button></header><h2 id="danaTitle">Why this work is freely given</h2><p>This work is offered in the spirit of dāna, the Pāli word for giving. I offer it freely because I want to protect the relationship from some of the ways money can distort how we meet one another.<br><br>The first six meetings are complete in themselves, not an introduction to something you must later buy. Afterwards, if you choose to give, what you offer is received as a gift, not payment or a measure of the care you received.</p></article></div>
 <div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a free conversation" aria-hidden="true"><iframe id="formFrame" title="Begin with a free conversation · Space to Be" src="start.html?v=20260818-copy" loading="lazy"></iframe></div>
 <script>
 (function () {
@@ -460,14 +464,20 @@
   function closeTraining(){training.classList.remove('open');training.setAttribute('aria-hidden','true');openTraining.focus();}
   document.getElementById('closeTraining').addEventListener('click',closeTraining);
 
+  var dana=document.getElementById('danaOverlay');
+  var openDana=document.getElementById('openDana');
+  openDana.addEventListener('click',function(){dana.classList.add('open');dana.setAttribute('aria-hidden','false');document.getElementById('closeDana').focus();});
+  function closeDana(){dana.classList.remove('open');dana.setAttribute('aria-hidden','true');openDana.focus();}
+  document.getElementById('closeDana').addEventListener('click',closeDana);
+
   var overlay=document.getElementById('formOverlay'),frame=document.getElementById('formFrame'),opener=null,localFile=location.protocol==='file:',messageOrigin=localFile?'*':location.origin;
   function openForm(link){opener=link;overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');try{frame.contentWindow.postMessage('spacetobe:open',messageOrigin);}catch(err){}}
   function closeForm(){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');if(opener)opener.focus({preventScroll:true});}
   document.addEventListener('click',function(e){var link=e.target.closest('a[href="start.html"]');if(!link)return;e.preventDefault();openForm(link);});
   window.addEventListener('message',function(e){if(e.source===frame.contentWindow&&(localFile||e.origin===location.origin)&&e.data==='spacetobe:close-form')closeForm();});
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){if(overlay.classList.contains('open'))closeForm();else if(training.classList.contains('open'))closeTraining();else if(mobileControls.classList.contains('open'))closeMobileMenu();else if(activeIndex>0)showPanel(0);return;}
-    if(overlay.classList.contains('open')||training.classList.contains('open'))return;
+    if(e.key==='Escape'){if(overlay.classList.contains('open'))closeForm();else if(training.classList.contains('open'))closeTraining();else if(dana.classList.contains('open'))closeDana();else if(mobileControls.classList.contains('open'))closeMobileMenu();else if(activeIndex>0)showPanel(0);return;}
+    if(overlay.classList.contains('open')||training.classList.contains('open')||dana.classList.contains('open'))return;
     if(e.key==='ArrowRight'||e.key==='PageDown')showPanel(activeIndex+1);
     if(e.key==='ArrowLeft'||e.key==='PageUp')showPanel(activeIndex-1);
   });
