@@ -100,7 +100,7 @@ What you give does not change the care I offer. If context would help, you can a
 
 # Why this work is freely given
 
-This work is offered in the spirit of dāna, the Pāli word for giving. I offer it freely because I want to protect the relationship from the ways money can distort how we meet one another.
+This work is offered in the spirit of dāna, the Pāli word for giving. I offer it freely because I want to protect the work from the ways money can distort how we meet one another.
 
 The first six meetings are complete in themselves, not an introduction to something you must later buy. Afterwards, if you choose to give, what you offer is received as a gift, not payment or a measure of the care you received.
 
