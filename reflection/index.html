@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>A reflection on our work together · Space to Be</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon-180.png" />
+  <style>
+    :root { --bg:#F5F2EA; --ink:#1D241A; --green:#60A484; --muted:rgba(29,36,26,.68); --quiet:rgba(29,36,26,.5); --line:rgba(29,36,26,.18); --wash:rgba(96,164,132,.08); --sans:'Helvetica Neue',Helvetica,Arial,sans-serif; --ease:cubic-bezier(.22,1,.36,1); }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html, body { height:100%; height:100dvh; }
+    body { overflow:hidden; background:var(--bg); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
+    button, input, textarea { color:inherit; font:inherit; }
+    button { border:0; cursor:pointer; }
+    a { color:inherit; text-decoration:none; }
+    :focus-visible { outline:2px solid var(--ink); outline-offset:4px; }
+
+    .progress { position:fixed; top:0; left:0; z-index:20; width:0; height:3px; background:var(--ink); transition:width 420ms var(--ease); }
+    .topbar { position:fixed; top:env(safe-area-inset-top); left:0; right:0; z-index:15; width:min(calc(100% - clamp(32px,7vw,112px)),76rem); height:62px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    .brand, .close { min-height:42px; display:inline-flex; align-items:center; }
+    .brand { gap:11px; font-size:18px; font-weight:600; letter-spacing:-.04em; }
+    .brand-mark { width:26px; height:26px; flex:none; }
+    .brand-mark circle { fill:none; stroke:var(--green); stroke-width:7; }
+    .close { color:var(--muted); font-size:.72rem; letter-spacing:.06em; }
+
+    .screens { position:relative; width:100%; height:100%; }
+    .screen { position:absolute; inset:0; padding:calc(env(safe-area-inset-top) + 88px) clamp(22px,7vw,90px) calc(env(safe-area-inset-bottom) + 76px); display:grid; place-items:center; opacity:0; visibility:hidden; transform:translateY(18px); pointer-events:none; transition:opacity 420ms var(--ease),transform 420ms var(--ease),visibility 0s linear 420ms; }
+    .screen.active { opacity:1; visibility:visible; transform:none; pointer-events:auto; transition:opacity 520ms var(--ease) 60ms,transform 520ms var(--ease) 60ms; }
+    .screen[data-role="permission"], .screen[data-role="identification"] { overflow-y:auto; place-items:start center; }
+    .inner { width:100%; max-width:850px; }
+    .question { display:grid; gap:18px; }
+    .step { color:var(--ink); font-size:.7rem; font-weight:600; letter-spacing:.13em; text-transform:uppercase; }
+    h1, h2 { max-width:20ch; font-size:clamp(2.3rem,5vw,4.75rem); font-weight:500; letter-spacing:-.055em; line-height:.96; }
+    .intro h1 { max-width:17ch; }
+    .sub { max-width:55ch; color:var(--muted); font-size:clamp(1rem,1.7vw,1.16rem); line-height:1.55; }
+    .small { max-width:66ch; color:var(--quiet); font-size:.78rem; line-height:1.5; }
+    .field { margin-top:8px; }
+    input[type="text"], input[type="email"], textarea { width:100%; padding:12px 2px; border:0; border-bottom:2px solid var(--line); outline:0; background:transparent; font-size:clamp(1.1rem,2.15vw,1.5rem); line-height:1.45; transition:border-color 220ms ease; }
+    textarea { min-height:138px; max-height:250px; resize:none; }
+    input::placeholder, textarea::placeholder { color:rgba(30,38,24,.34); }
+    input:focus, textarea:focus { border-color:var(--ink); }
+    .error { min-height:1.2em; color:var(--ink); font-size:.82rem; opacity:.7; }
+    .actions { margin-top:4px; display:flex; flex-wrap:wrap; align-items:center; gap:12px 16px; }
+    .btn { min-height:50px; padding:0 22px; display:inline-flex; align-items:center; justify-content:center; gap:10px; background:var(--ink); color:var(--bg); font-size:.72rem; font-weight:700; letter-spacing:.025em; transition:transform 220ms var(--ease),opacity 220ms ease; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn:disabled { opacity:.55; cursor:default; transform:none; }
+    .hint { color:var(--quiet); font-size:.68rem; letter-spacing:.025em; }
+
+    .choices { margin-top:4px; display:grid; border-top:1px solid var(--line); border-left:1px solid var(--line); }
+    .choice { position:relative; min-height:58px; padding:13px 16px; display:flex; align-items:flex-start; gap:12px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); cursor:pointer; transition:background 180ms ease; }
+    .choice:hover, .choice:has(input:checked) { background:var(--wash); }
+    .choice:has(input:checked) { box-shadow:inset 0 0 0 2px var(--ink); }
+    .choice input { width:18px; height:18px; margin-top:1px; flex:none; accent-color:var(--ink); }
+    .choice-copy { display:grid; gap:3px; }
+    .choice-copy strong { font-size:.94rem; font-weight:600; }
+    .choice-copy span { color:var(--muted); font-size:.78rem; line-height:1.42; }
+    .identification { display:none; gap:14px; }
+    .identification.open { display:grid; }
+    .identification .choices { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .identification .choice { align-items:center; }
+    .identification .choice input { margin-top:0; }
+    .detail-fields { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+
+    .thanks .inner { max-width:930px; display:grid; grid-template-columns:minmax(0,1fr) 230px; gap:clamp(50px,8vw,110px); align-items:center; }
+    .thanks .copy { display:grid; gap:20px; }
+    @keyframes breathe { 0%,100% { scale:.94; border-color:rgba(96,164,132,.28); opacity:.72; } 42% { scale:1.06; border-color:rgba(96,164,132,.72); opacity:1; } }
+    .ring-large { width:230px; height:230px; border:62px solid rgba(96,164,132,.48); border-radius:50%; animation:breathe 15s cubic-bezier(.45,0,.55,1) infinite; }
+
+    .nav { position:fixed; right:clamp(18px,3vw,34px); bottom:calc(env(safe-area-inset-bottom) + 20px); z-index:15; }
+    .nav button { width:44px; height:42px; display:grid; place-items:center; border:1px solid var(--line); background:transparent; color:var(--ink); font-size:15px; }
+    .nav button:disabled { visibility:hidden; opacity:0; cursor:default; }
+
+    @media (max-width:44rem) {
+      .topbar { width:calc(100% - 32px); height:56px; }
+      .brand { font-size:16px; }
+      .brand-mark { width:24px; height:24px; }
+      .screen { padding-left:22px; padding-right:22px; }
+      .identification .choices, .detail-fields { grid-template-columns:1fr; }
+      .thanks .inner { grid-template-columns:1fr; }
+      .ring-large { width:140px; height:140px; border-width:38px; }
+      .nav { right:18px; }
+    }
+    @media (max-height:42rem) {
+      .screen { overflow-y:auto; place-items:start center; padding-top:76px; }
+      h1, h2 { font-size:clamp(2rem,7vw,3rem); }
+      .choice { min-height:52px; padding:10px 13px; }
+      textarea { min-height:108px; }
+    }
+    @media (prefers-reduced-motion:reduce) { .screen, .progress, .btn { transition-duration:1ms; } .btn:hover { transform:none; } .ring-large { animation:none; } }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"></circle></svg><span>Space to Be</span></a>
+    <a class="close" href="../index.html" aria-label="Close reflection form">close&nbsp; ✕</a>
+  </header>
+
+  <main class="screens" id="screens">
+    <section class="screen active intro" data-role="intro">
+      <div class="inner question">
+        <p class="step">A reflection</p>
+        <h1>A reflection on our work together.</h1>
+        <p class="sub">What you share will support me to develop Space to Be and my approach to meditation teaching and spiritual friendship.</p>
+        <p class="sub">If you choose to share it publicly, it may also help others understand the work and decide whether they would like to work with me.</p>
+        <p class="sub">Write as much or as little as you like. Skip any question.</p>
+        <div class="field"><input type="text" name="name" autocomplete="name" aria-label="Your name" placeholder="Your name" required /></div>
+        <div class="error" role="alert"></div>
+        <div class="actions"><button class="btn" data-next>Begin <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-role="reflection">
+      <div class="inner question">
+        <p class="step">Reflection 1 of 6</p>
+        <h2>When we began, what was happening in your life?</h2>
+        <p class="sub">What were you hoping for or trying to understand?</p>
+        <div class="field"><textarea name="beginning" rows="4" aria-label="What was happening when we began"></textarea></div>
+        <div class="actions"><button class="btn" data-next>Continue <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-role="reflection">
+      <div class="inner question">
+        <p class="step">Reflection 2 of 6</p>
+        <h2>What feels different now, if anything?</h2>
+        <p class="sub">In yourself, your relationships or your life.</p>
+        <div class="field"><textarea name="different_now" rows="4" aria-label="What feels different now"></textarea></div>
+        <div class="actions"><button class="btn" data-next>Continue <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-role="reflection">
+      <div class="inner question">
+        <p class="step">Reflection 3 of 6</p>
+        <h2>What did having this space each week make possible?</h2>
+        <div class="field"><textarea name="weekly_space" rows="4" aria-label="What the weekly space made possible"></textarea></div>
+        <div class="actions"><button class="btn" data-next>Continue <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-role="reflection">
+      <div class="inner question">
+        <p class="step">Reflection 4 of 6</p>
+        <h2>How would you describe working with me?</h2>
+        <p class="sub">What stood out? What would you want someone new to understand?</p>
+        <div class="field"><textarea name="working_together" rows="4" aria-label="How you would describe working with John"></textarea></div>
+        <div class="actions"><button class="btn" data-next>Continue <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-role="reflection">
+      <div class="inner question">
+        <p class="step">Reflection 5 of 6</p>
+        <h2>Where could I have met you better?</h2>
+        <p class="sub">Was anything missing or unclear? Did you want more or less of something?</p>
+        <div class="field"><textarea name="met_better" rows="4" aria-label="Where John could have met you better"></textarea></div>
+        <div class="actions"><button class="btn" data-next>Continue <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-role="reflection">
+      <div class="inner question">
+        <p class="step">Reflection 6 of 6</p>
+        <h2>What will you carry forward?</h2>
+        <div class="field"><textarea name="carry_forward" rows="4" aria-label="What you would like to carry forward"></textarea></div>
+        <div class="error" role="alert"></div>
+        <div class="actions"><button class="btn" data-next>Continue <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-role="permission">
+        <div class="inner question">
+          <p class="step">A separate question about sharing</p>
+        <h2>May I share any of this?</h2>
+        <p class="sub">Your reflection stays private unless you choose otherwise.</p>
+        <div class="choices" role="radiogroup" aria-label="Permission to use this reflection">
+          <label class="choice"><input type="radio" name="permission" value="private" /><span class="choice-copy"><strong>Keep it private</strong></span></label>
+          <label class="choice"><input type="radio" name="permission" value="approve_excerpt" /><span class="choice-copy"><strong>Propose an excerpt</strong><span>Send me the wording and attribution to approve first.</span></span></label>
+          <label class="choice"><input type="radio" name="permission" value="any_or_all" /><span class="choice-copy"><strong>Use any or all of it</strong><span>You may lightly edit for length or grammar without changing my meaning. No further approval needed.</span></span></label>
+          <label class="choice"><input type="radio" name="permission" value="ask_later" /><span class="choice-copy"><strong>Ask me later</strong></span></label>
+        </div>
+        <div class="error" role="alert"></div>
+        <div class="actions"><button class="btn" data-next>Continue <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-role="identification">
+      <div class="inner question">
+        <p class="step">If your words are shared</p>
+        <h2>How would you like to be identified?</h2>
+        <div class="identification open" id="identificationFields">
+          <div class="choices" role="radiogroup" aria-label="Preferred public identification">
+            <label class="choice"><input type="radio" name="identification" value="full_name" /><span>Full name</span></label>
+            <label class="choice"><input type="radio" name="identification" value="first_name" /><span>First name</span></label>
+            <label class="choice"><input type="radio" name="identification" value="initials" /><span>Initials</span></label>
+            <label class="choice"><input type="radio" name="identification" value="anonymous" /><span>Anonymous</span></label>
+          </div>
+          <div class="detail-fields">
+            <div class="field"><input type="text" name="public_name" aria-label="Name or initials as they should appear" placeholder="Name or initials as they should appear" /></div>
+            <div class="field"><input type="text" name="role" aria-label="Optional role or description" placeholder="Optional role or description" /></div>
+          </div>
+        </div>
+        <p class="small">I’ll ask before any edit that could change your meaning.</p>
+        <div class="error" role="alert" id="identificationError"></div>
+        <div class="actions"><button class="btn" data-next>Continue <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-role="submit">
+      <div class="inner question">
+        <p class="step">Ready to send</p>
+        <h2>Thank you.</h2>
+        <p class="sub">I’ll read your reflection with care.</p>
+        <div class="error" role="alert" id="submitError"></div>
+        <div class="actions"><button class="btn" id="submitButton" data-submit>Send my reflection <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="screen thanks" data-role="thanks">
+      <div class="inner">
+        <div class="copy"><p class="step">Received</p><h2>Thank you.</h2><p class="sub">I’ll read your reflection carefully.</p></div>
+        <div class="ring-large" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="nav" aria-label="Form navigation"><button id="backButton" aria-label="Previous step">↑</button></nav>
+
+  <script>
+  (function () {
+    'use strict';
+    var FORMSPREE = 'https://formspree.io/f/xpqkbpyv';
+    var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
+    var current = 0, last = screens.length - 1;
+    var progress = document.getElementById('progress');
+    var backButton = document.getElementById('backButton');
+    var submitButton = document.getElementById('submitButton');
+    var submitError = document.getElementById('submitError');
+
+    function role(screen) { return screen.getAttribute('data-role'); }
+    function field(name) { return document.querySelector('[name="' + name + '"]'); }
+    function checked(name) { return document.querySelector('[name="' + name + '"]:checked'); }
+    function errorFor(screen) { return screen.querySelector('.error'); }
+    function focusCurrent() { var target = screens[current].querySelector('textarea, input, button'); if (target) window.setTimeout(function () { target.focus(); }, 180); }
+    function setError(screen, message) { var error = errorFor(screen); if (error) error.textContent = message || ''; }
+
+    function validate(screen) {
+      setError(screen, '');
+      if (role(screen) === 'intro') {
+        if (!field('name').value.trim()) { setError(screen, 'Please share your name.'); field('name').focus(); return false; }
+      }
+      if (role(screen) === 'permission' && !checked('permission')) { setError(screen, 'Please choose what I may do with your reflection.'); return false; }
+      if (role(screen) === 'identification') {
+        var identification = checked('identification');
+        if (!identification) { setError(screen, 'Please choose how you would like to be identified.'); return false; }
+        if (identification.value !== 'anonymous' && !field('public_name').value.trim()) { setError(screen, 'Please enter the name or initials you would like me to use.'); field('public_name').focus(); return false; }
+      }
+      return true;
+    }
+
+    function update() {
+      progress.style.width = ((current + 1) / screens.length * 100) + '%';
+      backButton.disabled = current === 0 || role(screens[current]) === 'thanks';
+    }
+    function show(index) {
+      if (index < 0 || index > last) return;
+      screens[current].classList.remove('active'); current = index; screens[current].classList.add('active'); update(); focusCurrent();
+    }
+    function next() {
+      if (!validate(screens[current])) return;
+      if (role(screens[current]) === 'permission') {
+        var permission = checked('permission').value;
+        if (permission === 'private' || permission === 'ask_later') { show(current + 2); return; }
+      }
+      show(current + 1);
+    }
+    function back() {
+      if (current <= 0 || role(screens[current]) === 'thanks') return;
+      if (role(screens[current]) === 'submit') {
+        var permission = checked('permission');
+        if (permission && (permission.value === 'private' || permission.value === 'ask_later')) { show(current - 2); return; }
+      }
+      show(current - 1);
+    }
+
+    function value(name) { var el = field(name); return el ? el.value.trim() : ''; }
+    function submit() {
+      var permission = checked('permission');
+      var identification = checked('identification');
+      var data = {
+        _subject:'New Space to Be reflection',
+        name:value('name'),
+        'When we began':value('beginning'),
+        'What feels different now':value('different_now'),
+        'What the weekly space made possible':value('weekly_space'),
+        'Working with John':value('working_together'),
+        'Where I could have met them better':value('met_better'),
+        'What they want to carry forward':value('carry_forward'),
+        permission:permission ? permission.value : '',
+        identification:identification ? identification.value : '',
+        'Public name or initials':value('public_name'),
+        'Optional role or description':value('role')
+      };
+      submitButton.disabled = true; submitButton.textContent = 'Sending…'; submitError.textContent = '';
+      fetch(FORMSPREE, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify(data) })
+        .then(function (response) { if (response.ok) { document.querySelectorAll('input, textarea').forEach(function (input) { if (input.type === 'radio') input.checked = false; else input.value = ''; }); show(last); } else throw new Error('send'); })
+        .catch(function () { submitError.textContent = 'Something went wrong. Please try again.'; submitButton.disabled = false; submitButton.textContent = 'Send my reflection →'; });
+    }
+
+    document.querySelectorAll('[data-next]').forEach(function (button) { button.addEventListener('click', next); });
+    document.querySelectorAll('[data-submit]').forEach(function (button) { button.addEventListener('click', submit); });
+    backButton.addEventListener('click', back);
+    document.querySelectorAll('textarea').forEach(function (textarea) { textarea.addEventListener('input', function () { textarea.style.height = 'auto'; textarea.style.height = Math.min(textarea.scrollHeight, 250) + 'px'; }); });
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Enter') return;
+      if (event.target && event.target.tagName === 'TEXTAREA') { if (event.metaKey || event.ctrlKey) { event.preventDefault(); next(); } return; }
+      if (role(screens[current]) === 'submit' || role(screens[current]) === 'thanks') return;
+      event.preventDefault(); next();
+    });
+    update();
+  }());
+  </script>
+</body>
+</html>
