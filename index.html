@@ -163,7 +163,7 @@
 
     .john-layout{height:100%;display:grid}
     .portrait{width:clamp(120px,12vw,180px);aspect-ratio:1;margin:0;border-radius:50%;overflow:hidden;background:rgba(96,164,132,.12)}
-    .portrait img{width:100%;height:100%;object-fit:cover;object-position:43% 30%}
+    .portrait img{width:100%;height:100%;object-fit:cover;object-position:52% 30%}
     .quote-lead{--quote-field:2.36em;font-family:var(--display);font-style:italic;font-size:clamp(2rem,min(4vw,7vh),3.9rem);line-height:1.18;letter-spacing:-.02em;max-width:none;display:grid;align-content:start;min-height:calc(var(--quote-field) + 12px + 34px)}
     .quote-lead>#quoteText{min-height:var(--quote-field);display:flex;align-items:flex-end;transition:opacity 180ms ease}
     .quote-lead cite{width:min(100%,27rem);min-height:34px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:14px;margin-top:12px;font-family:var(--sans);font-style:normal;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.5}
@@ -234,14 +234,19 @@
       .journey .j2,.journey .j3{margin-left:0}
       .practice-layout .practice-note{margin-left:0}
       .practice-note{flex-wrap:wrap;gap:10px 24px}
-      .quote-lead{--quote-field:3.54em}
+      .quote-lead{--quote-field:3.54em;font-size:clamp(1.8rem,7.7vw,2rem)}
+      .quote-lead cite{gap:10px;margin-top:9px;font-size:10px}
+      .q-arrow{width:32px;height:32px}
       .john-layout{grid-template-columns:1fr}
-      .portrait{width:clamp(112px,30vw,132px)}
-      .john-copy{width:var(--shell);padding:calc(var(--header) + 10px) 0 calc(var(--controls) + 14px);row-gap:20px;align-content:center;grid-template-columns:1fr}
-      .john-row{grid-template-columns:1fr;gap:14px}
+      .portrait{width:clamp(104px,28vw,118px)}
+      .john-copy{width:var(--shell);padding:calc(var(--header) + 10px) 0 calc(var(--controls) + 14px);row-gap:14px;align-content:center;grid-template-columns:1fr;transform:translateY(-16px)}
+      .john-row{grid-template-columns:1fr;gap:12px}
+      .john-bio{gap:9px}
+      .john-bio h2{font-size:clamp(1.25rem,5.7vw,1.45rem);line-height:1.12}
+      .john-bio .body-copy{font-size:.82rem;line-height:1.52}
       .panel:not(.hero) .panel-head>.body-copy{margin-left:0;max-width:none}
       .money-layout{grid-template-columns:1fr;gap:16px}
-      .money-notes{grid-template-columns:1fr;gap:12px}
+      .money-notes{grid-template-columns:1fr;gap:12px;transform:translateY(clamp(-56px,-6vh,-40px))}
       .money-statement{font-size:clamp(1.5rem,6.5vw,2rem)}
       .panel:not(.hero) .panel-inner{padding:calc(var(--header) + 14px) 0 138px}
       .panel:not(.hero) .panel-head{grid-template-columns:1fr;gap:10px;align-items:start}
@@ -290,6 +295,7 @@
       .sheet-close{position:fixed}
     }
     @media(max-width:50rem) and (max-height:42rem){
+      .john-copy{transform:none}
       .portrait{width:clamp(86px,14vh,92px)}
     }
     @media(prefers-reduced-motion:reduce){
@@ -348,7 +354,7 @@
           <div class="john-bio">
             <h2>John Ooi<br>I genuinely want you to <em>win.</em></h2>
             <p class="body-copy">I work with a small number of people, making time and space for depth and care. I listen, respond to what is happening, offer what I can, and stay open to what becomes possible.</p>
-            <button class="text-button" id="openTraining">Training, practice and influences ↗</button>
+            <button class="text-button" id="openTraining">Training, practice and influences</button>
           </div>
         </div>
       </div>
@@ -357,7 +363,7 @@
 
   <section class="panel money" id="money" data-title="Money" aria-labelledby="money-title" data-screen-label="Sheet 04: Money">
     <div class="shell panel-inner money-layout">
-      <p class="money-statement" id="money-title">This work is freely given.<button class="text-button" id="openDana">Why is this work freely given? ↗</button></p>
+      <p class="money-statement" id="money-title">This work is freely given.<button class="text-button" id="openDana">Why is this work freely given?</button></p>
       <div class="money-notes"><p class="body-copy">There is no fee and no expected amount. After our sixth meeting, I’ll invite you to give whatever you freely choose.</p><p class="body-copy">What you give does not change the care I offer. If context would help, you can ask what others have given.</p></div>
     </div>
   </section>
