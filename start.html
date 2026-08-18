@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Begin with a free conversation — Space to Be</title>
+  <title>Begin with a free conversation · Space to Be</title>
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png" />
@@ -122,7 +122,7 @@
       <div class="inner question">
         <p class="step">3 of 3</p>
         <h2>What brings you here?</h2>
-        <p class="sub">Tell me what is happening now and what you hope might be different.</p>
+        <p class="sub">Share what is happening, what you are looking for, or whatever feels useful to say.</p>
         <div class="field"><textarea name="note" rows="3" aria-label="What brings you here" required></textarea></div>
         <div class="error" role="alert" id="submitError"></div>
         <div class="actions"><button class="btn" id="submitButton" data-submit>Send my note <span aria-hidden="true">→</span></button><span class="hint">Cmd/Ctrl + Enter</span></div>
@@ -131,7 +131,7 @@
 
     <section class="screen thanks" data-role="thanks">
       <div class="inner">
-        <div class="copy"><p class="step">Thank you</p><h2>I’ll be in touch.</h2><p class="sub">I’ll read your note myself and reply within seven days with a link to choose a time for our free 20-minute conversation.</p></div>
+        <div class="copy"><p class="step">Thank you</p><h2>I’ll be in touch.</h2><p class="sub">I’ll read your note personally and reply within seven days with a link to choose a time for us to talk.</p></div>
         <div class="ring-large" aria-hidden="true"></div>
         <div class="arrival"><p class="optional">One optional question</p><h3>Where are you arriving from?</h3><div class="choices" role="radiogroup" aria-label="Where you found Space to Be">
           <label class="choice"><input type="radio" name="source" value="Beings Club" /><span>Beings Club</span></label>
@@ -208,7 +208,7 @@
       var source = event.target.value; arrivalStatus.textContent = 'Sharing…';
       document.querySelectorAll('input[name="source"]').forEach(function (input) { input.disabled = true; });
       fetch(FORMSPREE, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({ _subject:'Space to Be arrival source', source:source, name:document.querySelector('input[name="name"]').value.trim(), email:document.querySelector('input[name="email"]').value.trim() }) })
-        .then(function (response) { if (response.ok) arrivalStatus.textContent = 'Thank you — that helps.'; else throw new Error('source'); })
+        .then(function (response) { if (response.ok) arrivalStatus.textContent = 'Thank you. That helps.'; else throw new Error('source'); })
         .catch(function () { sourceSharing = false; arrivalStatus.textContent = 'I couldn’t save that. You can try again if you like.'; document.querySelectorAll('input[name="source"]').forEach(function (input) { input.disabled = false; }); });
     }
     document.querySelectorAll('[data-next]').forEach(function (button) { button.addEventListener('click', next); });

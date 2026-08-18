@@ -1,4 +1,4 @@
-# Space to Be — website copy
+# Space to Be: website copy
 
 ## Threshold
 
@@ -20,17 +20,17 @@ The SVG circle breathes once over 2.2 seconds, moves into the background field o
 
 **MEDITATION AND SPIRITUAL FRIENDSHIP FOR PEOPLE IN TRANSITION**
 
-# For when life no longer feels like yours, and you want that to change.
+# Life changes. So can the way we meet it.
 
-For curious + creative people changing their work, their home, their relationships—or simply the way they want to live.
+For curious people changing their work, their home, their relationships, or simply the way they want to live.
 
 **Begin with a free conversation**
 
 ## For you
 
-# You know something has shifted.
+# A place to find a way forward.
 
-Your work may no longer fulfil you. You may be moving country, changing career, starting a business—or seeing that how you meet the people you love must change. From the outside, life may still work. Inside, you want to meet it differently: with more kindness, confidence and possibility.
+Your work may no longer fulfil you. You may be moving country, changing career, starting a business, or seeing that how you meet the people you love must change. From the outside, life may still work. Inside, perhaps you want to meet it differently: with more kindness, confidence and possibility.
 
 ## How
 
@@ -42,19 +42,21 @@ Practical details:
 - Voice notes + messages between meetings
 - Confidential
 
-First, a free conversation — twenty minutes to see if it feels right.
+First, a free conversation. Twenty minutes to see if it feels right.
 
 Then six weekly meetings of meditation and honest conversation.
 
-At the sixth, we notice what has changed and decide whether—and how—to continue.
+The sixth meeting includes time to talk about what comes next.
 
 ## John
 
 **John Ooi / background**
 
+# John Ooi
+
 # I genuinely want you to win.
 
-I work with a small number of people because I want to know you—and support you to embody what is true for you. I listen closely, learn about your life, and tailor practice to your reality and your way of meeting the world.
+I work with a small number of people, making time and space for depth and care. I listen, respond to what is happening, offer what I can, and stay open to what becomes possible.
 
 ### Training, practice and influences
 
@@ -66,31 +68,35 @@ My practice draws most deeply from Plum Village and the Karma Kagyu lineages, al
 
 I think of my work as secular in the root sense of the word: *belonging to this age*.
 
-> “John has this rare capacity to make you feel at ease, accepted, and guided.”
+> “Time spent with John on Sundays was always worth it.”
 >
-> Laura F — writer & teacher
+> Sean P, founder and industrial designer
 
-> “The concept of engaging with the world intentionally has changed my life.”
+> “John has this capacity to make you feel at ease, accepted and guided.”
 >
-> Sean P — founder & industrial designer
+> Laura F, writer and teacher
 
-> “John’s words are clear, lucid, and deeply supportive.”
+> “John makes meditation feel approachable.”
 >
-> Manansh S — founder & UX researcher
+> Carolina M, founder and fashion designer
+
+> “John helped me understand what I was looking for.”
+>
+> Daniel G, artist and musician
 
 Image description: John sitting beside a river beneath a tree.
 
 ## Money
 
-# This work is given freely, in the spirit of dāna — I am supported through generosity.
+# This work is offered freely, in the spirit of dāna.
 
-There is no fee to agree or pay before we begin. After our sixth meeting, I’ll invite you to support the work. What you give does not change the care I offer.
+There is no fee and no expected amount. After our sixth meeting, I’ll invite you to support the work with whatever feels honest and right.
 
-If a sense of what others give would help, you can ask and I will tell you what others have given. I encourage you to give whatever feels honest and right for you.
+What you give does not change the care I offer. If context would help, you can ask what others have given.
 
 ## Enquiry flow
 
-Page title: Begin with a free conversation — Space to Be
+Page title: Begin with a free conversation · Space to Be
 
 Sitewide controls:
 
@@ -128,7 +134,7 @@ Validation:
 
 # What brings you here?
 
-Tell me what is happening now and what you hope might be different.
+Share what is happening, what you are looking for, or whatever feels useful to say.
 
 **Send my note →**
 
@@ -146,7 +152,7 @@ Error state: Something went wrong. Please try again.
 
 # I’ll be in touch.
 
-I’ll read your note myself and reply within seven days with a link to choose a time for our free 20-minute conversation.
+I’ll read your note personally and reply within seven days with a link to choose a time for us to talk.
 
 ### One optional question
 
@@ -162,7 +168,7 @@ I’ll read your note myself and reply within seven days with a link to choose a
 
 Sharing state: Sharing…
 
-Success state: Thank you — that helps.
+Success state: Thank you. That helps.
 
 Error state: I couldn’t save that. You can try again if you like.
 
@@ -170,14 +176,14 @@ Error state: I couldn’t save that. You can try again if you like.
 
 ### Main page
 
-Title: Space to Be — Meditation and Spiritual Friendship with John Ooi
+Title: Space to Be: Meditation and Spiritual Friendship with John Ooi
 
-Description: One-to-one meditation and spiritual friendship for curious, creative people in transition. Begin with a free 20-minute conversation.
+Description: One-to-one meditation and spiritual friendship for curious people in transition. Begin with a free conversation.
 
 ### Social sharing
 
-Title: Space to Be — One-to-One with John Ooi
+Title: Space to Be: One-to-One with John Ooi
 
-Description: For when life no longer feels like yours, and you want that to change.
+Description: Life changes. So can the way we meet it.
 
-Image description: Space to Be — logo
+Image description: Space to Be logo

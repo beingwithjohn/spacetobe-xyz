@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <script>try{if(!sessionStorage.getItem('stb-entered'))document.documentElement.setAttribute('data-gate','1');}catch(e){document.documentElement.setAttribute('data-gate','1');}</script>
-  <title>Space to Be — Meditation and Spiritual Friendship with John Ooi</title>
-  <meta name="description" content="One-to-one meditation and spiritual friendship for curious, creative people in transition. Begin with a free 20-minute conversation.">
+  <title>Space to Be: Meditation and Spiritual Friendship with John Ooi</title>
+  <meta name="description" content="One-to-one meditation and spiritual friendship for curious people in transition. Begin with a free conversation.">
   <link rel="canonical" href="https://spacetobe.xyz/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Space to Be">
   <meta property="og:url" content="https://spacetobe.xyz/">
-  <meta property="og:title" content="Space to Be — One-to-One with John Ooi">
-  <meta property="og:description" content="For when life no longer feels like yours, and you want that to change.">
+  <meta property="og:title" content="Space to Be: One-to-One with John Ooi">
+  <meta property="og:description" content="Life changes. So can the way we meet it.">
   <meta property="og:image" content="https://spacetobe.xyz/images/social-preview.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Space to Be">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Space to Be — One-to-One with John Ooi">
-  <meta name="twitter:description" content="For when life no longer feels like yours, and you want that to change.">
+  <meta name="twitter:title" content="Space to Be: One-to-One with John Ooi">
+  <meta name="twitter:description" content="Life changes. So can the way we meet it.">
   <meta name="twitter:image" content="https://spacetobe.xyz/images/social-preview.jpg">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
@@ -99,8 +99,8 @@
     .header-action::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);transition:transform 260ms var(--ease)}
     .header-action:hover::before{transform:scale(1.45)}
     .right-nav{position:fixed;right:calc((100% - var(--shell))/2);top:50%;z-index:250;display:flex;flex-direction:column;align-items:flex-end;gap:16px;transform:translateY(-50%);text-align:right}
-    .right-nav button{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;transition:opacity 180ms ease,color 180ms ease}
-    .right-nav button:hover,.right-nav button[aria-current="page"]{opacity:1;color:var(--green)}
+    .right-nav button{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.78;transform:scale(1);transform-origin:right center;transition:opacity 240ms ease,transform 420ms var(--ease);will-change:transform}
+    .right-nav button:hover,.right-nav button[aria-current="page"]{opacity:1;transform:scale(1.16)}
     @media(max-width:50rem){.right-nav{display:none}}
 
     #stage{position:fixed;inset:0;overflow:hidden}
@@ -164,9 +164,12 @@
     .john-layout{height:100%;display:grid}
     .portrait{width:clamp(120px,12vw,180px);aspect-ratio:1;margin:0;border-radius:50%;overflow:hidden;background:rgba(96,164,132,.12)}
     .portrait img{width:100%;height:100%;object-fit:cover;object-position:43% 30%}
-    .quote-lead{font-family:var(--display);font-style:italic;font-size:clamp(2rem,min(4vw,7vh),3.9rem);line-height:1.18;letter-spacing:-.02em;max-width:none;display:grid;align-content:start;min-height:calc(3.54em + 16px + 34px)}
-    .quote-lead cite{display:flex;align-items:center;gap:18px;margin-top:16px;font-family:var(--sans);font-style:normal;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.5}
-    .quote-count{min-width:3.2em;font-variant-numeric:tabular-nums}
+    .quote-lead{--quote-field:2.36em;font-family:var(--display);font-style:italic;font-size:clamp(2rem,min(4vw,7vh),3.9rem);line-height:1.18;letter-spacing:-.02em;max-width:none;display:grid;align-content:start;min-height:calc(var(--quote-field) + 12px + 34px)}
+    .quote-lead>#quoteText{min-height:var(--quote-field);display:flex;align-items:flex-end;transition:opacity 180ms ease}
+    .quote-lead cite{width:min(100%,27rem);min-height:34px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:14px;margin-top:12px;font-family:var(--sans);font-style:normal;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.5}
+    #quoteWho{min-width:0;line-height:1.35;transition:opacity 180ms ease}
+    .quote-count{min-width:3.2em;font-variant-numeric:tabular-nums;transition:opacity 180ms ease}
+    .quote-lead.is-changing>#quoteText,.quote-lead.is-changing #quoteWho,.quote-lead.is-changing .quote-count{opacity:0}
     .quote-arrows{display:flex;gap:2px}
     .q-arrow{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(29,36,26,.25);border-radius:50%;font-size:13px;opacity:.8;transition:background 180ms ease,opacity 180ms ease}
     .q-arrow:hover{background:rgba(96,164,132,.15);opacity:1}
@@ -229,6 +232,7 @@
       .journey .j2,.journey .j3{margin-left:0}
       .practice-layout .practice-note{margin-left:0}
       .practice-note{flex-wrap:wrap;gap:10px 24px}
+      .quote-lead{--quote-field:3.54em}
       .john-layout{grid-template-columns:1fr}
       .portrait{width:clamp(100px,26vw,140px)}
       .john-copy{width:var(--shell);padding:calc(var(--header) + 10px) 0 calc(var(--controls) + 14px);row-gap:20px;align-content:center;grid-template-columns:1fr}
@@ -282,9 +286,12 @@
       .john-copy{padding-bottom:140px;align-content:start;min-height:calc(100% + 140px)}
       .sheet-close{position:fixed}
     }
+    @media(max-width:50rem) and (max-height:42rem){
+      .portrait{width:clamp(92px,15vh,100px)}
+    }
     @media(prefers-reduced-motion:reduce){
       .gate-breathe{animation:none}
-      .panel,#gate,.gate-mark,.gate-breathe,.hero-mark,.site-header,.home-meta,.hero-main,.hero-footer,.form-overlay,.training-overlay,.cta{transition-duration:1ms!important;transition-delay:0s!important}
+      .panel,#gate,.gate-mark,.gate-breathe,.hero-mark,.site-header,.home-meta,.hero-main,.hero-footer,.form-overlay,.training-overlay,.cta,.right-nav button,#quoteText,#quoteWho,.quote-count{transition-duration:1ms!important;transition-delay:0s!important}
     }
   </style>
 </head>
@@ -298,46 +305,46 @@
 </div>
 
 <main id="stage">
-  <section class="panel hero is-active" id="home" data-title="Space to Be" aria-labelledby="home-title" data-screen-label="Home — hero">
+  <section class="panel hero is-active" id="home" data-title="Space to Be" aria-labelledby="home-title" data-screen-label="Home: hero">
     <div class="shell home-layout">
       <div class="hero-main">
-        <h1 id="home-title">For when <em>life</em> no longer feels like yours, and you want that to change.</h1>
+        <h1 id="home-title">Life changes. So can the way we <em>meet&nbsp;it.</em></h1>
         <div class="hero-mark" aria-hidden="true"></div>
       </div>
       <div class="hero-footer">
-        <p class="body-copy">For curious + creative people changing their work, their home, their relationships—or simply the way they want to live.</p>
+        <p class="body-copy">For curious people changing their work, their home, their relationships, or simply the way they want to live.</p>
       </div>
     </div>
   </section>
 
-  <section class="panel" id="for-you" data-title="For you" aria-labelledby="for-title" data-screen-label="Sheet 01 — For you">
+  <section class="panel" id="for-you" data-title="For you" aria-labelledby="for-title" data-screen-label="Sheet 01: For you">
     <div class="shell panel-inner recognition-layout">
-      <div class="panel-head"><div><h2 class="display panel-title" id="for-title">You know something has <em>shifted.</em></h2></div></div>
-      <p class="manifesto"><em>Your work may no longer fulfil you.</em> You may be moving country, changing career, starting a business—or seeing that how you meet the people you love must change. From the outside, life may still work. Inside, you want to <em>meet it differently</em>: with more kindness, confidence and possibility.</p>
+      <div class="panel-head"><div><h2 class="display panel-title" id="for-title">A place to find a way <em>forward.</em></h2></div></div>
+      <p class="manifesto"><em>Your work may no longer fulfil you.</em> You may be moving country, changing career, starting a business, or seeing that how you meet the people you love must change. From the outside, life may still work. Inside, perhaps you want to <em>meet it differently</em>: with more kindness, confidence and possibility.</p>
     </div>
   </section>
 
-  <section class="panel" id="how" data-title="How" aria-labelledby="how-title" data-screen-label="Sheet 02 — How">
+  <section class="panel" id="how" data-title="How" aria-labelledby="how-title" data-screen-label="Sheet 02: How">
     <div class="shell panel-inner practice-layout">
       <div class="panel-head"><div><h2 class="display panel-title" id="how-title">A practice shaped around your <em>actual life.</em></h2></div></div>
       <div class="journey">
-        <p>First, <em>a free conversation</em> — twenty minutes to see if it feels right.</p>
+        <p>First, <em>a free conversation.</em> Twenty minutes to see if it feels right.</p>
         <p class="j2">Then <em>six weekly meetings</em> of meditation and honest conversation.</p>
-        <p class="j3">At the sixth, <em>we notice what has changed</em>&nbsp;and decide whether—and how—to continue.</p>
+        <p class="j3">The sixth meeting <em>includes time to talk</em>&nbsp;about what comes next.</p>
         <div class="meta-row practice-note"><div class="meta-cell"><p class="meta-label">Where</p><p class="meta-value">Online, or in person where practical</p></div><div class="meta-cell"><p class="meta-label">Between meetings</p><p class="meta-value">Voice notes + messages</p></div><div class="meta-cell"><p class="meta-label">Always</p><p class="meta-value">Confidential</p></div></div>
       </div>
     </div>
   </section>
 
-  <section class="panel" id="john" data-title="John" aria-labelledby="john-title" data-screen-label="Sheet 03 — John">
+  <section class="panel" id="john" data-title="John" aria-labelledby="john-title" data-screen-label="Sheet 03: John">
     <div class="john-layout">
       <div class="john-copy">
-        <blockquote class="quote-lead" id="john-title"><span id="quoteText" aria-live="polite">“The concept of engaging with the world intentionally has changed my life.”</span><cite class="quote-cite"><span id="quoteWho">Sean P — founder &amp; industrial designer</span><span class="quote-count" id="quoteCount">1 / 3</span><span class="quote-arrows"><button class="q-arrow" id="prevQuote" aria-label="Previous testimonial">←</button><button class="q-arrow" id="nextQuote" aria-label="Next testimonial">→</button></span></cite></blockquote>
+        <blockquote class="quote-lead" id="john-title"><span id="quoteText" aria-live="polite">“Time spent with John on Sundays was always worth it.”</span><cite class="quote-cite"><span id="quoteWho">Sean P, founder and industrial designer</span><span class="quote-count" id="quoteCount">1 / 4</span><span class="quote-arrows"><button class="q-arrow" id="prevQuote" aria-label="Previous testimonial">←</button><button class="q-arrow" id="nextQuote" aria-label="Next testimonial">→</button></span></cite></blockquote>
         <div class="john-row">
           <figure class="portrait"><img src="images/john-portrait.jpg" alt="John sitting beside a river beneath a tree" width="1500" height="1000" decoding="async"></figure>
           <div class="john-bio">
-            <h2>John Ooi — I genuinely want you to <em>win.</em></h2>
-            <p class="body-copy">I work with a small number of people because I want to know you—and support you to embody what is true for you. I listen closely, learn about your life, and tailor practice to your reality and your way of meeting the world.</p>
+            <h2>John Ooi<br>I genuinely want you to <em>win.</em></h2>
+            <p class="body-copy">I work with a small number of people, making time and space for depth and care. I listen, respond to what is happening, offer what I can, and stay open to what becomes possible.</p>
             <button class="text-button" id="openTraining">Training, practice and influences ↗</button>
           </div>
         </div>
@@ -345,17 +352,17 @@
     </div>
   </section>
 
-  <section class="panel money" id="money" data-title="Money" aria-labelledby="money-title" data-screen-label="Sheet 04 — Money">
+  <section class="panel money" id="money" data-title="Money" aria-labelledby="money-title" data-screen-label="Sheet 04: Money">
     <div class="shell panel-inner money-layout">
-      <p class="money-statement" id="money-title">This work is given freely, in the spirit of <em>dāna</em> — I am supported through <em>generosity.</em></p>
-      <div class="money-notes"><p class="body-copy">There is no fee to agree or pay before we begin. After our sixth meeting, I’ll invite you to support the work. What you give does not change the care I offer.</p><p class="body-copy">If a sense of what others give would help, you can ask and I will tell you what others have given. I encourage you to give whatever feels honest and right for you.</p></div>
+      <p class="money-statement" id="money-title">This work is offered freely, in the spirit of <em>dāna.</em></p>
+      <div class="money-notes"><p class="body-copy">There is no fee and no expected amount. After our sixth meeting, I’ll invite you to support the work with whatever feels honest and right.</p><p class="body-copy">What you give does not change the care I offer. If context would help, you can ask what others have given.</p></div>
     </div>
   </section>
 </main>
 
-<header class="site-header" data-screen-label="Home — header">
+<header class="site-header" data-screen-label="Home: header">
   <div class="header-inner">
-    <button class="brand" data-go="home" aria-label="Space to Be — home"><svg class="simple-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"></circle></svg><span>Space to Be</span></button>
+    <button class="brand" data-go="home" aria-label="Space to Be home"><svg class="simple-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"></circle></svg><span>Space to Be</span></button>
     <p class="header-tagline">Meditation and spiritual friendship for people in transition</p>
     <a class="header-action" href="start.html">Write to John</a>
   </div>
@@ -370,7 +377,7 @@
 <div class="persistent-action"><a class="cta" href="start.html">Begin with a free conversation</a></div>
 
 <div class="training-overlay" id="trainingOverlay" role="dialog" aria-modal="true" aria-labelledby="trainingTitle" aria-hidden="true"><article class="training-card"><header><p class="eyebrow">John Ooi / background</p><button class="close-overlay" id="closeTraining">Close ✕</button></header><h2 id="trainingTitle">Training, practice and influences</h2><p>I have practised meditation since 2017. I continue to work personally with teachers.<br><br>My teacher training includes Jack Kornfield and Tara Brach’s Mindfulness Meditation Teacher Certification Program and Dharma Moon’s Mindfulness Meditation Teacher Training with David Nichtern.<br><br>My practice draws most deeply from Plum Village and the Karma Kagyu lineages, alongside an interfaith upbringing and respect for many more contemplative traditions.<br><br>I think of my work as secular in the root sense of the word: <em>belonging to this age</em>.</p></article></div>
-<div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a free conversation" aria-hidden="true"><iframe id="formFrame" title="Begin with a free conversation — Space to Be" src="start.html?v=20260818" loading="lazy"></iframe></div>
+<div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a free conversation" aria-hidden="true"><iframe id="formFrame" title="Begin with a free conversation · Space to Be" src="start.html?v=20260818-copy" loading="lazy"></iframe></div>
 <script>
 (function () {
   var root=document.documentElement;
@@ -430,12 +437,20 @@
   var initialId=location.hash.slice(1),initialIndex=panels.findIndex(function(panel){return panel.id===initialId;});if(initialIndex>0)showPanel(initialIndex);else updateControls();
 
   var quotes=[
-    {text:'The concept of engaging with the world intentionally has changed my life.',who:'Sean P — founder & industrial designer'},
-    {text:'John has this rare capacity to make you feel at ease, accepted, and guided.',who:'Laura F — writer & teacher'},
-    {text:'John’s words are clear, lucid, and deeply supportive.',who:'Manansh S — founder & UX researcher'}
+    {text:'Time spent with John on Sundays was always worth it.',who:'Sean P, founder and industrial designer'},
+    {text:'John has this capacity to make you feel at ease, accepted and guided.',who:'Laura F, writer and teacher'},
+    {text:'John makes meditation feel approachable.',who:'Carolina M, founder and fashion designer'},
+    {text:'John helped me understand what I was looking for.',who:'Daniel G, artist and musician'}
   ];
-  var quoteIndex=0,quoteText=document.getElementById('quoteText'),quoteWho=document.getElementById('quoteWho'),quoteCount=document.getElementById('quoteCount');
-  function showQuote(next){quoteIndex=(next+quotes.length)%quotes.length;quoteText.textContent='“'+quotes[quoteIndex].text+'”';quoteWho.textContent=quotes[quoteIndex].who;quoteCount.textContent=(quoteIndex+1)+' / '+quotes.length;}
+  var quoteIndex=0,quoteText=document.getElementById('quoteText'),quoteWho=document.getElementById('quoteWho'),quoteCount=document.getElementById('quoteCount'),quoteLead=document.querySelector('.quote-lead'),quoteSwapTimer=null;
+  function renderQuote(){quoteText.textContent='“'+quotes[quoteIndex].text+'”';quoteWho.textContent=quotes[quoteIndex].who;quoteCount.textContent=(quoteIndex+1)+' / '+quotes.length;}
+  function showQuote(next){
+    quoteIndex=(next+quotes.length)%quotes.length;
+    if(reducedMotion){renderQuote();return;}
+    quoteLead.classList.add('is-changing');
+    clearTimeout(quoteSwapTimer);
+    quoteSwapTimer=setTimeout(function(){renderQuote();requestAnimationFrame(function(){quoteLead.classList.remove('is-changing');});},180);
+  }
   document.getElementById('prevQuote').addEventListener('click',function(){showQuote(quoteIndex-1);});
   document.getElementById('nextQuote').addEventListener('click',function(){showQuote(quoteIndex+1);});
 
