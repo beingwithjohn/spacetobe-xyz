@@ -212,7 +212,7 @@
     .footer { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px;
       border-top: 1px solid var(--hair); font-family: var(--mono); font-size: 11px;
       letter-spacing: 0.06em; color: rgba(30,38,24,0.45); flex-wrap: wrap; gap: 12px; }
-    .footer .links { display: flex; gap: 24px; }
+    .footer .links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
     .footer a { color: rgba(30,38,24,0.6); }
 
     /* Contact form overlay — same behaviour as the home page */
@@ -333,7 +333,7 @@
         <span class="brand-name">Space to Be</span>
       </a>
       <p class="map-tagline">A practice map for body, heart and mind</p>
-      <a class="btn-ghost" href="../start.html">Begin with a free conversation</a>
+      <a class="btn-ghost" href="../start.html">Begin with a conversation</a>
     </div>
 
     <!-- HERO -->
@@ -565,7 +565,7 @@
     <div class="cta">
       <p class="kicker">Practising with someone</p>
       <h2 class="h-cta">Want company on the map?</h2>
-      <a class="btn-cta" href="../start.html">Begin with a free conversation</a>
+      <a class="btn-cta" href="../start.html">Begin with a conversation</a>
       <p class="elsewhere">Practising in a group is its own thing. That happens over at <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>.</p>
     </div>
 
@@ -573,6 +573,9 @@
     <div class="footer">
       <span>© 2026 Space to Be</span>
       <div class="links">
+        <a href="../work-with-john/">Work with John</a>
+        <a href="../about/">About John</a>
+        <a href="../dana/">Dāna</a>
         <a href="https://j-hn.info/" target="_blank" rel="noopener">John's Website</a>
         <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>
       </div>
@@ -582,8 +585,8 @@
 </div>
 
 <!-- Contact form overlay (start.html embedded) -->
-<div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a free conversation" aria-hidden="true">
-  <iframe id="formFrame" class="form-frame" title="Begin with a free conversation · Space to Be" src="../start.html?v=20260818-copy" loading="lazy"></iframe>
+<div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a conversation" aria-hidden="true">
+  <iframe id="formFrame" class="form-frame" title="Begin with a conversation · Space to Be" src="../start.html?v=20260818-copy" loading="lazy"></iframe>
 </div>
 
 <script>

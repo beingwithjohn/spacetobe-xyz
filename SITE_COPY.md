@@ -11,6 +11,7 @@ The SVG circle breathes once over 2.2 seconds, moves into the background field o
 - How it works
 - About John
 - Money
+- Work with John (mobile exploration menu)
 - Write to John
 - Explore Space to Be +
 - Close exploration −
@@ -24,7 +25,7 @@ The SVG circle breathes once over 2.2 seconds, moves into the background field o
 
 For curious people changing their work, their home, their relationships, or simply the way they want to live.
 
-**Begin with a free conversation**
+**Begin with a conversation**
 
 ## For you
 
@@ -42,7 +43,9 @@ Practical details:
 - Voice notes + messages between meetings
 - Confidential
 
-First, a free conversation. Twenty minutes to see if it feels right.
+Link: Read about working together
+
+First, a conversation. Twenty minutes to see if it feels right.
 
 Then six weekly meetings of meditation and honest conversation.
 
@@ -67,6 +70,8 @@ My teacher training includes Jack Kornfield and Tara Brach’s Mindfulness Medit
 My practice draws most deeply from Plum Village and the Karma Kagyu lineages, alongside an interfaith upbringing and respect for many more contemplative traditions.
 
 I think of my work as secular in the root sense of the word: *belonging to this age*.
+
+Link: Read more about John
 
 > “Time spent with John on Sundays was always worth it.”
 >
@@ -104,9 +109,11 @@ This work is offered in the spirit of dāna, the Pāli word for giving. I offer 
 
 The first six meetings are complete in themselves, not an introduction to something you must later buy. Afterwards, if you choose to give, what you offer is received as a gift, not payment or a measure of the care you received.
 
+Link: Read the full dāna note
+
 ## Enquiry flow
 
-Page title: Begin with a free conversation · Space to Be
+Page title: Begin with a conversation · Space to Be
 
 Sitewide controls:
 
@@ -174,7 +181,16 @@ I’ll read your note personally and reply within seven days with a link to choo
 - X
 - Substack
 - Instagram
+- AI search / ChatGPT
 - Somewhere else
+
+## Search reference pages
+
+These public, scrollable pages support search and AI discovery without changing the fixed landing-page experience.
+
+- Work with John: `/work-with-john/`
+- About John: `/about/`
+- Dāna: `/dana/`
 
 Sharing state: Sharing…
 
@@ -188,7 +204,7 @@ Error state: I couldn’t save that. You can try again if you like.
 
 Title: Space to Be: Meditation and Spiritual Friendship with John Ooi
 
-Description: One-to-one meditation and spiritual friendship for curious people in transition. Begin with a free conversation.
+Description: One-to-one meditation and spiritual friendship for curious people in transition. Begin with a conversation.
 
 ### Social sharing
 

@@ -5,8 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <script>try{if(!sessionStorage.getItem('stb-entered'))document.documentElement.setAttribute('data-gate','1');}catch(e){document.documentElement.setAttribute('data-gate','1');}</script>
   <title>Space to Be: Meditation and Spiritual Friendship with John Ooi</title>
-  <meta name="description" content="One-to-one meditation and spiritual friendship for curious people in transition. Begin with a free conversation.">
+  <meta name="description" content="One-to-one meditation and spiritual friendship for curious people in transition. Begin with a conversation.">
   <link rel="canonical" href="https://spacetobe.xyz/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://spacetobe.xyz/#website",
+        "url": "https://spacetobe.xyz/",
+        "name": "Space to Be",
+        "description": "One-to-one meditation and spiritual friendship for curious people in transition."
+      },
+      {
+        "@type": "Person",
+        "@id": "https://spacetobe.xyz/about/#john-ooi",
+        "name": "John Ooi",
+        "url": "https://spacetobe.xyz/about/",
+        "image": "https://spacetobe.xyz/images/john-portrait.jpg",
+        "description": "Meditation teacher offering one-to-one meditation and spiritual friendship for people in transition.",
+        "sameAs": ["https://j-hn.info/"],
+        "knowsAbout": ["Meditation", "Mindfulness", "Spiritual friendship", "Contemplative practice"]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://spacetobe.xyz/work-with-john/#service",
+        "url": "https://spacetobe.xyz/work-with-john/",
+        "name": "One-to-one meditation and spiritual friendship with John Ooi",
+        "serviceType": "One-to-one meditation teaching and spiritual friendship",
+        "description": "Six weekly meetings for people navigating changes in work, home, relationships, or how they want to live.",
+        "provider": {"@id": "https://spacetobe.xyz/about/#john-ooi"},
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Curious people in transition"
+        }
+      }
+    ]
+  }
+  </script>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Space to Be">
   <meta property="og:url" content="https://spacetobe.xyz/">
@@ -160,6 +197,7 @@
     .practice-layout .practice-note{margin-left:clamp(132px,18vw,300px)}
 
     .practice-note{align-self:center;justify-self:start;flex-wrap:nowrap;gap:14px 36px}
+    .journey-more{justify-self:end;font-size:10px;letter-spacing:.02em}
 
     .john-layout{height:100%;display:grid}
     .portrait{width:clamp(120px,12vw,180px);aspect-ratio:1;margin:0;border-radius:50%;overflow:hidden;background:rgba(96,164,132,.12)}
@@ -202,6 +240,7 @@
     .training-card header,.dana-card header{display:flex;align-items:center;justify-content:space-between;gap:20px}
     .training-card h2,.dana-card h2{margin-top:21px;font-family:var(--sans);font-size:clamp(2rem,4vw,3.6rem);font-weight:500;letter-spacing:-.05em;line-height:.92}
     .training-card p,.dana-card p{margin-top:22px;font-size:clamp(.72rem,1.2vw,.92rem);line-height:1.52;opacity:.68}
+    .overlay-more{display:inline-flex;margin-top:22px;padding-bottom:4px;border-bottom:1px solid currentColor;font-size:11px}
     .close-overlay{font-family:var(--sans);font-size:9px}
 
     @media(min-width:50.01rem){:root{--controls:0px}.panel-controls{display:none}}
@@ -257,8 +296,9 @@
       .panel-controls.open .mobile-menu-toggle{border-color:var(--ink);background:var(--ink);color:var(--paper)}
       .explore-links{position:fixed;right:16px;bottom:calc(128px + env(safe-area-inset-bottom));width:min(280px,calc(100vw - 32px));padding:6px;display:grid;gap:0;border:1px solid rgba(29,36,26,.1);background:var(--paper);box-shadow:0 12px 36px rgba(29,36,26,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 220ms ease,transform 320ms var(--ease),visibility 0s linear 320ms}
       .panel-controls.open .explore-links{opacity:1;visibility:visible;transform:none;transition:opacity 220ms ease,transform 320ms var(--ease)}
-      .explore-links button{min-height:44px;padding:0 10px;border-bottom:1px solid rgba(29,36,26,.14);font-size:10px;text-align:left;opacity:.72}
-      .explore-links button:last-child{border-bottom:0}
+      .explore-links button,.reference-menu-link{min-height:44px;padding:0 10px;border-bottom:1px solid rgba(29,36,26,.14);font-size:10px;text-align:left;opacity:.72}
+      .reference-menu-link{display:flex;align-items:center;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+      .explore-links>:last-child{border-bottom:0}
     }
     @media(max-height:42rem){
       .panel-inner{padding:12px 0}
@@ -275,6 +315,7 @@
       .journey .j2,.journey .j3{margin-left:clamp(20px,4vh,44px)}
       .journey .j3{margin-left:clamp(40px,8vh,88px)}
       .practice-layout .practice-note{margin-left:0;gap:8px 20px}
+      .journey-more{display:none}
       .meta-value{font-size:.72rem}
       .panel-head .body-copy{display:none}
       .recognition-layout,.practice-layout{gap:clamp(10px,2.5vh,20px)}
@@ -337,10 +378,11 @@
     <div class="shell panel-inner practice-layout">
       <div class="panel-head"><div><h2 class="display panel-title" id="how-title">A practice shaped around your <em>actual life.</em></h2></div></div>
       <div class="journey">
-        <p>First, <em>a free conversation.</em> Twenty minutes to see if it feels right.</p>
+        <p>First, <em>a conversation.</em> Twenty minutes to see if it feels right.</p>
         <p class="j2">Then <em>six weekly meetings</em> of meditation and honest conversation.</p>
         <p class="j3">The sixth meeting <em>includes time to talk</em>&nbsp;about what comes next.</p>
         <div class="meta-row practice-note"><div class="meta-cell"><p class="meta-label">Where</p><p class="meta-value">Online, or in person where practical</p></div><div class="meta-cell"><p class="meta-label">Between meetings</p><p class="meta-value">Voice notes + messages</p></div><div class="meta-cell"><p class="meta-label">Always</p><p class="meta-value">Confidential</p></div></div>
+        <a class="text-button journey-more" href="work-with-john/">Read about working together</a>
       </div>
     </div>
   </section>
@@ -380,14 +422,14 @@
 <nav class="right-nav" aria-label="Explore Space to Be"><button data-go="for-you">Is this for me?</button><button data-go="how">How it works</button><button data-go="john">About John</button><button data-go="money">Money</button></nav>
 
 <nav class="panel-controls" aria-label="Explore the landing page">
-  <div class="controls-inner"><div class="explore-links"><button data-go="for-you">Is this for me?</button><button data-go="how">How it works</button><button data-go="john">About John</button><button data-go="money">Money</button></div><button class="mobile-menu-toggle" id="mobileMenuToggle" aria-expanded="false">Explore Space to Be +</button></div>
+  <div class="controls-inner"><div class="explore-links"><button data-go="for-you">Is this for me?</button><button data-go="how">How it works</button><button data-go="john">About John</button><button data-go="money">Money</button><a class="reference-menu-link" href="work-with-john/">Work with John</a></div><button class="mobile-menu-toggle" id="mobileMenuToggle" aria-expanded="false">Explore Space to Be +</button></div>
 </nav>
 
-<div class="persistent-action"><a class="cta" href="start.html">Begin with a free conversation</a></div>
+<div class="persistent-action"><a class="cta" href="start.html">Begin with a conversation</a></div>
 
-<div class="training-overlay" id="trainingOverlay" role="dialog" aria-modal="true" aria-labelledby="trainingTitle" aria-hidden="true"><article class="training-card"><header><p class="eyebrow">John Ooi / background</p><button class="close-overlay" id="closeTraining">Close ✕</button></header><h2 id="trainingTitle">Training, practice and influences</h2><p>I have practised meditation since 2017. I continue to work personally with teachers.<br><br>My teacher training includes Jack Kornfield and Tara Brach’s Mindfulness Meditation Teacher Certification Program and Dharma Moon’s Mindfulness Meditation Teacher Training with David Nichtern.<br><br>My practice draws most deeply from Plum Village and the Karma Kagyu lineages, alongside an interfaith upbringing and respect for many more contemplative traditions.<br><br>I think of my work as secular in the root sense of the word: <em>belonging to this age</em>.</p></article></div>
-<div class="dana-overlay" id="danaOverlay" role="dialog" aria-modal="true" aria-labelledby="danaTitle" aria-hidden="true"><article class="dana-card"><header><p class="eyebrow">Dāna / giving</p><button class="close-overlay" id="closeDana">Close ✕</button></header><h2 id="danaTitle">Why this work is freely given</h2><p>This work is offered in the spirit of dāna, the Pāli word for giving. I offer it freely because I want to protect the work from the ways money can distort how we meet one another.<br><br>The first six meetings are complete in themselves, not an introduction to something you must later buy. Afterwards, if you choose to give, what you offer is received as a gift, not payment or a measure of the care you received.</p></article></div>
-<div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a free conversation" aria-hidden="true"><iframe id="formFrame" title="Begin with a free conversation · Space to Be" src="start.html?v=20260818-copy" loading="lazy"></iframe></div>
+<div class="training-overlay" id="trainingOverlay" role="dialog" aria-modal="true" aria-labelledby="trainingTitle" aria-hidden="true"><article class="training-card"><header><p class="eyebrow">John Ooi / background</p><button class="close-overlay" id="closeTraining">Close ✕</button></header><h2 id="trainingTitle">Training, practice and influences</h2><p>I have practised meditation since 2017. I continue to work personally with teachers.<br><br>My teacher training includes Jack Kornfield and Tara Brach’s Mindfulness Meditation Teacher Certification Program and Dharma Moon’s Mindfulness Meditation Teacher Training with David Nichtern.<br><br>My practice draws most deeply from Plum Village and the Karma Kagyu lineages, alongside an interfaith upbringing and respect for many more contemplative traditions.<br><br>I think of my work as secular in the root sense of the word: <em>belonging to this age</em>.</p><a class="overlay-more" href="about/">Read more about John</a></article></div>
+<div class="dana-overlay" id="danaOverlay" role="dialog" aria-modal="true" aria-labelledby="danaTitle" aria-hidden="true"><article class="dana-card"><header><p class="eyebrow">Dāna / giving</p><button class="close-overlay" id="closeDana">Close ✕</button></header><h2 id="danaTitle">Why this work is freely given</h2><p>This work is offered in the spirit of dāna, the Pāli word for giving. I offer it freely because I want to protect the work from the ways money can distort how we meet one another.<br><br>The first six meetings are complete in themselves, not an introduction to something you must later buy. Afterwards, if you choose to give, what you offer is received as a gift, not payment or a measure of the care you received.</p><a class="overlay-more" href="dana/">Read the full dāna note</a></article></div>
+<div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a conversation" aria-hidden="true"><iframe id="formFrame" title="Begin with a conversation · Space to Be" src="start.html?v=20260818-copy" loading="lazy"></iframe></div>
 <script>
 (function () {
   var root=document.documentElement;
