@@ -170,7 +170,8 @@
     .hero-mark::before,.hero-mark::after{content:'';position:absolute;border-radius:50%;pointer-events:none}
     .hero-mark::before{inset:-32%;background:radial-gradient(circle at 44% 40%,rgba(238,205,120,.9) 0%,rgba(96,164,132,.84) 42%,rgba(96,164,132,.32) 58%,rgba(96,164,132,0) 72%);filter:blur(34px) saturate(1.08)}
     .hero-mark::after{inset:13%;background:radial-gradient(circle at 58% 62%,rgba(96,164,132,.66) 0%,rgba(238,205,120,.4) 48%,rgba(238,205,120,0) 68%);filter:blur(24px);mix-blend-mode:multiply;opacity:.72}
-    .hero h1{position:relative;z-index:2;max-width:16ch;font-family:var(--display);font-size:clamp(3.6rem,min(7.4vw,12.5vh),7.6rem);font-weight:400;letter-spacing:-.03em;line-height:.98}
+    .hero h1{position:relative;z-index:2;max-width:none;font-family:var(--display);font-size:clamp(3.6rem,min(7.4vw,12.5vh),7.6rem);font-weight:400;letter-spacing:-.03em;line-height:.98}
+    .hero-line{display:block}
     .hero h1 em{font-style:italic;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:rgba(29,36,26,.4)}
     .hero::after{content:'';position:absolute;inset:auto 0 0;height:52vh;pointer-events:none;background:radial-gradient(72% 100% at 50% 118%,rgba(238,205,120,.5) 0%,rgba(96,164,132,.22) 45%,rgba(96,164,132,0) 72%)}
     .hero .shell{position:relative;z-index:2}
@@ -262,7 +263,8 @@
       .home-meta{font-size:9px;letter-spacing:.055em}
       .hero-main{display:flex;align-items:flex-start;padding-top:clamp(128px,24vh,202px)}
       .hero-mark{top:52%;left:50%;width:clamp(230px,68vw,320px);transform:translate(-42%,-50%)}
-      .hero h1{max-width:9ch;font-size:clamp(2.9rem,13.5vw,4.55rem)}
+      .hero h1{max-width:none;font-size:clamp(2.9rem,13.5vw,4.55rem)}
+      .hero-mobile-break{display:block}
       .hero-footer{grid-template-columns:1fr;padding:0}
       .hero-footer>.body-copy{max-width:39ch;font-size:.78rem}
       .persistent-action{right:16px;bottom:calc(68px + env(safe-area-inset-bottom));width:min(205px,calc(100% - 32px))}
@@ -306,7 +308,7 @@
 
       .hero-mark{width:clamp(150px,30vh,200px)}
       .hero-main{align-items:flex-start;padding-top:clamp(102px,20vh,136px)}
-      .hero h1{font-size:clamp(2.1rem,7.6vh,3.4rem)}
+      .hero h1{max-width:16ch;font-size:clamp(2.1rem,7.6vh,3.4rem)}
       .hero-footer{padding-top:7px}
       .recognition-layout,.practice-layout{gap:8px}
       .manifesto{font-size:clamp(1rem,3.2vh,1.3rem);line-height:1.5}
@@ -327,6 +329,7 @@
       .sheet-close{bottom:12px}
     }
     @media(min-width:50.01rem) and (max-height:42rem){
+      .hero h1{max-width:none}
       .practice-layout .practice-note{margin-left:clamp(100px,14vw,220px)}
     }
     @media(max-height:34rem),(max-width:50rem) and (max-height:42rem){
@@ -336,6 +339,7 @@
       .sheet-close{position:fixed}
     }
     @media(max-width:50rem) and (max-height:42rem){
+      .hero-line,.hero-mobile-break{display:inline}
       .john-copy{transform:none}
       .portrait{width:clamp(86px,14vh,92px)}
     }
@@ -364,7 +368,7 @@
   <section class="panel hero is-active" id="home" data-title="Space to Be" aria-labelledby="home-title" data-screen-label="Home: hero">
     <div class="shell home-layout">
       <div class="hero-main">
-        <h1 id="home-title">Life changes. So can the way we <em>meet&nbsp;it.</em></h1>
+        <h1 id="home-title"><span class="hero-line">Life changes.</span> <span class="hero-line">So can the way <span class="hero-mobile-break">we <em>meet&nbsp;it.</em></span></span></h1>
         <div class="hero-mark" aria-hidden="true"></div>
       </div>
       <div class="hero-footer">
