@@ -174,6 +174,43 @@
     .reveal p { font-size: 18px; line-height: 1.7; color: rgba(30,38,24,0.72); max-width: 54ch; }
     .reveal p em { font-style: italic; color: var(--forest); }
 
+    /* The map itself: deliberately static and low-resolution. It should orient
+       attention, then give way to experience rather than become an interface. */
+    .orientation { border-bottom: 1px solid var(--hair); }
+    .invitation { padding: 60px 40px; border-bottom: 1px solid var(--hair); }
+    .invitation h2 { font-family: var(--display); font-weight: 600; font-size: clamp(2rem, 6.4vw, 54px);
+      line-height: 1.02; letter-spacing: -0.03em; color: var(--forest); margin-bottom: 24px; }
+    .invitation p { font-size: 18px; line-height: 1.75; color: rgba(30,38,24,0.72); max-width: 58ch; }
+    .invitation p + p { margin-top: 14px; }
+    .field-note { padding: 34px 40px; border-bottom: 1px solid var(--hair); }
+    .field-note p { font-size: 19px; line-height: 1.65; color: rgba(30,38,24,0.72); max-width: 60ch; }
+    .field-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .field-cell { padding: 38px 40px; border-right: 1px solid var(--hair); }
+    .field-cell:last-child { border-right: 0; }
+    .field-cell .field-label { display: block; font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 18px; }
+    .field-cell h3 { font-family: var(--display); font-weight: 600; font-size: 27px;
+      line-height: 1.12; letter-spacing: -0.025em; color: var(--forest); margin-bottom: 12px; }
+    .field-cell p { font-size: 17px; line-height: 1.65; color: rgba(30,38,24,0.68); }
+    .pervade { padding: 30px 40px; border-top: 1px solid var(--hair); background: rgba(96,164,132,0.045); }
+    .pervade p { font-size: 16px; line-height: 1.7; color: rgba(30,38,24,0.68); max-width: 68ch; }
+    .grounding { padding: 40px; border-bottom: 1px solid var(--hair); display: grid;
+      grid-template-columns: 10rem 1fr; gap: 18px 32px; align-items: baseline; }
+    .grounding h3 { font-family: var(--mono); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); }
+    .grounding p { font-size: 17px; line-height: 1.72; color: rgba(30,38,24,0.72); max-width: 58ch; }
+    .practice-matrix { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--hair); }
+    .matrix-cell { padding: 34px 40px; border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+    .matrix-cell:nth-child(2n) { border-right: 0; }
+    .matrix-cell:nth-last-child(-n+2) { border-bottom: 0; }
+    .matrix-cell .matrix-label { display: block; font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
+    .matrix-cell h3 { font-family: var(--display); font-weight: 600; font-size: 24px;
+      letter-spacing: -0.02em; color: var(--forest); margin-bottom: 9px; }
+    .matrix-cell p { font-size: 17px; line-height: 1.68; color: rgba(30,38,24,0.7); }
+    .tuning { padding: 34px 40px; border-top: 1px solid var(--hair); }
+    .tuning p { font-size: 17px; line-height: 1.72; color: rgba(30,38,24,0.72); max-width: 62ch; }
+
     /* Posture */
     .spec { border-top: 1px solid var(--hair); }
     .spec-row { display: grid; grid-template-columns: 10rem 1fr; gap: 6px 32px; align-items: baseline;
@@ -193,6 +230,7 @@
       text-transform: uppercase; color: rgba(30,38,24,0.45); }
     .door h3 { font-family: var(--display); font-weight: 600; font-size: 22px;
       letter-spacing: -0.02em; color: var(--forest); }
+    .door p { font-size: 16px; line-height: 1.6; color: rgba(30,38,24,0.64); }
     .door .arrow { color: var(--green); display: inline-block; transition: transform 0.2s ease; }
     .door:hover .arrow { transform: translateX(5px); }
 
@@ -229,18 +267,23 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .two-col, .doors { grid-template-columns: 1fr; }
+      .two-col, .doors, .field-grid { grid-template-columns: 1fr; }
       .cell.br { border-right: none; border-bottom: 1px solid var(--hair); }
       .door { border-right: none; border-bottom: 1px solid var(--hair); }
       .door:last-child { border-bottom: none; }
+      .field-cell { border-right: 0; border-bottom: 1px solid var(--hair); }
+      .field-cell:last-child { border-bottom: 0; }
     }
     @media (max-width: 620px) {
       /* a 10rem label column leaves nothing for the prose on a phone */
-      .way, .spec-row { grid-template-columns: 1fr; gap: 6px; }
+      .way, .spec-row, .grounding { grid-template-columns: 1fr; gap: 6px; }
+      .practice-matrix { grid-template-columns: 1fr; }
+      .matrix-cell, .matrix-cell:nth-child(2n), .matrix-cell:nth-last-child(-n+2) { border-right: 0; border-bottom: 1px solid var(--hair); }
+      .matrix-cell:last-child { border-bottom: 0; }
     }
     @media (max-width: 560px) {
-      .hero-inner, .intro, .sec, .close, .cta, .reveal { padding-left: 22px; padding-right: 22px; }
-      .cell, .way, .spec-row, .door { padding-left: 22px; padding-right: 22px; }
+      .hero-inner, .intro, .sec, .close, .cta, .reveal, .invitation { padding-left: 22px; padding-right: 22px; }
+      .cell, .way, .spec-row, .door, .field-cell, .matrix-cell, .grounding, .field-note, .pervade, .tuning { padding-left: 22px; padding-right: 22px; }
       .lead { padding-left: 22px; padding-right: 22px; }
       .intro, .close { padding-top: 56px; padding-bottom: 56px; }
       .sec { padding-top: 44px; padding-bottom: 44px; }
@@ -366,7 +409,7 @@
     <!-- MARQUEE -->
     <div class="ticker">
       <div class="ticker-row">
-        <a href="#body">Body</a><span class="d">/</span><a href="#heart">Heart</a><span class="d">/</span><a href="#mind">Mind</a><span class="d">/</span><a href="#yours">Make it yours</a>
+        <a href="#map">The map</a><span class="d">/</span><a href="#body">Body</a><span class="d">/</span><a href="#heart">Heart</a><span class="d">/</span><a href="#mind">Mind</a><span class="d">/</span><a href="#yours">Make it yours</a>
       </div>
     </div>
 
@@ -380,36 +423,88 @@
       <p>The map is not the territory.</p>
     </div>
 
-    <!-- THE RHYTHM -->
-    <div class="block">
+    <!-- THE MAP -->
+    <div class="block" id="map" style="scroll-margin-top: 8px;">
+      <div class="orientation">
+        <div class="invitation">
+          <p class="kicker">An invitation</p>
+          <h2>Begin where something is available.</h2>
+          <p>You could pause here, or keep reading.</p>
+          <p>Attention might rest with contact beneath you, the movement of breath, a feeling in the heart, a thought, or sound around you. Where attention goes is yours to choose.</p>
+          <p>Attention can be guided while experience is also allowed to come to you. You can adjust, move elsewhere or stop.</p>
+        </div>
+
+        <div class="field-note">
+          <p>Body, heart and mind are not separate compartments. Distinguishing them can make certain qualities of experience easier to recognise.</p>
+        </div>
+
+        <div class="field-grid" aria-label="Three places attention can rest">
+          <div class="field-cell">
+            <span class="field-label">Body</span>
+            <h3>Ground and presence</h3>
+            <p>Contact, breath and sensation can make ground and presence discoverable.</p>
+          </div>
+          <div class="field-cell">
+            <span class="field-label">Heart</span>
+            <h3>Care and courage</h3>
+            <p>Feeling, goodness and relationship can make care and courage discoverable.</p>
+          </div>
+          <div class="field-cell">
+            <span class="field-label">Mind</span>
+            <h3>Spaciousness and possibility</h3>
+            <p>Thought and awareness can make spaciousness and possibility discoverable.</p>
+          </div>
+        </div>
+
+        <div class="pervade">
+          <p>These are affinities, not promises or fixed boundaries. Ground, presence, care, courage, spaciousness and possibility may pervade the whole of experience.</p>
+        </div>
+      </div>
+
+      <div class="grounding">
+        <h3>When safety is not available</h3>
+        <p>The sensations of contact with the ground or the movement of breath may offer support. The breath can slow or deepen when that is helpful. Remembering goodness with the heart is another place attention can rest. Nothing here needs to be forced.</p>
+      </div>
+
       <div class="sec">
-        <p class="kicker">The rhythm</p>
+        <p class="kicker">The movement</p>
         <h2 class="h-sec">Effort and rest.</h2>
-        <p>Each territory has two ways of approach. First you might <em>cultivate</em>: a deliberate practice, something to do. Then you might <em>rest</em>: stop efforting and let what is already here reveal itself.</p>
-        <p>They are not stages, and you don't graduate from one to the next. You already have what these practices point at: presence, resonance and spaciousness are uncovered, not manufactured.</p>
+        <p>These are not opposite choices. Practice can include guiding attention and letting experience arrive at the same time. Their balance changes from moment to moment.</p>
+        <p>Gentleness and precision can be present in both effort and rest.</p>
       </div>
-      <div class="lead">
-        <p class="kicker">The balance</p>
-        <p>Two qualities hold a practice in balance.</p>
+
+      <div class="practice-matrix">
+        <div class="matrix-cell">
+          <span class="matrix-label">Effort · Gentleness</span>
+          <h3>Guide without aggression</h3>
+          <p>Gentleness in effort reduces the self-aggression that can turn practice into another demand.</p>
+        </div>
+        <div class="matrix-cell">
+          <span class="matrix-label">Effort · Precision</span>
+          <h3>Attend with clarity</h3>
+          <p>Precision in effort lets experience be seen and attended to clearly.</p>
+        </div>
+        <div class="matrix-cell">
+          <span class="matrix-label">Rest · Gentleness</span>
+          <h3>Let the system move</h3>
+          <p>Gentleness in rest allows the system to move through what it needs to. Rest is not forced.</p>
+        </div>
+        <div class="matrix-cell">
+          <span class="matrix-label">Rest · Precision</span>
+          <h3>See what remains</h3>
+          <p>Precision in rest sees clearly what can be let go of and what may still need to be met.</p>
+        </div>
       </div>
-      <div class="two-col">
-        <div class="cell br">
-          <span class="u-mark" aria-hidden="true">◇</span>
-          <h3>Gentleness</h3>
-          <p>A softening. A way of treating ourselves and others as precious, and a counter to the harshness that can creep in when we apply effort. Without it, practice becomes another place where we're hard on ourselves.</p>
-        </div>
-        <div class="cell">
-          <span class="u-mark" aria-hidden="true">◇</span>
-          <h3>Precision</h3>
-          <p>An exactness. A way of meeting experience with complete contact, and a counter to the dullness that can arise when we grow complacent. Without it, practice can become a place to hide from what's true.</p>
-        </div>
+
+      <div class="tuning">
+        <p>A sense of rigidity may suggest too much effort. Dullness, or being unpresent to the whole experience, may suggest too little. These are not failures; they are part of what can be noticed.</p>
       </div>
     </div>
 
     <div class="reveal">
-      <p class="kicker">What follows</p>
+      <p class="kicker">What may follow</p>
       <h3>Letting go.</h3>
-      <p>Not a technique but a result: right effort, the absence of aggression, the natural release of clinging. It happens naturally, once gentleness and precision are in tune.</p>
+      <p>Not a technique to perform, but something that may happen when experience is met without aggression and with enough clarity.</p>
     </div>
 
     <!-- THE BODY -->
@@ -441,9 +536,9 @@
       </div>
     </div>
     <div class="reveal">
-      <p class="kicker">What is revealed</p>
-      <h3>Presence.</h3>
-      <p>You don't have to <em>do</em> being here. You already are. What's left is embodiment without striving, a trust that the body can be rested in exactly as it is.</p>
+      <p class="kicker">What may be discovered</p>
+      <h3>Ground and presence.</h3>
+      <p>Through the body, ground and presence may be recognised as available. They are not produced by the body, and they need not remain confined to it.</p>
     </div>
 
     <!-- THE HEART -->
@@ -475,9 +570,9 @@
       </div>
     </div>
     <div class="reveal">
-      <p class="kicker">What is revealed</p>
-      <h3>Resonance.</h3>
-      <p>You are not generating the care. You are discovering that the heart does this on its own. It resonates and responds, if you let it. Warmth reaches as readily to an animal, a tree or a place as to a person.</p>
+      <p class="kicker">What may be discovered</p>
+      <h3>Care and courage.</h3>
+      <p>Through the heart, care and courage may be recognised as available. The heart can cohere practice, tempering harshness and the urge to turn it into a goal.</p>
     </div>
 
     <!-- THE MIND -->
@@ -509,9 +604,9 @@
       </div>
     </div>
     <div class="reveal">
-      <p class="kicker">What is revealed</p>
-      <h3>Spaciousness.</h3>
-      <p>The noticing was always happening in something already open. Thoughts arise and pass without your control; you don't have to run the show. What remains is a sense of spaciousness, and rest.</p>
+      <p class="kicker">What may be discovered</p>
+      <h3>Spaciousness and possibility.</h3>
+      <p>Through the mind, spaciousness and possibility may be recognised as available. Thought is part of experience, not a problem to overcome, and awareness need not be confined by it.</p>
     </div>
 
     <!-- POSTURE -->
@@ -547,29 +642,32 @@
       <div class="sec">
         <p class="kicker">The point of a map</p>
         <h2 class="h-sec">Making it your own</h2>
-        <p>A map is no use if you only ever read it. The three territories are yours to explore in whatever order and rhythm your practice asks for. Let your practice become a friend.</p>
-        <p>Twenty minutes is standard, and sitting daily matters far more than sitting long. On a hard day, five minutes counts. When you lapse, as everyone does, simply begin again. Beginning again is not a failure. It is the practice.</p>
+        <p>A map is no use if you only ever read it. Body, heart and mind are yours to distinguish and let become porous again, in whatever order and rhythm experience asks for. Let your practice become a friend.</p>
+        <p>Ten to thirty minutes is plenty, and sitting regularly matters far more than sitting long. On a hard day, five minutes counts. When you lapse, as everyone does, simply begin again. Beginning again is not a failure. It is the practice.</p>
       </div>
       <div class="doors">
         <a class="door" href="#body">
-          <span class="when">If overwhelmed</span>
-          <h3>Begin with the body <span class="arrow" aria-hidden="true">→</span></h3>
+          <span class="when">A place for attention</span>
+          <h3>Body <span class="arrow" aria-hidden="true">→</span></h3>
+          <p>Contact, breath and sensation.</p>
         </a>
         <a class="door" href="#heart">
-          <span class="when">If angry</span>
-          <h3>Begin with the heart <span class="arrow" aria-hidden="true">→</span></h3>
+          <span class="when">A place for attention</span>
+          <h3>Heart <span class="arrow" aria-hidden="true">→</span></h3>
+          <p>Feeling, goodness and relationship.</p>
         </a>
         <a class="door" href="#mind">
-          <span class="when">If scattered</span>
-          <h3>Begin with the mind <span class="arrow" aria-hidden="true">→</span></h3>
+          <span class="when">A place for attention</span>
+          <h3>Mind <span class="arrow" aria-hidden="true">→</span></h3>
+          <p>Thought, awareness and possibility.</p>
         </a>
       </div>
     </div>
 
     <!-- CLOSING -->
     <div class="close">
-      <p class="big">We build a habit only to find what needs no habit at all.</p>
-      <p class="sub">What you were reaching for was never produced by any of this. Presence, resonance and spaciousness are here all the time.</p>
+      <p class="big">Practice can help us discover what it does not manufacture.</p>
+      <p class="sub">Ground and presence, care and courage, spaciousness and possibility can be explored as discoverable qualities of experience.</p>
     </div>
 
     <!-- CTA -->
