@@ -62,6 +62,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
   <link rel="preload" as="font" type="font/otf" href="fonts/LT.Remark-Regular.otf" crossorigin>
   <style>
+    @view-transition{navigation:auto}
     @font-face{font-family:'LT Remark';src:url('fonts/LT.Remark-Regular.otf') format('opentype');font-display:swap}
     @font-face{font-family:'LT Remark';src:url('fonts/LT.Remark-Bold.otf') format('opentype');font-weight:600 700;font-display:swap}
     :root{
@@ -91,7 +92,7 @@
     .display em{font-family:var(--display);font-weight:400}
     .body-copy{max-width:48ch;font-size:clamp(.78rem,1vw,.96rem);line-height:1.5;opacity:.68}
 
-    .simple-mark{width:26px;height:26px;flex:none}
+    .simple-mark{width:26px;height:26px;flex:none;view-transition-name:stb-ring}
     .simple-mark circle{fill:none;stroke:var(--green);stroke-width:7}
     .resolved-mark{display:block;width:100%;height:100%;overflow:visible;color:var(--green);transition:opacity 850ms ease,filter 1100ms var(--ease),transform 1200ms var(--ease)}
     @keyframes loading-breathe{0%{transform:scale(.82);opacity:.56}58%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:1}}
@@ -296,8 +297,7 @@
       .panel-controls.open .mobile-menu-toggle{border-color:var(--ink);background:var(--ink);color:var(--paper)}
       .explore-links{position:fixed;right:16px;bottom:calc(128px + env(safe-area-inset-bottom));width:min(280px,calc(100vw - 32px));padding:6px;display:grid;gap:0;border:1px solid rgba(29,36,26,.1);background:var(--paper);box-shadow:0 12px 36px rgba(29,36,26,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 220ms ease,transform 320ms var(--ease),visibility 0s linear 320ms}
       .panel-controls.open .explore-links{opacity:1;visibility:visible;transform:none;transition:opacity 220ms ease,transform 320ms var(--ease)}
-      .explore-links button,.reference-menu-link{min-height:44px;padding:0 10px;border-bottom:1px solid rgba(29,36,26,.14);font-size:10px;text-align:left;opacity:.72}
-      .reference-menu-link{display:flex;align-items:center;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+      .explore-links button{min-height:44px;padding:0 10px;border-bottom:1px solid rgba(29,36,26,.14);font-size:10px;text-align:left;opacity:.72}
       .explore-links>:last-child{border-bottom:0}
     }
     @media(max-height:42rem){
@@ -340,9 +340,15 @@
       .portrait{width:clamp(86px,14vh,92px)}
     }
     @media(prefers-reduced-motion:reduce){
+      @view-transition{navigation:none}
       .gate-breathe{animation:none}
       .panel,#gate,.gate-mark,.gate-breathe,.hero-mark,.site-header,.home-meta,.hero-main,.hero-footer,.form-overlay,.training-overlay,.dana-overlay,.cta,.right-nav button,#quoteText,#quoteWho,.quote-count{transition-duration:1ms!important;transition-delay:0s!important}
     }
+    @keyframes stb-page-out{to{opacity:0;transform:scale(.992)}}
+    @keyframes stb-page-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    ::view-transition-old(root){animation:280ms ease both stb-page-out}
+    ::view-transition-new(root){animation:520ms var(--ease) both stb-page-in}
+    ::view-transition-group(stb-ring){animation-duration:560ms;animation-timing-function:var(--ease)}
   </style>
 </head>
 <body>
@@ -422,7 +428,7 @@
 <nav class="right-nav" aria-label="Explore Space to Be"><button data-go="for-you">Is this for me?</button><button data-go="how">How it works</button><button data-go="john">About John</button><button data-go="money">Money</button></nav>
 
 <nav class="panel-controls" aria-label="Explore the landing page">
-  <div class="controls-inner"><div class="explore-links"><button data-go="for-you">Is this for me?</button><button data-go="how">How it works</button><button data-go="john">About John</button><button data-go="money">Money</button><a class="reference-menu-link" href="work-with-john/">Work with John</a></div><button class="mobile-menu-toggle" id="mobileMenuToggle" aria-expanded="false">Explore Space to Be +</button></div>
+  <div class="controls-inner"><div class="explore-links"><button data-go="for-you">Is this for me?</button><button data-go="how">How it works</button><button data-go="john">About John</button><button data-go="money">Money</button></div><button class="mobile-menu-toggle" id="mobileMenuToggle" aria-expanded="false">Explore Space to Be +</button></div>
 </nav>
 
 <div class="persistent-action"><a class="cta" href="start.html">Begin with a conversation</a></div>
