@@ -251,14 +251,16 @@
 
     /* The long-form sibling of the landing page: same palette, type and ring. */
     .col{max-width:none;border:0}
-    .nav{position:relative;z-index:5;width:var(--shell);margin:0 auto;padding:18px 0;border:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+    .nav{position:relative;z-index:5;width:var(--shell);min-height:62px;margin:0 auto;padding:0;border:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
     .brand{justify-self:start;gap:11px;font-weight:600;font-size:18px;letter-spacing:-.04em}
     .simple-mark{width:26px;height:26px;flex:none;view-transition-name:stb-ring}
     .simple-mark circle{fill:none;stroke:var(--green);stroke-width:7}
     .brand-name{white-space:nowrap}
-    .map-tagline{font-size:clamp(11px,.9vw,13px);font-weight:500;letter-spacing:.015em;opacity:.68;text-align:center}
-    .btn-ghost{justify-self:end;padding:3px 0;border:0;border-bottom:1px solid rgba(29,36,26,.34);font-family:var(--body);font-size:14px;letter-spacing:-.015em;color:var(--forest)}
+    .map-tagline{font-size:clamp(9px,.72vw,10px);font-weight:600;letter-spacing:.09em;text-transform:uppercase;opacity:.55;text-align:center}
+    .btn-ghost{justify-self:end;display:inline-flex;align-items:center;gap:9px;padding:0;border:0;font-family:var(--body);font-size:13px;font-weight:500;letter-spacing:-.015em;color:var(--forest)}
+    .btn-ghost::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);transition:transform 260ms var(--ease)}
     .btn-ghost:hover{background:none;color:var(--forest)}
+    .btn-ghost:hover::before{transform:scale(1.45)}
 
     .hero{width:var(--shell);min-height:calc(100svh - 62px);margin:0 auto;border:0;overflow:visible}
     .hero-inner{padding:clamp(72px,11vh,118px) 0 clamp(58px,9vh,96px)}
@@ -342,7 +344,7 @@
         <span class="brand-name">Space to Be</span>
       </a>
       <p class="map-tagline">A practice map for body, heart and mind</p>
-      <a class="btn-ghost" href="../start.html">Begin with a conversation</a>
+      <a class="btn-ghost" href="../start.html">Write to John</a>
     </div>
 
     <!-- HERO -->
