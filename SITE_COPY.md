@@ -136,7 +136,7 @@ Validation: Please fill this in.
 
 # What is your email?
 
-I’ll reply personally within seven days with a link to choose a time.
+I’ll read your note personally and reply with a link to choose a time.
 
 **Continue →**
 
@@ -169,7 +169,7 @@ Error state: Something went wrong. Please try again.
 
 # I’ll be in touch.
 
-I’ll read your note personally and reply within seven days with a link to choose a time for us to talk.
+I’ll read your note personally and reply with a link to choose a time for us to talk.
 
 ### One optional question
 

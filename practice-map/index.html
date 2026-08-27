@@ -294,16 +294,21 @@
 
     /* The long-form sibling of the landing page: same palette, type and ring. */
     .col{max-width:none;border:0}
-    .nav{position:relative;z-index:5;width:var(--shell);min-height:62px;margin:0 auto;padding:0;border:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+    .nav{position:relative;z-index:20;width:var(--shell);min-height:62px;margin:0 auto;padding:0;border:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+    .nav::after{content:'';position:absolute;left:50%;bottom:0;width:100vw;height:1px;background:var(--hair);transform:translateX(-50%)}
     .brand{justify-self:start;gap:11px;font-weight:600;font-size:18px;letter-spacing:-.04em}
     .simple-mark{width:26px;height:26px;flex:none;view-transition-name:stb-ring}
     .simple-mark circle{fill:none;stroke:var(--green);stroke-width:7}
     .brand-name{white-space:nowrap}
-    .map-tagline{font-size:clamp(9px,.72vw,10px);font-weight:600;letter-spacing:.09em;text-transform:uppercase;opacity:.55;text-align:center}
+    .map-routes{display:flex;align-items:center;justify-content:center;gap:clamp(16px,2.1vw,30px);font-size:clamp(9px,.72vw,10px);font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(29,36,26,.55)}
+    .map-routes a{display:inline-block;opacity:.62;transform:scale(1);transition:color 220ms ease,opacity 220ms ease,transform 420ms var(--ease)}
+    .map-routes a:hover,.map-routes a:focus-visible{color:var(--green);opacity:1;transform:scale(1.1)}
+    .map-routes a[aria-current="page"]{opacity:1;transform:scale(1.1)}
     .btn-ghost{justify-self:end;display:inline-flex;align-items:center;gap:9px;padding:0;border:0;font-family:var(--body);font-size:13px;font-weight:500;letter-spacing:-.015em;color:var(--forest)}
     .btn-ghost::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);transition:transform 260ms var(--ease)}
     .btn-ghost:hover{background:none;color:var(--forest)}
     .btn-ghost:hover::before{transform:scale(1.45)}
+    .mobile-route-toggle,.mobile-route-sheet{display:none}
 
     .hero{width:var(--shell);min-height:calc(100svh - 62px);margin:0 auto;border:0;overflow:visible}
     .hero-inner{padding:clamp(72px,11vh,118px) 0 clamp(58px,9vh,96px)}
@@ -351,8 +356,28 @@
     .cta .elsewhere,.footer{font-family:var(--body)}
     .footer{padding:22px 0}
 
+    @media(max-width:62rem){
+      .nav{grid-template-columns:1fr auto 1fr;gap:12px}
+      .brand{grid-column:1}.mobile-route-toggle{grid-column:2}.btn-ghost{grid-column:3;justify-self:end}
+      .map-routes{display:none}
+      .mobile-route-toggle{display:inline-flex;min-height:34px;align-items:center;justify-content:center;border:0;background:none;font-family:var(--body);font-size:12px;font-weight:500;letter-spacing:-.015em;color:var(--forest);white-space:nowrap;cursor:pointer;transition:color 240ms ease,transform 420ms var(--ease)}
+      .mobile-route-sheet{display:block;position:fixed;inset:62px 0 0;z-index:19;padding:clamp(30px,6vh,56px) 0 28px;background:rgba(245,242,234,.985);overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(-8px);border-top:1px solid var(--hair);transition:opacity 220ms ease,transform 360ms var(--ease),visibility 0s linear 360ms}
+      .mobile-route-sheet.open{opacity:1;visibility:visible;transform:none;transition:opacity 220ms ease,transform 360ms var(--ease)}
+      .mobile-route-links{width:var(--shell);margin:auto;display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:0;border-top:1px solid var(--hair)}
+      .mobile-route-links::before{content:'Explore Space to Be';grid-column:1/-1;min-height:42px;padding:0 0 14px;display:flex;align-items:flex-start;font-family:var(--body);font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;opacity:.46}
+      .mobile-route-links a{min-height:clamp(88px,14vh,124px);padding:18px 8px 18px 0;display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--hair);font-family:var(--display);font-size:clamp(2rem,9vw,3.2rem);font-weight:400;letter-spacing:-.03em;line-height:.94;opacity:.72;transform:none;transition:color 260ms ease,opacity 260ms ease,transform 460ms var(--ease)}
+      .mobile-route-links a:nth-child(odd){border-right:1px solid var(--hair)}
+      .mobile-route-links a:nth-child(even){padding-left:18px}
+      .mobile-route-links a[aria-current="page"]{color:var(--green);opacity:1}
+      .mobile-route-sheet:not(.open) .mobile-route-links a{opacity:0;transform:translateY(10px)}
+      body.route-open{overflow:hidden}
+    }
+    @media(hover:hover) and (max-width:62rem){
+      .mobile-route-toggle:hover{color:var(--green);transform:translateY(-1px)}
+      .mobile-route-sheet.open .mobile-route-links a:hover{color:var(--green);opacity:1;transform:translateX(6px)}
+    }
     @media(max-width:50rem){
-      .nav{grid-template-columns:1fr auto}.map-tagline{display:none}
+      .nav{min-height:56px}.mobile-route-sheet{inset:56px 0 0}
       .hero{min-height:78svh;overflow:hidden}
       .map-hero-mark{right:-34%;top:54%;width:clamp(260px,78vw,390px);opacity:.54}
       .h-hero{font-size:clamp(3.5rem,15vw,5.8rem)}
@@ -363,10 +388,12 @@
       .reveal{padding:42px 22px}
     }
     @media(max-width:35rem){
+      .nav{min-height:56px}.mobile-route-sheet{inset:56px 0 0}
       .brand{font-size:16px}.simple-mark{width:24px;height:24px}.btn-ghost{font-size:12px}
       .hero-copy p+ p{display:none}
       .band,.block,.intro,.reveal,.close,.cta,.footer,.ticker{width:calc(100% - 32px)}
     }
+    @media(max-width:23rem){.brand-name{display:none}}
     @keyframes stb-page-out{to{opacity:0;transform:scale(.992)}}
     @keyframes stb-page-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
     ::view-transition-old(root){animation:280ms ease both stb-page-out}
@@ -386,7 +413,14 @@
         <svg class="simple-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"></circle></svg>
         <span class="brand-name">Space to Be</span>
       </a>
-      <p class="map-tagline">A practice map for body, heart and mind</p>
+      <nav class="map-routes" aria-label="Space to Be">
+        <a href="../work-with-john/">One-to-one</a>
+        <a href="../beyond-belief/">Beyond Belief</a>
+        <a href="./" aria-current="page">Practice map</a>
+        <a href="../log/">Practice log</a>
+        <a href="../dana/">Dāna</a>
+        <a href="../about/">About John</a>
+      </nav>
       <a class="btn-ghost" href="../start.html">Write to John</a>
     </div>
 
@@ -675,16 +709,18 @@
       <p class="kicker">Practising with someone</p>
       <h2 class="h-cta">Want company on the map?</h2>
       <a class="btn-cta" href="../start.html">Begin with a conversation</a>
-      <p class="elsewhere">Practising in a group is its own thing. That happens over at <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>.</p>
+      <p class="elsewhere">For a shared thirty-five-day exploration of practice, see <a href="../beyond-belief/">Beyond Belief</a>.</p>
     </div>
 
     <!-- FOOTER -->
     <div class="footer">
       <span>© 2026 Space to Be</span>
       <div class="links">
-        <a href="../work-with-john/">How it works</a>
+        <a href="../work-with-john/">One-to-one</a>
+        <a href="../beyond-belief/">Beyond Belief</a>
+        <a href="../log/">Practice Log</a>
         <a href="../about/">About John</a>
-        <a href="../dana/">Money</a>
+        <a href="../dana/">Dāna</a>
         <a href="https://j-hn.info/" target="_blank" rel="noopener">John's Website</a>
         <a href="https://www.beingsclub.com" target="_blank" rel="noopener">Beings Club</a>
       </div>
@@ -701,10 +737,56 @@
 <script>
 // ── Open/close the contact form overlay (same contract as the home page) ──
 (function () {
+  var localFile = location.protocol === 'file:';
+  if (localFile) {
+    document.querySelectorAll('a[href]').forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (href && href.endsWith('/') && !/^(?:[a-z]+:|\/\/|#)/i.test(href)) link.setAttribute('href', href + 'index.html');
+    });
+  }
+  var routeHeader = document.querySelector('.nav');
+  var routeNav = document.querySelector('.map-routes');
+  if (routeHeader && routeNav) {
+    var routeToggle = document.createElement('button');
+    var routeSheet = document.createElement('div');
+    var routeLinks = routeNav.cloneNode(true);
+    routeToggle.type = 'button';
+    routeToggle.className = 'mobile-route-toggle';
+    routeToggle.textContent = 'Explore +';
+    routeToggle.setAttribute('aria-expanded', 'false');
+    routeToggle.setAttribute('aria-controls', 'mobileRouteSheet');
+    routeSheet.className = 'mobile-route-sheet';
+    routeSheet.id = 'mobileRouteSheet';
+    routeSheet.setAttribute('aria-hidden', 'true');
+    routeLinks.className = 'mobile-route-links';
+    routeSheet.appendChild(routeLinks);
+    routeHeader.insertBefore(routeToggle, routeHeader.querySelector('.btn-ghost'));
+    document.body.appendChild(routeSheet);
+    function closeRoutes() {
+      routeSheet.classList.remove('open');
+      routeSheet.setAttribute('aria-hidden', 'true');
+      routeToggle.setAttribute('aria-expanded', 'false');
+      routeToggle.textContent = 'Explore +';
+      document.body.classList.remove('route-open');
+    }
+    routeToggle.addEventListener('click', function () {
+      var open = !routeSheet.classList.contains('open');
+      if (open) {
+        routeSheet.classList.add('open');
+        routeSheet.setAttribute('aria-hidden', 'false');
+        routeToggle.setAttribute('aria-expanded', 'true');
+        routeToggle.textContent = 'Close −';
+        document.body.classList.add('route-open');
+      } else closeRoutes();
+    });
+    routeLinks.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeRoutes); });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && routeSheet.classList.contains('open')) { closeRoutes(); routeToggle.focus(); }
+    });
+  }
   var overlay = document.getElementById('formOverlay');
   var frame = document.getElementById('formFrame');
   var opener = null;
-  var localFile = location.protocol === 'file:';
   var messageOrigin = localFile ? '*' : location.origin;
   if (!overlay || !frame) return;
   function openForm(e) {

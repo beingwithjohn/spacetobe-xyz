@@ -1,0 +1,15 @@
+Your log is ready.
+
+A simple record of sitting in meditation. It emails at a time you choose, and shows you who is practising with you across the week.
+
+1. Choose a time for the log to email each day and ask: Did you practise?
+2. Sit in meditation, however you sit. Use the timer if you like. When you’re done, tap I practised to record it.
+3. Share a line if you feel like it. See who else is practising with you this week, and what it has been like for them.
+
+Open my log: https://spacetobe.xyz/log/?t=EXAMPLE
+
+If you ever want to change the time or stop the daily emails, you can do that in Settings: https://spacetobe.xyz/log/?t=EXAMPLE&view=settings
+
+One link, no password. It’s yours and it doesn’t expire.
+
+Space to Be · reply to this and John reads it

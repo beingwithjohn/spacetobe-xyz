@@ -111,7 +111,7 @@
       <div class="inner question">
         <p class="step">2 of 3</p>
         <h2>What is your email?</h2>
-        <p class="sub">I’ll reply personally within seven days with a link to choose a time.</p>
+        <p class="sub">I’ll read your note personally and reply with a link to choose a time.</p>
         <div class="field"><input type="email" name="email" autocomplete="email" aria-label="Your email" required /></div>
         <div class="error" role="alert"></div>
         <div class="actions"><button class="btn" data-next>Continue <span aria-hidden="true">→</span></button><span class="hint">or press Enter</span></div>
@@ -131,7 +131,7 @@
 
     <section class="screen thanks" data-role="thanks">
       <div class="inner">
-        <div class="copy"><p class="step">Thank you</p><h2>I’ll be in touch.</h2><p class="sub">I’ll read your note personally and reply within seven days with a link to choose a time for us to talk.</p></div>
+        <div class="copy"><p class="step">Thank you</p><h2>I’ll be in touch.</h2><p class="sub">I’ll read your note personally and reply with a link to choose a time for us to talk.</p></div>
         <div class="ring-large" aria-hidden="true"></div>
         <div class="arrival"><p class="optional">One optional question</p><h3>Where are you arriving from?</h3><div class="choices" role="radiogroup" aria-label="Where you found Space to Be">
           <label class="choice"><input type="radio" name="source" value="Beings Club" /><span>Beings Club</span></label>
@@ -156,6 +156,7 @@
     var inFrame = window.self !== window.top;
     var localFile = location.protocol === 'file:';
     var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
+    var offering = new URLSearchParams(location.search).get('for') || '';
     var current = 0, last = screens.length - 1;
     var progress = document.getElementById('progress');
     var backButton = document.getElementById('backButton');
@@ -165,6 +166,12 @@
     var arrivalStatus = document.getElementById('arrivalStatus');
     var sourceSharing = false;
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (offering === 'beyond-belief') {
+      var noteScreen = document.querySelector('[data-role="note"]');
+      noteScreen.querySelector('h2').textContent = 'What brings you to Beyond Belief?';
+      noteScreen.querySelector('.sub').textContent = 'Share what draws you to the course, what your experience of meditation has been, or whatever feels useful to say.';
+    }
 
     function closeForm() {
       if (inFrame) { try { window.parent.postMessage('spacetobe:close-form', localFile ? '*' : location.origin); } catch (e) {} return; }
@@ -198,7 +205,7 @@
     function back() { if (current > 0 && role(screens[current]) !== 'thanks') show(current - 1); }
     function submit() {
       for (var i = 0; i < last; i += 1) { if (!validate(screens[i])) { show(i); return; } }
-      var data = { _subject:'New Space to Be enquiry', name:document.querySelector('input[name="name"]').value.trim(), email:document.querySelector('input[name="email"]').value.trim(), note:document.querySelector('textarea[name="note"]').value.trim() };
+      var data = { _subject:offering === 'beyond-belief' ? 'Beyond Belief interest' : 'New Space to Be enquiry', offering:offering || 'one-to-one', name:document.querySelector('input[name="name"]').value.trim(), email:document.querySelector('input[name="email"]').value.trim(), note:document.querySelector('textarea[name="note"]').value.trim() };
       submitButton.disabled = true; submitButton.textContent = 'Sending…'; submitError.textContent = '';
       fetch(FORMSPREE, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify(data) })
         .then(function (response) { if (response.ok) show(last); else throw new Error('send'); })
