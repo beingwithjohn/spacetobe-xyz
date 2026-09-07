@@ -414,7 +414,7 @@
   <section class="panel" id="john" data-title="John" aria-labelledby="john-title" data-screen-label="Sheet 03: John">
     <div class="john-layout">
       <div class="john-copy">
-        <blockquote class="quote-lead" id="john-title"><span id="quoteText" aria-live="polite">“Time spent with John on Sundays was always worth it.”</span><cite class="quote-cite"><span id="quoteWho">Sean P, founder and industrial designer</span><span class="quote-count" id="quoteCount">1 / 4</span><span class="quote-arrows"><button class="q-arrow" id="prevQuote" aria-label="Previous testimonial">←</button><button class="q-arrow" id="nextQuote" aria-label="Next testimonial">→</button></span></cite></blockquote>
+        <blockquote class="quote-lead" id="john-title"><span id="quoteText" aria-live="polite">“Time spent with John on Sundays was always worth it.”</span><cite class="quote-cite"><span id="quoteWho">Sean P, founder and industrial designer</span><span class="quote-count" id="quoteCount">1 / 5</span><span class="quote-arrows"><button class="q-arrow" id="prevQuote" aria-label="Previous testimonial">←</button><button class="q-arrow" id="nextQuote" aria-label="Next testimonial">→</button></span></cite></blockquote>
         <div class="john-row">
           <figure class="portrait"><img src="images/john-portrait.jpg" alt="John sitting beside a river beneath a tree" width="1500" height="1000" decoding="async"></figure>
           <div class="john-bio">
@@ -518,7 +518,8 @@
     {text:'Time spent with John on Sundays was always worth it.',who:'Sean P, founder and industrial designer'},
     {text:'John has this capacity to make you feel at ease, accepted and guided.',who:'Laura F, writer and teacher'},
     {text:'John makes meditation feel approachable.',who:'Carolina M, founder and fashion designer'},
-    {text:'John helped me understand what I was looking for.',who:'Daniel G, artist and musician'}
+    {text:'John helped me understand what I was looking for.',who:'Daniel G, artist and musician'},
+    {text:'John brings a friendly, quiet confidence.',who:'JT'}
   ];
   var quoteIndex=0,quoteText=document.getElementById('quoteText'),quoteWho=document.getElementById('quoteWho'),quoteCount=document.getElementById('quoteCount'),quoteLead=document.querySelector('.quote-lead'),quoteSwapTimer=null;
   function renderQuote(){quoteText.textContent='“'+quotes[quoteIndex].text+'”';quoteWho.textContent=quotes[quoteIndex].who;quoteCount.textContent=(quoteIndex+1)+' / '+quotes.length;}
