@@ -31,6 +31,12 @@
     .screen.active { opacity:1; visibility:visible; transform:none; pointer-events:auto; transition:opacity 520ms var(--ease) 60ms,transform 520ms var(--ease) 60ms; }
     .inner { width:100%; max-width:820px; }
     .question { display:grid; gap:18px; }
+    .waitlist .screen { overflow-y:auto; }
+    .waitlist [data-role="note"] { place-items:start center; }
+    .waitlist .waitlist-field { margin-top:0; }
+    .waitlist-field label { display:block; font-size:.875rem; color:var(--muted); }
+    .waitlist .waitlist-field input, .waitlist .waitlist-field textarea { font-size:1.1rem; }
+    .waitlist-field textarea { min-height:90px; }
     .step { color:var(--green-ink); font-family:var(--sans); font-size:.7rem; font-weight:600; letter-spacing:.13em; text-transform:uppercase; }
     h1, h2 { max-width:19ch; font-family:var(--sans); font-size:clamp(2.35rem,5.1vw,4.9rem); font-weight:500; letter-spacing:-.055em; line-height:.94; }
     .sub { max-width:48ch; color:var(--muted); font-size:clamp(1rem,1.8vw,1.2rem); line-height:1.55; }
@@ -157,6 +163,7 @@
     var localFile = location.protocol === 'file:';
     var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
     var offering = new URLSearchParams(location.search).get('for') || '';
+    var isWaitlist = offering === 'beyond-belief' && new URLSearchParams(location.search).get('mode') === 'waitlist';
     var current = 0, last = screens.length - 1;
     var progress = document.getElementById('progress');
     var backButton = document.getElementById('backButton');
@@ -171,6 +178,37 @@
       var noteScreen = document.querySelector('[data-role="note"]');
       noteScreen.querySelector('h2').textContent = 'What brings you to Beyond Belief?';
       noteScreen.querySelector('.sub').textContent = 'Share what draws you to the course, what your experience of meditation has been, or whatever feels useful to say.';
+    }
+
+    if (isWaitlist) {
+      document.body.classList.add('waitlist');
+      document.title = 'Beyond Belief waitlist · Space to Be';
+      screens[0].querySelector('.step').textContent = 'Beyond Belief waitlist · 1 of 3';
+      screens[1].querySelector('.sub').textContent = 'I’ll email you about the next Beyond Belief course. No payment or commitment to join. You can leave the list at any time.';
+      noteScreen.querySelector('h2').textContent = 'When could you meet?';
+      noteScreen.querySelector('.sub').textContent = 'Dates are still open. Let me know what could work for you.';
+      var zoneField = document.createElement('div');
+      zoneField.className = 'field waitlist-field';
+      zoneField.innerHTML = '<label for="waitlistTimezone">Your time zone or city</label><input id="waitlistTimezone" type="text" name="timezone" required maxlength="120" autocomplete="off">';
+      noteScreen.querySelector('.field').before(zoneField);
+      try { zoneField.querySelector('input').value = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+      var note = noteScreen.querySelector('textarea');
+      note.required = false;
+      note.id = 'waitlistAvailability';
+      note.name = 'availability';
+      note.setAttribute('aria-label', 'Days and times that could work, optional');
+      note.placeholder = 'Days and times in your time zone, or simply “flexible”.';
+      note.maxLength = 2000;
+      note.parentElement.classList.add('waitlist-field');
+      var availabilityLabel = document.createElement('label');
+      availabilityLabel.htmlFor = note.id;
+      availabilityLabel.textContent = 'Availability (optional)';
+      note.before(availabilityLabel);
+      submitButton.textContent = 'Join the waitlist';
+      var thanks = document.querySelector('[data-role="thanks"]');
+      thanks.querySelector('h2').textContent = 'You’re on the list.';
+      thanks.querySelector('.sub').textContent = 'Thank you. I’ll be in touch when the next Beyond Belief course is taking shape. You can reply to update your availability or leave the list at any time.';
+      thanks.querySelector('.arrival').style.display = 'none';
     }
 
     function closeForm() {
@@ -205,11 +243,18 @@
     function back() { if (current > 0 && role(screens[current]) !== 'thanks') show(current - 1); }
     function submit() {
       for (var i = 0; i < last; i += 1) { if (!validate(screens[i])) { show(i); return; } }
-      var data = { _subject:offering === 'beyond-belief' ? 'Beyond Belief interest' : 'New Space to Be enquiry', offering:offering || 'one-to-one', name:document.querySelector('input[name="name"]').value.trim(), email:document.querySelector('input[name="email"]').value.trim(), note:document.querySelector('textarea[name="note"]').value.trim() };
+      if (submitButton.disabled) return;
+      var data = { _subject:isWaitlist ? 'Beyond Belief waitlist signup' : offering === 'beyond-belief' ? 'Beyond Belief interest' : 'New Space to Be enquiry', offering:offering || 'one-to-one', name:document.querySelector('input[name="name"]').value.trim(), email:document.querySelector('input[name="email"]').value.trim() };
+      if (isWaitlist) {
+        data.signup_type = 'waitlist';
+        data.timezone = document.querySelector('input[name="timezone"]').value.trim();
+        data.availability = document.querySelector('textarea[name="availability"]').value.trim();
+        data.contact_permission = 'Email me about the next Beyond Belief course.';
+      } else { data.note = document.querySelector('textarea[name="note"]').value.trim(); }
       submitButton.disabled = true; submitButton.textContent = 'Sending…'; submitError.textContent = '';
       fetch(FORMSPREE, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify(data) })
         .then(function (response) { if (response.ok) show(last); else throw new Error('send'); })
-        .catch(function () { submitError.textContent = 'Something went wrong. Please try again.'; submitButton.disabled = false; submitButton.textContent = 'Send my note →'; });
+        .catch(function () { submitError.textContent = 'Something went wrong. Please try again, or email john@spacetobe.xyz.'; submitButton.disabled = false; submitButton.textContent = isWaitlist ? 'Join the waitlist' : 'Send my note →'; });
     }
     function shareSource(event) {
       if (sourceSharing) return; sourceSharing = true;

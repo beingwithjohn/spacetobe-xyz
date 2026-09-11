@@ -65,6 +65,11 @@
   function openForm(event) {
     event.preventDefault();
     opener = event.currentTarget;
+    var targetUrl = opener.href;
+    if (frame.src !== targetUrl) frame.src = targetUrl;
+    var isWaitlist = new URL(targetUrl).searchParams.get('mode') === 'waitlist';
+    overlay.setAttribute('aria-label', isWaitlist ? 'Join the Beyond Belief waitlist' : 'Write to John');
+    frame.title = isWaitlist ? 'Beyond Belief waitlist · Space to Be' : 'Write to John · Space to Be';
     document.body.classList.add('form-open');
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden', 'false');
