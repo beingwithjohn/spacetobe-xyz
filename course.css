@@ -64,6 +64,7 @@ button{color:inherit;font:inherit}
 .prose{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(26px,4vw,54px);margin-top:clamp(34px,4.5vw,54px)}
 .prose p,.support-card p,.week p,.testimonial blockquote{font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.72;color:var(--quiet)}
 .prose strong{color:var(--ink);font-weight:600}
+.prose p:only-child{grid-column:1/-1}
 .image-band{height:clamp(240px,40vw,500px);border-bottom:1px solid var(--line);overflow:hidden}
 .image-band img{height:100%;object-fit:cover}
 .split{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.6fr)}
@@ -76,6 +77,7 @@ button{color:inherit;font:inherit}
 .week h3{font-size:18px;font-weight:600;letter-spacing:-.02em}
 .date{opacity:.48}
 .support-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:clamp(38px,4.5vw,54px);background:var(--line);border:1px solid var(--line)}
+.support-card:last-child:nth-child(odd){grid-column:1/-1}
 .support-card{min-height:184px;padding:26px 28px;background:var(--paper);display:grid;align-content:space-between;gap:26px}
 .support-card h3{font-family:var(--display);font-size:1.9rem;font-weight:400;line-height:1}
 .testimonials{background:rgba(96,164,132,.07)}
