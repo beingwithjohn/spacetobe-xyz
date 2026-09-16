@@ -14,6 +14,6 @@ for (const path of ['index.html', 'about/index.html', 'dana/index.html', 'work-w
 }
 assert(!read('sitemap.xml').includes('https://spacetobe.xyz/practice-map/'));
 assert(!read('beyond-belief/index.html').includes('The Practice Log'));
-assert(read('beyond-belief/index.html').includes('Two things to support your practice.'));
+assert(!/Yours from the first day|support your practice|companion|private line|voice notes/i.test(read('beyond-belief/index.html')));
 assert(read('practice-log/wrangler.toml').includes('PRACTICE_LOG_RETIRED = "true"'));
 console.log('Retirement pages, navigation, sitemap, course promises and local flag verified.');
