@@ -34,7 +34,7 @@
         "url": "https://spacetobe.xyz/work-with-john/",
         "name": "One-to-one meditation and spiritual friendship with John Ooi",
         "serviceType": "One-to-one meditation teaching and spiritual friendship",
-        "description": "Six weekly meetings for people navigating changes in work, home, relationships, or how they want to live.",
+        "description": "Six weekly meetings for people navigating changes in work, home, relationships, starting university, or how they want to live.",
         "provider": {"@id": "https://spacetobe.xyz/about/#john-ooi"},
         "audience": {
           "@type": "Audience",
@@ -61,6 +61,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
   <link rel="preload" as="font" type="font/otf" href="fonts/LT.Remark-Regular.otf" crossorigin>
+  <link rel="stylesheet" href="giving-guide.css?v=20260916">
   <style>
     @view-transition{navigation:auto}
     @font-face{font-family:'LT Remark';src:url('fonts/LT.Remark-Regular.otf') format('opentype');font-display:swap}
@@ -395,7 +396,7 @@
   <section class="panel" id="for-you" data-title="For you" aria-labelledby="for-title" data-screen-label="Sheet 01: For you">
     <div class="shell panel-inner recognition-layout">
       <div class="panel-head"><div><h2 class="display panel-title" id="for-title">A place to find a way <em>forward.</em></h2></div></div>
-      <p class="manifesto"><em>Your work may no longer fulfil you.</em> You may be moving country, changing career, starting a business, or seeing that how you meet the people you love must change. From the outside, life may still work. Inside, perhaps you want to <em>meet it differently</em>: with more kindness, confidence and possibility.</p>
+      <p class="manifesto"><em>Your work may no longer fulfil you.</em> You may be starting university, moving country, changing career or starting a business. You may be finding your feet, wondering where you belong, or wanting to meet the people you love differently. On paper, life may still work. Inside, perhaps you want to meet it with more <em>confidence, kindness, and possibility.</em></p>
     </div>
   </section>
 
@@ -437,8 +438,8 @@
 
   <section class="panel money" id="money" data-title="Money" aria-labelledby="money-title" data-screen-label="Sheet 04: Money">
     <div class="shell panel-inner money-layout">
-      <p class="money-statement" id="money-title">This work is freely given.<button class="text-button" id="openDana">Why is this work freely given?</button></p>
-      <div class="money-notes"><p class="body-copy">There is no fee and no expected amount. After our sixth meeting, I’ll invite you to give whatever you freely choose.</p><p class="body-copy">What you give does not change the care I offer. If context would help, you can ask what others have given.</p></div>
+      <div class="money-statement"><p id="money-title">This work is freely given.</p><div class="giving-links"><button class="text-button" id="openDana">Why is this work freely given?</button></div></div>
+      <div class="money-notes"><p class="body-copy">There is no fee and no expected amount. After our sixth meeting, I’ll invite you to give whatever you freely choose.</p><p class="body-copy">What you give does not change the care I offer.<br><button class="giving-guide-link" type="button" data-giving-guide aria-haspopup="dialog">If you’d like an amount to go by</button></p></div>
     </div>
   </section>
 </main>
@@ -566,5 +567,6 @@
   });
 })();
 </script>
+<script src="giving-guide.js?v=20260916"></script>
 </body>
 </html>
