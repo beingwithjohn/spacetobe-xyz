@@ -223,11 +223,24 @@
     .john-copy{position:relative;z-index:2;width:var(--shell);margin:0 auto;padding:calc(var(--header) + clamp(16px,2.5vh,28px)) clamp(240px,21vw,330px) clamp(70px,10vh,100px) 0;display:grid;grid-template-columns:1fr;align-content:center;justify-items:start;text-align:left;row-gap:clamp(28px,5.5vh,64px)}
     .text-button{padding:4px 0;border-bottom:1px solid currentColor;font-family:var(--sans);font-size:11px}
 
-    .money-layout{height:100%;display:grid;grid-template-columns:1fr;grid-template-rows:1fr auto;gap:clamp(28px,5vh,56px);justify-items:start;text-align:left}
+    .money-layout{height:100%;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto;align-content:center;gap:clamp(28px,5vh,48px);justify-items:start;text-align:left}
     .money-statement{align-self:center;font-family:var(--display);font-size:clamp(2.1rem,min(3.9vw,7.2vh),3.8rem);line-height:1.24;letter-spacing:-.02em;max-width:none}
     .money-statement .text-button{display:block;width:max-content;margin-top:clamp(16px,2.4vh,24px);font-size:clamp(10px,.78vw,12px);letter-spacing:0}
-    .money-notes{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);border-top:1px solid rgba(29,36,26,.12);padding-top:clamp(16px,3vh,26px)}
+    .money-notes{width:100%;display:grid;grid-template-columns:1fr 1fr;align-items:baseline;gap:clamp(28px,5vw,64px);border-top:1px solid rgba(29,36,26,.12);padding-top:clamp(16px,3vh,26px)}
     .money-notes .body-copy{max-width:60ch;font-size:clamp(.85rem,1.1vw,1.05rem);line-height:1.6;opacity:.65}
+    .money-price{white-space:nowrap}
+    .money-notes .dana-invitation{opacity:1}
+    .dana-link{font:inherit;color:inherit;border-bottom:1px solid rgba(29,36,26,.35);padding:6px 0;min-height:44px;transition:color 180ms ease,border-color 180ms ease}
+    .dana-link:hover{color:var(--green);border-color:var(--green)}
+    .dana-link:focus-visible{outline:2px solid var(--green);outline-offset:5px}
+    .dana-dialog{position:fixed;inset:0;margin:auto;width:min(560px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:clamp(24px,5vw,44px);border:1px solid rgba(29,36,26,.12);background:var(--paper);color:var(--ink)}
+    .dana-dialog::backdrop{background:rgba(29,36,26,.28);backdrop-filter:blur(5px)}
+    .dana-dialog header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .dana-dialog .close-overlay{min-width:44px;min-height:44px;font-size:12px}
+    .dana-dialog h2{margin:24px 0;font-size:clamp(28px,5vw,38px);line-height:1.12;font-weight:500;letter-spacing:-.035em}
+    .dana-dialog>p{margin-top:18px;font-size:16px;line-height:1.6;color:rgba(29,36,26,.75)}
+    .dana-dialog .overlay-more{min-height:44px;align-items:center;font-size:14px;margin-top:24px}
+    .dana-dialog-actions{display:flex;flex-wrap:wrap;gap:0 24px;align-items:baseline}
 
     .panel-controls{position:fixed;inset:auto 0 0;z-index:55;height:var(--controls);pointer-events:none}
     .controls-inner{width:var(--shell);height:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -290,8 +303,8 @@
       .john-bio h2{font-size:clamp(1.25rem,5.7vw,1.45rem);line-height:1.12}
       .john-bio .body-copy{font-size:.82rem;line-height:1.52}
       .panel:not(.hero) .panel-head>.body-copy{margin-left:0;max-width:none}
-      .money-layout{grid-template-columns:1fr;gap:16px}
-      .money-notes{grid-template-columns:1fr;gap:12px;transform:translateY(clamp(-56px,-6vh,-40px))}
+      .money-layout{grid-template-columns:1fr;gap:28px}
+      .money-notes{grid-template-columns:1fr;gap:14px}
       .money-statement{font-size:clamp(1.5rem,6.5vw,2rem)}
       .panel:not(.hero) .panel-inner{padding:calc(var(--header) + 14px) 0 138px}
       .panel:not(.hero) .panel-head{grid-template-columns:1fr;gap:10px;align-items:start}
@@ -402,7 +415,7 @@
 
   <section class="panel" id="how" data-title="How" aria-labelledby="how-title" data-screen-label="Sheet 02: How">
     <div class="shell panel-inner practice-layout">
-      <div class="panel-head"><div><h2 class="display panel-title" id="how-title">A practice shaped around your <em>actual life.</em></h2></div></div>
+      <div class="panel-head"><div><h2 class="display panel-title" id="how-title">A real relationship, with room for your <em>whole life.</em></h2></div></div>
       <div class="journey">
         <p>First, <em>a conversation.</em> Twenty minutes to see if it feels right.</p>
         <p class="j2">Then <em>six weekly meetings</em> of meditation and honest conversation.</p>
@@ -438,8 +451,8 @@
 
   <section class="panel money" id="money" data-title="Money" aria-labelledby="money-title" data-screen-label="Sheet 04: Money">
     <div class="shell panel-inner money-layout">
-      <div class="money-statement"><p id="money-title">This work is freely given.</p><div class="giving-links"><button class="text-button" id="openDana">Why is this work freely given?</button></div></div>
-      <div class="money-notes"><p class="body-copy">There is no fee and no expected amount. After our sixth meeting, I’ll invite you to give whatever you freely choose.</p><p class="body-copy">What you give does not change the care I offer.<br><button class="giving-guide-link" type="button" data-giving-guide aria-haspopup="dialog">If you’d like an amount to go by</button></p></div>
+      <div class="money-statement"><p id="money-title">This work is offered for <span class="money-price">£125 to £225</span> per session.</p></div>
+      <div class="money-notes"><p class="body-copy">You’re invited to choose an amount within this range. If this is beyond your means, you’re still welcome to reach out.</p><p class="body-copy dana-invitation">I offer a small number of <button class="dana-link" id="openDana" type="button" aria-haspopup="dialog" aria-controls="danaOverlay">dāna places</button>.</p></div>
     </div>
   </section>
 </main>
@@ -461,7 +474,7 @@
 <div class="persistent-action"><a class="cta" href="start.html">Begin with a conversation</a></div>
 
 <div class="training-overlay" id="trainingOverlay" role="dialog" aria-modal="true" aria-labelledby="trainingTitle" aria-hidden="true"><article class="training-card"><header><p class="eyebrow">John Ooi / background</p><button class="close-overlay" id="closeTraining">Close ✕</button></header><h2 id="trainingTitle">Training, practice and influences</h2><p>I have practised meditation since 2017. I continue to work personally with teachers.<br><br>My teacher training includes Jack Kornfield and Tara Brach’s Mindfulness Meditation Teacher Certification Program and Dharma Moon’s Mindfulness Meditation Teacher Training with David Nichtern.<br><br>My practice draws most deeply from Plum Village and the Karma Kagyu lineages, alongside an interfaith upbringing and respect for many more contemplative traditions.<br><br>I think of my work as secular in the root sense of the word: <em>belonging to this age</em>.</p><a class="overlay-more" href="about/">Read more about John</a></article></div>
-<div class="dana-overlay" id="danaOverlay" role="dialog" aria-modal="true" aria-labelledby="danaTitle" aria-hidden="true"><article class="dana-card"><header><p class="eyebrow">Dāna / giving</p><button class="close-overlay" id="closeDana">Close ✕</button></header><h2 id="danaTitle">Why this work is freely given</h2><p>This work is offered in the spirit of dāna, the Pāli word for giving. I offer it freely because I want to protect the work from the ways money can distort how we meet one another.<br><br>The first six meetings are complete in themselves, not an introduction to something you must later buy. Afterwards, if you choose to give, what you offer is received as a gift, not payment or a measure of the care you received.</p><a class="overlay-more" href="dana/">Read the full dāna note</a></article></div>
+<dialog class="dana-dialog" id="danaOverlay" aria-labelledby="danaTitle"><header><p class="eyebrow">Dāna / giving</p><button class="close-overlay" id="closeDana" type="button" aria-label="Close dāna information">Close ×</button></header><h2 id="danaTitle">Working on a dāna basis</h2><p>Dāna means giving or generosity. I offer a small number of places where the work is freely given, with no agreed fee or price.</p><p>The work is given first. Afterwards, if you choose to give, what you offer is received as a gift.</p><p>You’re welcome to ask about a dāna place, whether because of your circumstances or because you prefer this approach.</p><div class="dana-dialog-actions"><a class="overlay-more" href="start.html" id="danaConversation">Begin a conversation</a><a class="overlay-more" href="dana/">Read more about dāna</a></div></dialog>
 <div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a conversation" aria-hidden="true"><iframe id="formFrame" title="Begin with a conversation · Space to Be" src="start.html?v=20260818-copy" loading="lazy"></iframe></div>
 <script>
 (function () {
@@ -550,18 +563,21 @@
 
   var dana=document.getElementById('danaOverlay');
   var openDana=document.getElementById('openDana');
-  openDana.addEventListener('click',function(){dana.classList.add('open');dana.setAttribute('aria-hidden','false');document.getElementById('closeDana').focus();});
-  function closeDana(){dana.classList.remove('open');dana.setAttribute('aria-hidden','true');openDana.focus();}
+  openDana.addEventListener('click',function(){dana.showModal();});
+  function closeDana(){dana.close();}
   document.getElementById('closeDana').addEventListener('click',closeDana);
+  dana.addEventListener('close',function(){openDana.focus({preventScroll:true});});
+  dana.addEventListener('keydown',function(e){e.stopPropagation();if(e.key==='Escape'){e.preventDefault();closeDana();}});
+  document.getElementById('danaConversation').addEventListener('click',closeDana);
 
   var overlay=document.getElementById('formOverlay'),frame=document.getElementById('formFrame'),opener=null,messageOrigin=localFile?'*':location.origin;
-  function openForm(link){opener=link;overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');try{frame.contentWindow.postMessage('spacetobe:open',messageOrigin);}catch(err){}}
+  function openForm(link){opener=link.id==='danaConversation'?openDana:link;overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');try{frame.contentWindow.postMessage('spacetobe:open',messageOrigin);}catch(err){}}
   function closeForm(){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');if(opener)opener.focus({preventScroll:true});}
   document.addEventListener('click',function(e){var link=e.target.closest('a[href="start.html"]');if(!link)return;e.preventDefault();openForm(link);});
   window.addEventListener('message',function(e){if(e.source===frame.contentWindow&&(localFile||e.origin===location.origin)&&e.data==='spacetobe:close-form')closeForm();});
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){if(overlay.classList.contains('open'))closeForm();else if(training.classList.contains('open'))closeTraining();else if(dana.classList.contains('open'))closeDana();else if(mobileControls.classList.contains('open'))closeMobileMenu();else if(activeIndex>0)showPanel(0);return;}
-    if(overlay.classList.contains('open')||training.classList.contains('open')||dana.classList.contains('open'))return;
+    if(e.key==='Escape'){if(overlay.classList.contains('open'))closeForm();else if(training.classList.contains('open'))closeTraining();else if(dana.open)closeDana();else if(mobileControls.classList.contains('open'))closeMobileMenu();else if(activeIndex>0)showPanel(0);return;}
+    if(overlay.classList.contains('open')||training.classList.contains('open')||dana.open)return;
     if(e.key==='ArrowRight'||e.key==='PageDown')showPanel(activeIndex+1);
     if(e.key==='ArrowLeft'||e.key==='PageUp')showPanel(activeIndex-1);
   });

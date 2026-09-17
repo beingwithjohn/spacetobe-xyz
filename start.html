@@ -41,6 +41,10 @@
     h1, h2 { max-width:19ch; font-family:var(--sans); font-size:clamp(2.35rem,5.1vw,4.9rem); font-weight:500; letter-spacing:-.055em; line-height:.94; }
     .sub { max-width:48ch; color:var(--muted); font-size:clamp(1rem,1.8vw,1.2rem); line-height:1.55; }
     .field { margin-top:10px; }
+    .dana-interest { display:flex;align-items:center;gap:12px;min-height:44px;font-size:.9rem;line-height:1.5;color:var(--muted);cursor:pointer; }
+    .dana-interest[hidden] { display:none; }
+    .dana-interest input { width:18px;height:18px;flex:none;accent-color:var(--green); }
+    [data-role="note"] { overflow-y:auto; }
     input[type="text"], input[type="email"], textarea { width:100%; padding:12px 2px; border:0; border-bottom:2px solid var(--line); outline:0; background:transparent; font-size:clamp(1.25rem,2.5vw,1.7rem); line-height:1.4; transition:border-color 220ms ease; }
     textarea { min-height:126px; max-height:280px; resize:none; }
     input::placeholder, textarea::placeholder { color:rgba(30,38,24,.34); }
@@ -130,6 +134,7 @@
         <h2>What brings you here?</h2>
         <p class="sub">Share what is happening, what you are looking for, or whatever feels useful to say.</p>
         <div class="field"><textarea name="note" rows="3" aria-label="What brings you here" required></textarea></div>
+        <label class="dana-interest"><input type="checkbox" name="dana_interest" /><span>I’d like to explore working on a dāna basis. <span class="optional">Optional</span></span></label>
         <div class="error" role="alert" id="submitError"></div>
         <div class="actions"><button class="btn" id="submitButton" data-submit>Send my note <span aria-hidden="true">→</span></button><span class="hint">Cmd/Ctrl + Enter</span></div>
       </div>
@@ -175,6 +180,7 @@
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (offering === 'beyond-belief') {
+      document.querySelector('.dana-interest').hidden = true;
       var noteScreen = document.querySelector('[data-role="note"]');
       noteScreen.querySelector('h2').textContent = 'What brings you to Beyond Belief?';
       noteScreen.querySelector('.sub').textContent = 'Share what draws you to the course, what your experience of meditation has been, or whatever feels useful to say.';
@@ -251,6 +257,9 @@
         data.availability = document.querySelector('textarea[name="availability"]').value.trim();
         data.contact_permission = 'Email me about the next Beyond Belief course.';
       } else { data.note = document.querySelector('textarea[name="note"]').value.trim(); }
+      if (!offering && document.querySelector('input[name="dana_interest"]').checked) {
+        data.dana_interest = 'I’d like to explore working on a dāna basis.';
+      }
       submitButton.disabled = true; submitButton.textContent = 'Sending…'; submitError.textContent = '';
       fetch(FORMSPREE, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify(data) })
         .then(function (response) { if (response.ok) show(last); else throw new Error('send'); })
