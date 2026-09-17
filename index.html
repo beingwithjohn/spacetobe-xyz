@@ -383,6 +383,51 @@
     ::view-transition-group(stb-ring){animation-duration:560ms;animation-timing-function:var(--ease)}
   </style>
   <link rel="stylesheet" href="elsewhere.css?v=20260914">
+  <style>
+    @media(min-width:50.01rem){
+      #john .john-copy{grid-template-columns:minmax(0,1.8fr) minmax(180px,1fr);column-gap:clamp(32px,4vw,64px);row-gap:clamp(28px,4.5vh,48px);align-content:center}
+      #john .john-row{grid-column:1 / -1;width:100%;grid-template-columns:clamp(150px,18vw,250px) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:center}
+      #john .portrait{width:100%}
+      #john .john-bio{gap:16px}
+      #john .john-bio h2{font-family:var(--display);font-weight:400;font-size:clamp(3.25rem,6.6vw,5.9rem);line-height:1;letter-spacing:-.045em}
+      #john .john-bio .body-copy{max-width:49ch;font-size:clamp(.94rem,1.2vw,1.125rem);line-height:1.6;opacity:.78}
+      #john #openTraining{font-size:12px;min-height:36px}
+      #john .quote-lead{width:100%;font-size:clamp(1.4rem,2.15vw,2rem);--quote-field:2.36em;padding-top:24px;border-top:1px solid rgba(29,36,26,.14);min-height:0}
+      #john .quote-lead>#quoteText{align-items:flex-start}
+      #john .quote-lead cite{width:100%;font-size:9px;letter-spacing:.06em;gap:10px;opacity:.65}
+      #john .q-arrow{width:38px;height:38px}
+      #john .elsewhere{align-self:start;margin:0;padding-top:24px}
+      #john .elsewhere-links{grid-template-columns:1fr;gap:12px}
+      #john .elsewhere-label{margin-bottom:12px}
+    }
+    @media(min-width:50.01rem) and (max-width:68.75rem){#john .quote-lead{--quote-field:3.54em}}
+    @media(min-width:50.01rem) and (max-height:42rem){
+      #john{overflow:hidden}
+      #john .john-layout{position:absolute;inset:var(--header) 0 84px;height:auto;display:block;overflow-y:auto;overscroll-behavior:contain}
+      #john .john-copy{min-height:0;height:auto;padding-top:20px;padding-bottom:24px;align-content:start}
+    }
+    /* Mobile John-first layout: keep reading clear of the persistent controls. */
+    @media(max-width:50rem){
+      #john{overflow:hidden}
+      #john .john-layout{position:absolute;inset:calc(var(--header) + 10px) 0 calc(130px + env(safe-area-inset-bottom));height:auto;display:block;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+      #john .john-copy{height:auto;min-height:0;padding:16px 0 32px;transform:none;align-content:start;gap:32px}
+      #john .john-row{width:100%;grid-template-columns:88px minmax(0,1fr);gap:22px;align-items:center}
+      #john .portrait{width:88px;grid-column:1;grid-row:1}
+      #john .john-bio{display:contents}
+      #john .john-bio h2{grid-column:2;grid-row:1;font-size:1.75rem}
+      #john .john-bio .body-copy{grid-column:1 / -1;font-size:1rem;line-height:1.65;opacity:.78}
+      #john #openTraining{grid-column:1 / -1;justify-self:start;font-size:13px;min-height:44px;margin-top:-12px}
+      #john .quote-lead{width:100%;padding-top:26px;border-top:1px solid rgba(29,36,26,.14);font-size:1.6rem;--quote-field:3.54em;min-height:0}
+      #john .quote-lead>#quoteText{align-items:flex-start}
+      #john .quote-lead cite{grid-template-columns:minmax(0,1fr) auto auto;gap:10px;margin-top:14px;font-size:9px;opacity:.65}
+      #john .q-arrow{width:44px;height:44px}
+      #john .elsewhere{margin:0;padding-top:24px}
+      #john .elsewhere-name{font-size:14px}
+      #john .elsewhere-description{font-size:12px;line-height:1.5}
+      #john .sheet-close{position:fixed}
+    }
+    @media(max-width:22rem){#john .john-layout{bottom:calc(76px + env(safe-area-inset-bottom))}}
+  </style>
 </head>
 <body>
 <div id="gate" aria-hidden="true">
@@ -426,15 +471,15 @@
     </div>
   </section>
 
-  <section class="panel" id="john" data-title="John" aria-labelledby="john-title" data-screen-label="Sheet 03: John">
+  <section class="panel" id="john" data-title="John" aria-labelledby="john-name" data-screen-label="Sheet 03: John">
     <div class="john-layout">
       <div class="john-copy">
-        <blockquote class="quote-lead" id="john-title"><span id="quoteText" aria-live="polite">“Time spent with John on Sundays was always worth it.”</span><cite class="quote-cite"><span id="quoteWho">Sean P, founder and industrial designer</span><span class="quote-count" id="quoteCount">1 / 5</span><span class="quote-arrows"><button class="q-arrow" id="prevQuote" aria-label="Previous testimonial">←</button><button class="q-arrow" id="nextQuote" aria-label="Next testimonial">→</button></span></cite></blockquote>
+        <blockquote class="quote-lead" id="john-title"><span id="quoteText" aria-live="polite">“Time is not trivial, and Sundays are more intentional than the others. Time spent with John on Sundays was always worth it.”</span><cite class="quote-cite"><span id="quoteWho">Sean P, founder and industrial designer</span><span class="quote-count" id="quoteCount">1 / 4</span><span class="quote-arrows"><button class="q-arrow" id="prevQuote" aria-label="Previous testimonial">←</button><button class="q-arrow" id="nextQuote" aria-label="Next testimonial">→</button></span></cite></blockquote>
         <div class="john-row">
           <figure class="portrait"><img src="images/john-portrait.jpg" alt="John sitting beside a river beneath a tree" width="1500" height="1000" decoding="async"></figure>
           <div class="john-bio">
-            <h2>John Ooi</h2>
-            <p class="body-copy">I work with a small number of people, making time and space for depth and care. I listen, respond to what is happening, offer what I can, and stay open to what becomes possible.</p>
+            <h2 id="john-name">John Ooi</h2>
+            <p class="body-copy">I work with a small number of people, making time and space for depth and care. I listen, respond to what is happening, offer what I can, and stay open to what is possible.</p>
             <button class="text-button" id="openTraining">Training, practice and influences</button>
             <nav class="elsewhere" aria-label="Elsewhere">
               <span class="elsewhere-label">Elsewhere</span>
@@ -486,6 +531,8 @@
   var heroMark=document.querySelector('.hero-mark');
   var gateLeaving=false;
   var reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var johnCopy=document.querySelector('.john-copy'),johnRow=document.querySelector('.john-row'),johnQuote=document.querySelector('.quote-lead'),johnElsewhere=document.querySelector('#john .elsewhere');
+  johnCopy.append(johnRow,johnQuote,johnElsewhere);
 
   function finishEnter(){
     if(!gateLeaving)return;
@@ -537,13 +584,27 @@
   var initialId=location.hash.slice(1),initialIndex=panels.findIndex(function(panel){return panel.id===initialId;});if(initialIndex>0)showPanel(initialIndex);else updateControls();
 
   var quotes=[
-    {text:'Time spent with John on Sundays was always worth it.',who:'Sean P, founder and industrial designer'},
-    {text:'John has this capacity to make you feel at ease, accepted and guided.',who:'Laura F, writer and teacher'},
-    {text:'John makes meditation feel approachable.',who:'Carolina M, founder and fashion designer'},
-    {text:'John helped me understand what I was looking for.',who:'Daniel G, artist and musician'},
-    {text:'John brings a friendly, quiet confidence.',who:'JT, product designer'}
+    {text:'Time is not trivial, and Sundays are more intentional than the others. Time spent with John on Sundays was always worth it.',who:'Sean P, founder and industrial designer'},
+    {text:'John has this capacity to make you feel at ease in a place where you feel accepted and guided by someone who sees you and cares to add value to your life.',who:'Laura F, writer and teacher'},
+    {text:'What I love most about John is how genuine and supportive he is. He makes meditation feel approachable…',who:'Carolina M, founder and fashion designer'},
+    {text:"John brings a friendly, quiet confidence. I feel like I'm learning that just by spending time with him and will carry it forward with me.",who:'JT, product designer'}
   ];
   var quoteIndex=0,quoteText=document.getElementById('quoteText'),quoteWho=document.getElementById('quoteWho'),quoteCount=document.getElementById('quoteCount'),quoteLead=document.querySelector('.quote-lead'),quoteSwapTimer=null;
+  // Reserve the tallest excerpt at the current width so the attribution and arrows stay put.
+  function sizeQuoteField(){
+    var width=quoteText.getBoundingClientRect().width;if(!width)return;
+    var measure=document.createElement('span');
+    measure.setAttribute('aria-hidden','true');
+    measure.style.cssText='position:absolute;visibility:hidden;pointer-events:none;display:block;min-height:0;height:auto;width:'+width+'px';
+    quoteLead.appendChild(measure);
+    var height=0;
+    quotes.forEach(function(quote){measure.textContent='“'+quote.text+'”';height=Math.max(height,measure.getBoundingClientRect().height);});
+    measure.remove();
+    quoteLead.style.setProperty('--quote-field',Math.ceil(height)+'px');
+  }
+  sizeQuoteField();
+  if(document.fonts)document.fonts.ready.then(sizeQuoteField);
+  window.addEventListener('resize',sizeQuoteField);
   function renderQuote(){quoteText.textContent='“'+quotes[quoteIndex].text+'”';quoteWho.textContent=quotes[quoteIndex].who;quoteCount.textContent=(quoteIndex+1)+' / '+quotes.length;}
   function showQuote(next){
     quoteIndex=(next+quotes.length)%quotes.length;
