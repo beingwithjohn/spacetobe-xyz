@@ -23,7 +23,7 @@ The SVG circle breathes once over 2.2 seconds, moves into the background field o
 
 # Life changes. So can the way we meet it.
 
-For curious people changing their work, their home, their relationships, or simply the way they want to live.
+For curious people changing their work, their home, or simply the way they want to live.
 
 **Begin with a conversation**
 
