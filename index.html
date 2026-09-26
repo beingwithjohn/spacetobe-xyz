@@ -2,653 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <script>try{if(!sessionStorage.getItem('stb-entered'))document.documentElement.setAttribute('data-gate','1');}catch(e){document.documentElement.setAttribute('data-gate','1');}</script>
-  <title>Space to Be: Meditation and Spiritual Friendship with John Ooi</title>
-  <meta name="description" content="One-to-one meditation and spiritual friendship for curious people in transition. Begin with a conversation.">
-  <link rel="canonical" href="https://spacetobe.xyz/">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://spacetobe.xyz/#website",
-        "url": "https://spacetobe.xyz/",
-        "name": "Space to Be",
-        "description": "One-to-one meditation and spiritual friendship for curious people in transition."
-      },
-      {
-        "@type": "Person",
-        "@id": "https://spacetobe.xyz/about/#john-ooi",
-        "name": "John Ooi",
-        "url": "https://spacetobe.xyz/about/",
-        "image": "https://spacetobe.xyz/images/john-portrait.jpg",
-        "description": "Meditation teacher offering one-to-one meditation and spiritual friendship for people in transition.",
-        "sameAs": ["https://j-hn.info/"],
-        "knowsAbout": ["Meditation", "Mindfulness", "Spiritual friendship", "Contemplative practice"]
-      },
-      {
-        "@type": "Service",
-        "@id": "https://spacetobe.xyz/work-with-john/#service",
-        "url": "https://spacetobe.xyz/work-with-john/",
-        "name": "One-to-one meditation and spiritual friendship with John Ooi",
-        "serviceType": "One-to-one meditation teaching and spiritual friendship",
-        "description": "Six weekly meetings for people navigating changes in work, home, relationships, starting university, or how they want to live.",
-        "provider": {"@id": "https://spacetobe.xyz/about/#john-ooi"},
-        "audience": {
-          "@type": "Audience",
-          "audienceType": "Curious people in transition"
-        }
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    try {
+      if (!sessionStorage.getItem('stb-entered') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.setAttribute('data-gate', '1');
+        setTimeout(function () { document.documentElement.removeAttribute('data-gate'); }, 4200);
       }
-    ]
-  }
+    } catch (e) {}
   </script>
+  <title>John Ooi · Space to Be</title>
+  <meta name="description" content="John Ooi: meditation teacher / spiritual friend / realisation partner.">
+  <link rel="canonical" href="https://spacetobe.xyz/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Space to Be">
   <meta property="og:url" content="https://spacetobe.xyz/">
-  <meta property="og:title" content="Space to Be: One-to-One with John Ooi">
-  <meta property="og:description" content="Life changes. So can the way you meet it.">
+  <meta property="og:title" content="John Ooi · Space to Be">
+  <meta property="og:description" content="Meditation teacher / spiritual friend / realisation partner.">
   <meta property="og:image" content="https://spacetobe.xyz/images/social-preview.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Space to Be">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Space to Be: One-to-One with John Ooi">
-  <meta name="twitter:description" content="Life changes. So can the way you meet it.">
+  <meta name="twitter:title" content="John Ooi · Space to Be">
+  <meta name="twitter:description" content="Meditation teacher / spiritual friend / realisation partner.">
   <meta name="twitter:image" content="https://spacetobe.xyz/images/social-preview.jpg">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
-  <link rel="preload" as="font" type="font/otf" href="fonts/LT.Remark-Regular.otf" crossorigin>
-  <link rel="stylesheet" href="giving-guide.css?v=20260916">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Person","@id":"https://spacetobe.xyz/about/#john-ooi","name":"John Ooi","url":"https://spacetobe.xyz/","description":"Meditation teacher / spiritual friend / realisation partner.","sameAs":["https://j-hn.info/","https://wonderfool.substack.com"]}
+  </script>
   <style>
-    @view-transition{navigation:auto}
-    @font-face{font-family:'LT Remark';src:url('fonts/LT.Remark-Regular.otf') format('opentype');font-display:swap}
-    @font-face{font-family:'LT Remark';src:url('fonts/LT.Remark-Bold.otf') format('opentype');font-weight:600 700;font-display:swap}
-    :root{
-      --paper:#F5F2EA;
-      --ink:#1D241A;
-      --green:#60A484;
-      --display:'LT Remark',Georgia,serif;
-      --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
-      --ease:cubic-bezier(.22,1,.36,1);
-      --shell:min(calc(100% - clamp(32px,7vw,112px)),76rem);
-      --header:62px;
-      --controls:46px;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{width:100%;height:100%;height:100dvh;overflow:hidden;overscroll-behavior:none;background:var(--paper)}
-    body{color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    a:hover{color:inherit}
-    button{border:0;background:none;color:inherit;cursor:pointer;font:inherit}
-    img{display:block;width:100%}
-    :focus-visible{outline:2px solid var(--green);outline-offset:3px}
-    ::selection{background:rgba(96,164,132,.28)}
-    .shell{width:var(--shell);margin:0 auto}
-    .hidden{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .eyebrow{font-family:var(--sans);font-size:clamp(9px,.8vw,11px);font-weight:600;letter-spacing:.14em;line-height:1.3;text-transform:uppercase;opacity:.6}
-    .display{font-family:var(--sans);font-weight:500;letter-spacing:-.055em;line-height:.9}
-    .display em{font-family:var(--display);font-weight:400}
-    .body-copy{max-width:48ch;font-size:clamp(.78rem,1vw,.96rem);line-height:1.5;opacity:.68}
-
-    .simple-mark{width:26px;height:26px;flex:none;view-transition-name:stb-ring}
-    .simple-mark circle{fill:none;stroke:var(--green);stroke-width:7}
-    .resolved-mark{display:block;width:100%;height:100%;overflow:visible;color:var(--green);transition:opacity 850ms ease,filter 1100ms var(--ease),transform 1200ms var(--ease)}
+    :root{color-scheme:light;--paper:#F5F2EA;--ink:#1D241A;--green:#60A484}
+    *{box-sizing:border-box}
+    html{background:var(--paper);color:var(--ink);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    body{margin:0}
+    main{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:64px 24px}
+    .intro{width:100%;text-align:center}
+    .mark{display:block;width:100px;height:100px;margin:0 auto 32px}
+    .mark circle{fill:none;stroke:var(--green);stroke-width:7}
+    #gate{position:fixed;inset:0;display:none;place-items:center;pointer-events:none;z-index:1}
+    html[data-gate="1"] #gate{display:grid}
+    .gate-mark{width:clamp(170px,24vmin,270px);aspect-ratio:1;transition:transform 1.2s cubic-bezier(.22,1,.36,1),opacity .2s ease}
+    .gate-mark svg{display:block;width:100%;height:100%;animation:loading-breathe 2.2s cubic-bezier(.45,0,.2,1) both}
+    .gate-mark circle{fill:none;stroke:var(--green);stroke-width:7}
     @keyframes loading-breathe{0%{transform:scale(.82);opacity:.56}58%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:1}}
-
-    #gate{position:fixed;inset:0;z-index:400;display:grid;place-content:center;justify-items:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 320ms ease,visibility 0s linear 1500ms}
-    #gate::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--paper);opacity:1;transition:opacity 1250ms var(--ease)}
-    html[data-gate="1"] #gate{opacity:1;visibility:visible}
-    .gate-mark{position:relative;width:clamp(170px,24vmin,270px);aspect-ratio:1;transform:translate3d(0,0,0) scale(1);transform-origin:center;transition:transform 1200ms var(--ease),opacity 320ms ease}
-    .gate-breathe{position:absolute;inset:0;animation:loading-breathe 2.2s cubic-bezier(.45,0,.2,1) both}
-    #gate.is-travelling::before{opacity:0}
-    #gate.is-travelling .gate-mark{transform:translate3d(var(--gate-x,0),var(--gate-y,0),0) scale(var(--gate-scale,1))}
-    #gate.is-travelling .gate-breathe{animation-play-state:paused}
-    #gate.is-travelling .resolved-mark{opacity:.18;filter:blur(10px);transform:scale(1.18)}
-    #gate.is-arrived .gate-mark{opacity:0}
-    #gate.is-finished{display:none}
-
-    .site-header,.right-nav,.persistent-action,.home-meta,.hero-main,.hero-footer{transition:opacity 850ms var(--ease),transform 1000ms var(--ease)}
-    html[data-gate="1"] .site-header,html[data-gate="1"] .right-nav,html[data-gate="1"] .persistent-action,html[data-gate="1"] .home-meta,html[data-gate="1"] .hero-main,html[data-gate="1"] .hero-footer{opacity:0;transform:translateY(12px)}
-    html[data-gate="1"] .right-nav{transform:translateY(calc(-50% + 12px))}
-    html[data-gate="1"][data-entering="1"] .site-header{opacity:1;transform:none;transition-delay:240ms}
-    html[data-gate="1"][data-entering="1"] .right-nav{opacity:1;transform:translateY(-50%);transition-delay:560ms}
-    html[data-gate="1"][data-entering="1"] .persistent-action{opacity:1;transform:none;transition-delay:500ms}
-    html[data-gate="1"][data-entering="1"] .home-meta{opacity:1;transform:none;transition-delay:340ms}
-    html[data-gate="1"][data-entering="1"] .hero-main{opacity:1;transform:none;transition-delay:400ms}
-    html[data-gate="1"][data-entering="1"] .hero-footer{opacity:1;transform:none;transition-delay:500ms}
-    .hero-mark{transition:opacity 1150ms var(--ease)}
-    html[data-gate="1"] .hero-mark{opacity:0}
-    html[data-gate="1"][data-entering="1"] .hero-mark{opacity:1;transition-delay:180ms}
-
-    .site-header{position:fixed;inset:0 0 auto;z-index:250;height:var(--header);pointer-events:none}
-    .header-inner{width:var(--shell);height:100%;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
-    .header-inner .brand{justify-self:start}
-    .header-inner .header-action{justify-self:end}
-    .header-tagline{font-family:var(--sans);font-size:clamp(10px,.8vw,11px);font-weight:600;letter-spacing:.085em;text-transform:uppercase;opacity:.58;text-align:center}
-    @media(max-width:50rem){.header-tagline{display:none}.header-inner{display:flex;justify-content:space-between}}
-    .header-inner>*{pointer-events:auto}
-    .brand{display:inline-flex;align-items:center;gap:11px;justify-self:start;font-size:18px;font-weight:600;letter-spacing:-.04em}
-    .site-nav{display:flex;align-items:center;gap:clamp(14px,2vw,28px)}
-    .site-nav button{padding:8px 0 6px;border-bottom:2px solid transparent;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:-.02em;font-style:normal;text-transform:capitalize;opacity:.78;transition:opacity 180ms ease,border-color 180ms ease}
-    .site-nav button:hover,.site-nav button[aria-current="page"]{border-color:var(--green);opacity:1}
-    .header-action{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:500;letter-spacing:-.015em}
-    .header-action::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);transition:transform 260ms var(--ease)}
-    .header-action:hover::before{transform:scale(1.45)}
-    .right-nav{position:fixed;right:calc((100% - var(--shell))/2);top:50%;z-index:250;display:flex;flex-direction:column;align-items:flex-end;gap:16px;transform:translateY(-50%);text-align:right}
-    .right-nav button,.right-nav a{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.78;transform:scale(1);transform-origin:right center;transition:opacity 240ms ease,transform 420ms var(--ease);will-change:transform}
-    .right-nav button:hover,.right-nav button[aria-current="page"],.right-nav a:hover,.right-nav a:focus-visible{opacity:1;transform:scale(1.16)}
-    .right-nav .route-link{font-size:10px;font-weight:600;opacity:.48}
-    .right-nav-break{width:38px;height:1px;margin:2px 0;background:rgba(29,36,26,.18)}
-    @media(max-width:50rem){.right-nav{display:none}}
-
-    #stage{position:fixed;inset:0;overflow:hidden}
-    .panel{position:absolute;overflow:hidden;background:var(--paper)}
-    .hero{inset:0;z-index:1}
-    .panel:not(.hero){inset:0;z-index:5;width:auto;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(18px);transition:opacity 420ms ease,transform 720ms var(--ease),visibility 0s linear 720ms}
-    .panel:focus{outline:none}
-    .panel:not(.hero).is-active{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity 420ms ease,transform 720ms var(--ease)}
-    .panel-inner{height:100%;padding:clamp(20px,3.5vh,38px) 0}
-    .panel-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.66fr);gap:clamp(36px,8vw,120px);align-items:end}
-    .panel-title{max-width:none;margin-top:11px;font-size:clamp(2.6rem,min(6.4vw,9.5vh),6.6rem);margin-right:auto}
-    .meta-row{display:flex;flex-wrap:wrap;gap:14px 70px;width:fit-content}
-    .meta-cell{display:grid;gap:4px}
-    .meta-label{font-family:var(--sans);font-size:9px;letter-spacing:.08em;text-transform:uppercase;opacity:.4}
-    .meta-value{font-family:var(--sans);font-size:14px;line-height:1.4;opacity:.8}
-    .sheet-close{position:absolute;bottom:clamp(20px,3vh,32px);left:calc((100% - var(--shell))/2);z-index:6;padding:6px 10px 6px 0;background:var(--paper);border-bottom:1px solid rgba(29,36,26,.35);font-size:10px;letter-spacing:.04em;opacity:.7}
-    .sheet-close:hover{opacity:1}
-    .panel:not(.hero) .panel-inner{position:relative;z-index:2;width:var(--shell);margin:0 auto;padding:calc(var(--header) + clamp(20px,3.5vh,38px)) clamp(240px,21vw,330px) clamp(70px,10vh,100px) 0}
-    .panel:not(.hero) .panel-head{grid-template-columns:1fr;gap:clamp(18px,3vh,30px);align-items:start;justify-items:start;text-align:left}
-    .panel:not(.hero) .panel-head>.body-copy{max-width:82ch;font-size:clamp(1.1rem,1.6vw,1.5rem);line-height:1.5;margin-left:0;opacity:.75}
-    .panel:not(.hero) .panel-title{margin:11px 0 0;font-family:var(--display);font-weight:400;letter-spacing:-.03em;line-height:.98}
-
-    .home-layout{position:relative;height:100%}
-    .hero-main{position:absolute;inset:0;display:flex;align-items:center}
-    .hero-footer{position:absolute;inset:auto 0 clamp(30px,4.5vh,52px);z-index:3}
-    .home-meta{display:flex;justify-content:space-between;gap:20px;font-family:var(--sans);font-size:clamp(10px,.88vw,12px);font-weight:600;letter-spacing:.065em;line-height:1.35;text-transform:uppercase}
-
-    .hero-mark{position:absolute;top:50%;left:56%;z-index:0;width:clamp(320px,42vw,560px);aspect-ratio:1;transform:translate(-30%,-50%);pointer-events:none}
-    .hero-mark::before,.hero-mark::after{content:'';position:absolute;border-radius:50%;pointer-events:none}
-    .hero-mark::before{inset:-32%;background:radial-gradient(circle at 44% 40%,rgba(238,205,120,.9) 0%,rgba(96,164,132,.84) 42%,rgba(96,164,132,.32) 58%,rgba(96,164,132,0) 72%);filter:blur(34px) saturate(1.08)}
-    .hero-mark::after{inset:13%;background:radial-gradient(circle at 58% 62%,rgba(96,164,132,.66) 0%,rgba(238,205,120,.4) 48%,rgba(238,205,120,0) 68%);filter:blur(24px);mix-blend-mode:multiply;opacity:.72}
-    .hero h1{position:relative;z-index:2;max-width:none;font-family:var(--display);font-size:clamp(3.6rem,min(7.4vw,12.5vh),7.6rem);font-weight:400;letter-spacing:-.03em;line-height:.98}
-    .hero-line{display:block}
-    .hero h1 em{font-style:italic;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:rgba(29,36,26,.4)}
-    .hero::after{content:'';position:absolute;inset:auto 0 0;height:52vh;pointer-events:none;background:radial-gradient(72% 100% at 50% 118%,rgba(238,205,120,.5) 0%,rgba(96,164,132,.22) 45%,rgba(96,164,132,0) 72%)}
-    .hero .shell{position:relative;z-index:2}
-    .aura-note{position:absolute;top:16%;right:-6%;max-width:11ch;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.1em;line-height:1.5;text-transform:uppercase}
-    .hero-footer{display:grid;grid-template-columns:minmax(0,1fr);align-items:end;padding:0}
-
-    .hero-footer>.body-copy{max-width:52ch;font-size:clamp(1.05rem,1.45vw,1.4rem);line-height:1.55;opacity:.75}
-    @media(min-width:50.01rem){.hero-footer>.body-copy{max-width:calc(100% - 237px)}}
-    .persistent-action{position:fixed;right:calc((100% - var(--shell))/2);bottom:clamp(30px,4.5vh,52px);z-index:252;width:min(205px,calc(100% - 32px));display:grid}
-    .cta{width:100%;min-height:44px;padding:0 15px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0;transition:transform 200ms var(--ease)}
-    .cta:hover{transform:translateY(-2px);color:var(--paper)}
-
-    .recognition-layout,.practice-layout{height:100%;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);gap:clamp(20px,3.5vh,44px)}
-    .manifesto{align-self:center;font-family:var(--display);font-size:clamp(1.5rem,2.4vw,2.35rem);line-height:1.5;letter-spacing:-.01em;max-width:none}
-    .manifesto em{font-style:italic;border-bottom:2px solid rgba(96,164,132,.6)}
-
-
-    .number{font-family:var(--sans);font-size:9px;opacity:.5}
-
-    .journey{align-self:stretch;min-height:0;width:100%;display:grid;gap:clamp(12px,2.6vh,32px);align-content:center}
-    .journey>p{font-family:var(--display);font-size:clamp(1.2rem,min(2.2vw,3.4vh),2.15rem);line-height:1.35;letter-spacing:-.01em;max-width:34ch}
-    .journey em{font-style:italic;border-bottom:2px solid rgba(96,164,132,.6)}
-    .journey .j2{margin-left:clamp(40px,6vw,96px)}
-    .journey .j3{margin-left:clamp(80px,12vw,192px)}
-    .journey .practice-note{margin-top:clamp(4px,1.2vh,12px)}
-    .practice-layout .practice-note{margin-left:clamp(132px,18vw,300px)}
-
-    .practice-note{align-self:center;justify-self:start;flex-wrap:nowrap;gap:14px 36px}
-    .journey-more{justify-self:end;font-size:10px;letter-spacing:.02em}
-
-    .john-layout{height:100%;display:grid}
-    .portrait{width:clamp(120px,12vw,180px);aspect-ratio:1;margin:0;border-radius:50%;overflow:hidden;background:rgba(96,164,132,.12)}
-    .portrait img{width:100%;height:100%;object-fit:cover;object-position:52% 30%}
-    .quote-lead{--quote-field:2.36em;font-family:var(--display);font-style:italic;font-size:clamp(2rem,min(4vw,7vh),3.9rem);line-height:1.18;letter-spacing:-.02em;max-width:none;display:grid;align-content:start;min-height:calc(var(--quote-field) + 12px + 34px)}
-    .quote-lead>#quoteText{min-height:var(--quote-field);display:flex;align-items:flex-end;transition:opacity 180ms ease}
-    .quote-lead cite{width:min(100%,27rem);min-height:34px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:14px;margin-top:12px;font-family:var(--sans);font-style:normal;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.5}
-    #quoteWho{min-width:0;line-height:1.35;transition:opacity 180ms ease}
-    .quote-count{min-width:3.2em;font-variant-numeric:tabular-nums;transition:opacity 180ms ease}
-    .quote-lead.is-changing>#quoteText,.quote-lead.is-changing #quoteWho,.quote-lead.is-changing .quote-count{opacity:0}
-    .quote-arrows{display:flex;gap:2px}
-    .q-arrow{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(29,36,26,.25);border-radius:50%;font-size:13px;opacity:.8;transition:background 180ms ease,opacity 180ms ease}
-    .q-arrow:hover{background:rgba(96,164,132,.15);opacity:1}
-    .john-row{display:grid;grid-template-columns:clamp(120px,12vw,180px) 1fr;gap:clamp(28px,4.5vw,64px);align-items:center}
-    .john-bio{display:grid;gap:12px;justify-items:start}
-    .john-bio h2{font-family:var(--sans);font-size:clamp(1.35rem,1.9vw,1.85rem);font-weight:500;letter-spacing:-.03em;line-height:1.15}
-    .john-bio .body-copy{max-width:72ch;font-size:clamp(.85rem,1.1vw,1.05rem);line-height:1.6;opacity:.65}
-    .john-copy{position:relative;z-index:2;width:var(--shell);margin:0 auto;padding:calc(var(--header) + clamp(16px,2.5vh,28px)) clamp(240px,21vw,330px) clamp(70px,10vh,100px) 0;display:grid;grid-template-columns:1fr;align-content:center;justify-items:start;text-align:left;row-gap:clamp(28px,5.5vh,64px)}
-    .text-button{padding:4px 0;border-bottom:1px solid currentColor;font-family:var(--sans);font-size:11px}
-
-    .money-layout{height:100%;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto;align-content:center;gap:clamp(28px,5vh,48px);justify-items:start;text-align:left}
-    .money-statement{align-self:center;font-family:var(--display);font-size:clamp(2.1rem,min(3.9vw,7.2vh),3.8rem);line-height:1.24;letter-spacing:-.02em;max-width:none}
-    .money-statement .text-button{display:block;width:max-content;margin-top:clamp(16px,2.4vh,24px);font-size:clamp(10px,.78vw,12px);letter-spacing:0}
-    .money-notes{width:100%;display:grid;grid-template-columns:1fr 1fr;align-items:baseline;gap:clamp(28px,5vw,64px);border-top:1px solid rgba(29,36,26,.12);padding-top:clamp(16px,3vh,26px)}
-    .money-notes .body-copy{max-width:60ch;font-size:clamp(.85rem,1.1vw,1.05rem);line-height:1.6;opacity:.65}
-    .money-price{white-space:nowrap}
-    @media(min-width:50.01rem){
-      .money-layout{container-type:inline-size}
-      .money-statement{font-size:min(5.15cqw,3.3rem);white-space:nowrap}
-    }
-    .dana-link{font:inherit;color:inherit;border-bottom:1px solid rgba(29,36,26,.35);padding:6px 0;min-height:44px;transition:color 180ms ease,border-color 180ms ease}
-    .money-notes .dana-link{padding:0;min-height:0;line-height:inherit;border-bottom:0;text-decoration:underline;text-decoration-color:rgba(29,36,26,.35);text-underline-offset:.3em}
-    .dana-link:hover{color:var(--green);border-color:var(--green)}
-    .dana-link:focus-visible{outline:2px solid var(--green);outline-offset:5px}
-    .dana-dialog{position:fixed;inset:0;margin:auto;width:min(560px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:clamp(24px,5vw,44px);border:1px solid rgba(29,36,26,.12);background:var(--paper);color:var(--ink)}
-    .dana-dialog::backdrop{background:rgba(29,36,26,.28);backdrop-filter:blur(5px)}
-    .dana-dialog header{display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .dana-dialog .close-overlay{min-width:44px;min-height:44px;font-size:12px}
-    .dana-dialog h2{margin:24px 0;font-size:clamp(28px,5vw,38px);line-height:1.12;font-weight:500;letter-spacing:-.035em}
-    .dana-dialog>p{margin-top:18px;font-size:16px;line-height:1.6;color:rgba(29,36,26,.75)}
-    .dana-dialog .overlay-more{min-height:44px;align-items:center;font-size:14px;margin-top:24px}
-    .dana-dialog-actions{display:flex;flex-wrap:wrap;gap:0 24px;align-items:baseline}
-
-    .panel-controls{position:fixed;inset:auto 0 0;z-index:55;height:var(--controls);pointer-events:none}
-    .controls-inner{width:var(--shell);height:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .controls-inner>*{pointer-events:auto}
-    .explore-links{display:flex;align-items:center;gap:clamp(16px,3vw,40px)}
-    .explore-links button,.explore-links a{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;opacity:.58}
-    .explore-links button:hover,.explore-links button[aria-current="page"],.explore-links a:hover{opacity:1}
-    .mobile-menu-toggle{display:none}
-
-    .form-overlay,.training-overlay,.dana-overlay{position:fixed;inset:0;z-index:300;background:var(--paper);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 400ms var(--ease),transform 400ms var(--ease),visibility 0s linear 400ms}
-    .form-overlay.open,.training-overlay.open,.dana-overlay.open{opacity:1;visibility:visible;transform:none;transition:opacity 400ms var(--ease),transform 400ms var(--ease)}
-    .form-overlay iframe{width:100%;height:100%;border:0;display:block}
-    .training-overlay,.dana-overlay{display:grid;place-content:center;padding:24px}
-    .training-card,.dana-card{width:min(740px,calc(100vw - 48px));padding:clamp(24px,5vw,54px);border:1px solid rgba(29,36,26,.1)}
-    .training-card header,.dana-card header{display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .training-card h2,.dana-card h2{margin-top:21px;font-family:var(--sans);font-size:clamp(2rem,4vw,3.6rem);font-weight:500;letter-spacing:-.05em;line-height:.92}
-    .training-card p,.dana-card p{margin-top:22px;font-size:clamp(.72rem,1.2vw,.92rem);line-height:1.52;opacity:.68}
-    .overlay-more{display:inline-flex;margin-top:22px;padding-bottom:4px;border-bottom:1px solid currentColor;font-size:11px}
-    .close-overlay{font-family:var(--sans);font-size:9px}
-
-    @media(min-width:50.01rem){:root{--controls:0px}.panel-controls{display:none}}
-    @media(max-width:50rem){
-      :root{--shell:calc(100% - 32px);--header:calc(56px + env(safe-area-inset-top));--controls:calc(50px + env(safe-area-inset-bottom))}
-      .site-header{height:var(--header);padding-top:env(safe-area-inset-top)}
-      .header-inner{height:56px}
-      .header-inner{display:flex;justify-content:space-between}
-      .brand{font-size:16px}
-      .simple-mark{width:24px;height:24px}
-      .header-action{font-size:12px}
-      .site-nav{display:none}
-      .panel-inner{padding:18px 0}
-      .panel-head{grid-template-columns:1fr;gap:10px;align-items:start}
-      .panel-title{margin-top:7px;font-size:clamp(2.25rem,10.2vw,3.8rem)}
-      .panel-head .body-copy{font-size:.75rem}
-      .hero-footer{bottom:calc(var(--controls) + 78px)}
-      .home-meta{font-size:9px;letter-spacing:.055em}
-      .hero-main{display:flex;align-items:flex-start;padding-top:clamp(128px,24vh,202px)}
-      .hero-mark{top:52%;left:50%;width:clamp(230px,68vw,320px);transform:translate(-42%,-50%)}
-      .hero h1{max-width:none;font-size:clamp(2.9rem,13.5vw,4.55rem)}
-      .hero-mobile-break{display:block}
-      .hero-footer{grid-template-columns:1fr;padding:0}
-      .hero-footer>.body-copy{max-width:39ch;font-size:.78rem}
-      .persistent-action{right:16px;bottom:calc(68px + env(safe-area-inset-bottom));width:min(205px,calc(100% - 32px))}
-      .cta{min-height:44px;padding:0 15px;font-size:11px}
-      .recognition-layout,.practice-layout{gap:14px}
-
-      .journey{gap:14px}
-      .journey p{font-size:clamp(1.05rem,4.4vw,1.3rem);max-width:none}
-      .journey .j2,.journey .j3{margin-left:0}
-      .practice-layout .practice-note{margin-left:0}
-      .practice-note{flex-wrap:wrap;gap:10px 24px}
-      .quote-lead{--quote-field:3.54em;font-size:clamp(1.8rem,7.7vw,2rem)}
-      .quote-lead cite{gap:10px;margin-top:9px;font-size:10px}
-      .q-arrow{width:32px;height:32px}
-      .john-layout{grid-template-columns:1fr}
-      .portrait{width:clamp(104px,28vw,118px)}
-      .john-copy{width:var(--shell);padding:calc(var(--header) + 10px) 0 calc(var(--controls) + 14px);row-gap:14px;align-content:center;grid-template-columns:1fr;transform:translateY(-16px)}
-      .john-row{grid-template-columns:1fr;gap:12px}
-      .john-bio{gap:9px}
-      .john-bio h2{font-size:clamp(1.25rem,5.7vw,1.45rem);line-height:1.12}
-      .john-bio .body-copy{font-size:.82rem;line-height:1.52}
-      .panel:not(.hero) .panel-head>.body-copy{margin-left:0;max-width:none}
-      .money-layout{grid-template-columns:1fr;gap:28px}
-      .money-notes{grid-template-columns:1fr;gap:14px}
-      .money-statement{font-size:clamp(1.5rem,6.5vw,2rem)}
-      .panel:not(.hero) .panel-inner{padding:calc(var(--header) + 14px) 0 138px}
-      .panel:not(.hero) .panel-head{grid-template-columns:1fr;gap:10px;align-items:start}
-      .sheet-close{left:16px;bottom:calc(14px + env(safe-area-inset-bottom))}
-      .panel-controls{inset:auto 16px calc(14px + env(safe-area-inset-bottom)) auto;height:auto}
-      .controls-inner{width:auto;height:auto}
-      .mobile-menu-toggle{min-height:43px;padding:0 15px;display:inline-flex;align-items:center;border:1px solid rgba(29,36,26,.28);background:rgba(245,242,234,.94);color:var(--ink);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;box-shadow:0 8px 24px rgba(29,36,26,.06);backdrop-filter:blur(12px);transition:background 220ms ease,color 220ms ease,border-color 220ms ease}
-      .panel-controls.open .mobile-menu-toggle{border-color:var(--ink);background:var(--ink);color:var(--paper)}
-      .explore-links{position:fixed;right:16px;bottom:calc(128px + env(safe-area-inset-bottom));width:min(280px,calc(100vw - 32px));padding:6px;display:grid;gap:0;border:1px solid rgba(29,36,26,.1);background:var(--paper);box-shadow:0 12px 36px rgba(29,36,26,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 220ms ease,transform 320ms var(--ease),visibility 0s linear 320ms}
-      .panel-controls.open .explore-links{opacity:1;visibility:visible;transform:none;transition:opacity 220ms ease,transform 320ms var(--ease)}
-      .explore-links button,.explore-links a{min-height:44px;padding:0 10px;border-bottom:1px solid rgba(29,36,26,.14);display:flex;align-items:center;font-size:10px;text-align:left;opacity:.72}
-      .explore-links .route-link{color:var(--green)}
-      .explore-links>:last-child{border-bottom:0}
-      body.landing-menu-open .persistent-action{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px)}
-    }
-    @media(max-width:22rem){
-      .brand span{display:none}
-      .persistent-action{left:16px;right:auto;bottom:calc(14px + env(safe-area-inset-bottom));width:174px}
-      .cta{min-height:43px;padding-inline:9px;font-size:10px}
-      .panel-controls{right:16px;bottom:calc(14px + env(safe-area-inset-bottom))}
-      .mobile-menu-toggle{width:106px;padding-inline:8px;font-size:0}
-      .mobile-menu-toggle::after{content:'Explore +';font-size:9px}
-      .panel-controls.open .mobile-menu-toggle::after{content:'Close −'}
-      .explore-links{bottom:calc(70px + env(safe-area-inset-bottom))}
-    }
-    @media(max-height:42rem){
-      .panel-inner{padding:12px 0}
-      .panel-title{font-size:clamp(2rem,7.8vh,3.4rem)}
-
-      .hero-mark{width:clamp(150px,30vh,200px)}
-      .hero-main{align-items:flex-start;padding-top:clamp(102px,20vh,136px)}
-      .hero h1{max-width:16ch;font-size:clamp(2.1rem,7.6vh,3.4rem)}
-      .hero-footer{padding-top:7px}
-      .recognition-layout,.practice-layout{gap:8px}
-      .manifesto{font-size:clamp(1rem,3.2vh,1.3rem);line-height:1.5}
-      .journey{gap:8px;align-self:start}
-      .journey>p{font-size:clamp(.9rem,2.6vh,1.15rem);line-height:1.3;max-width:none}
-      .journey .j2,.journey .j3{margin-left:clamp(20px,4vh,44px)}
-      .journey .j3{margin-left:clamp(40px,8vh,88px)}
-      .practice-layout .practice-note{margin-left:0;gap:8px 20px}
-      .journey-more{display:none}
-      .meta-value{font-size:.72rem}
-      .panel-head .body-copy{display:none}
-      .recognition-layout,.practice-layout{gap:clamp(10px,2.5vh,20px)}
-      .portrait{width:clamp(110px,22vh,170px)}
-      .john-copy{padding-top:calc(var(--header) + 6px);padding-bottom:52px;gap:5px}
-      .panel:not(.hero) .panel-inner{padding-top:calc(var(--header) + 8px);padding-bottom:120px}
-      .panel:not(.hero) .panel-title{font-size:clamp(2rem,7.6vh,3.1rem)}
-      .panel:not(.hero) .panel-head>.body-copy{max-width:56ch;font-size:.78rem;margin-left:0}
-      .sheet-close{bottom:12px}
-    }
-    @media(min-width:50.01rem) and (max-height:42rem){
-      .hero h1{max-width:none}
-      .practice-layout .practice-note{margin-left:clamp(100px,14vw,220px)}
-    }
-    @media(max-height:34rem),(max-width:50rem) and (max-height:42rem){
-      .panel:not(.hero){overflow-y:auto;overscroll-behavior:contain}
-      .panel:not(.hero) .panel-inner,.john-copy{height:auto;min-height:100%}
-      .john-copy{padding-bottom:140px;align-content:start;min-height:calc(100% + 140px)}
-      .sheet-close{position:fixed}
-    }
-    @media(max-width:50rem) and (max-height:42rem){
-      .hero-line,.hero-mobile-break{display:inline}
-      .john-copy{transform:none}
-      .portrait{width:clamp(86px,14vh,92px)}
-    }
-    @media(prefers-reduced-motion:reduce){
-      @view-transition{navigation:none}
-      .gate-breathe{animation:none}
-      .panel,#gate,.gate-mark,.gate-breathe,.hero-mark,.site-header,.home-meta,.hero-main,.hero-footer,.form-overlay,.training-overlay,.dana-overlay,.cta,.right-nav button,#quoteText,#quoteWho,.quote-count{transition-duration:1ms!important;transition-delay:0s!important}
-    }
-    @keyframes stb-page-out{to{opacity:0;transform:scale(.992)}}
-    @keyframes stb-page-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-    ::view-transition-old(root){animation:280ms ease both stb-page-out}
-    ::view-transition-new(root){animation:520ms var(--ease) both stb-page-in}
-    ::view-transition-group(stb-ring){animation-duration:560ms;animation-timing-function:var(--ease)}
-  </style>
-  <link rel="stylesheet" href="elsewhere.css?v=20260914">
-  <style>
-    @media(min-width:50.01rem){
-      #john .john-copy{grid-template-columns:minmax(0,1.8fr) minmax(180px,1fr);column-gap:clamp(32px,4vw,64px);row-gap:clamp(28px,4.5vh,48px);align-content:center}
-      #john .john-row{grid-column:1 / -1;width:100%;grid-template-columns:clamp(150px,18vw,250px) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:center}
-      #john .portrait{width:100%}
-      #john .john-bio{gap:16px}
-      #john .john-bio h2{font-family:var(--display);font-weight:400;font-size:clamp(3.25rem,6.6vw,5.9rem);line-height:1;letter-spacing:-.045em}
-      #john .john-bio .body-copy{max-width:49ch;font-size:clamp(.94rem,1.2vw,1.125rem);line-height:1.6;opacity:.78}
-      #john #openTraining{font-size:12px;min-height:36px}
-      #john .quote-lead{width:100%;font-size:clamp(1.4rem,2.15vw,2rem);--quote-field:2.36em;padding-top:24px;border-top:1px solid rgba(29,36,26,.14);min-height:0}
-      #john .quote-lead>#quoteText{align-items:flex-start}
-      #john .quote-lead cite{width:100%;font-size:9px;letter-spacing:.06em;gap:10px;opacity:.65}
-      #john .q-arrow{width:38px;height:38px}
-      #john .elsewhere{align-self:start;margin:0;padding-top:24px}
-      #john .elsewhere-links{grid-template-columns:1fr;gap:12px}
-      #john .elsewhere-label{margin-bottom:12px}
-    }
-    @media(min-width:50.01rem) and (max-width:68.75rem){#john .quote-lead{--quote-field:3.54em}}
-    @media(min-width:50.01rem) and (max-height:42rem){
-      #john{overflow:hidden}
-      #john .john-layout{position:absolute;inset:var(--header) 0 84px;height:auto;display:block;overflow-y:auto;overscroll-behavior:contain}
-      #john .john-copy{min-height:0;height:auto;padding-top:20px;padding-bottom:24px;align-content:start}
-    }
-    /* Mobile John-first layout: keep reading clear of the persistent controls. */
-    @media(max-width:50rem){
-      #john{overflow:hidden}
-      #john .john-layout{position:absolute;inset:calc(var(--header) + 10px) 0 calc(130px + env(safe-area-inset-bottom));height:auto;display:block;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
-      #john .john-copy{height:auto;min-height:0;padding:16px 0 32px;transform:none;align-content:start;gap:32px}
-      #john .john-row{width:100%;grid-template-columns:88px minmax(0,1fr);gap:22px;align-items:center}
-      #john .portrait{width:88px;grid-column:1;grid-row:1}
-      #john .john-bio{display:contents}
-      #john .john-bio h2{grid-column:2;grid-row:1;font-size:1.75rem}
-      #john .john-bio .body-copy{grid-column:1 / -1;font-size:1rem;line-height:1.65;opacity:.78}
-      #john #openTraining{grid-column:1 / -1;justify-self:start;font-size:13px;min-height:44px;margin-top:-12px}
-      #john .quote-lead{width:100%;padding-top:26px;border-top:1px solid rgba(29,36,26,.14);font-size:1.6rem;--quote-field:3.54em;min-height:0}
-      #john .quote-lead>#quoteText{align-items:flex-start}
-      #john .quote-lead cite{grid-template-columns:minmax(0,1fr) auto auto;gap:10px;margin-top:14px;font-size:9px;opacity:.65}
-      #john .q-arrow{width:44px;height:44px}
-      #john .elsewhere{margin:0;padding-top:24px}
-      #john .elsewhere-name{font-size:14px}
-      #john .elsewhere-description{font-size:12px;line-height:1.5}
-      #john .sheet-close{position:fixed}
-    }
-    @media(max-width:22rem){#john .john-layout{bottom:calc(76px + env(safe-area-inset-bottom))}}
+    html[data-gate="1"] .intro{opacity:0;visibility:hidden}
+    html[data-gate="1"] .intro .mark{opacity:0}
+    #gate.is-travelling .gate-mark{transform:translate(var(--gate-x),var(--gate-y)) scale(var(--gate-scale))}
+    @keyframes text-arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    html:not([data-gate]) .intro h1,html:not([data-gate]) .roles,html:not([data-gate]) .format,html:not([data-gate]) .email,html:not([data-gate]) nav a{animation:text-arrive .85s cubic-bezier(.22,1,.36,1) both}
+    html:not([data-gate]) .roles{animation-delay:.12s}
+    html:not([data-gate]) .format{animation-delay:.2s}
+    html:not([data-gate]) .email{animation-delay:.26s}
+    html:not([data-gate]) nav a:nth-child(1){animation-delay:.4s}
+    html:not([data-gate]) nav a:nth-child(2){animation-delay:.47s}
+    html:not([data-gate]) nav a:nth-child(3){animation-delay:.54s}
+    .intro a:focus-visible{animation:none!important}
+    h1{margin:0;font-size:clamp(32px,4vw,44px);font-weight:500;line-height:1.15;letter-spacing:-.045em}
+    .roles{margin:18px auto 0;font-size:clamp(15px,1.45vw,18px);line-height:1.8;font-weight:400;text-wrap:balance}
+    .roles span{white-space:nowrap}
+    .format{margin:8px 0 0;font-size:14px;line-height:1.6;color:#62695e}
+    a{color:inherit;text-decoration:none}
+    .email{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 30px;margin-top:34px;border:1px solid rgba(96,164,132,.16);border-radius:4px;background:linear-gradient(115deg,rgba(96,164,132,.15),rgba(238,205,120,.13));color:var(--ink);font-size:15px;transition:background-color .25s ease,border-color .25s ease}
+    .email:hover{background-color:rgba(96,164,132,.09);border-color:rgba(96,164,132,.3)}
+    nav{display:flex;flex-wrap:wrap;justify-content:center;gap:0 28px;margin-top:30px}
+    nav a{display:inline-flex;align-items:center;min-height:44px;font-size:13px;text-decoration:underline;text-decoration-color:#b2b6ab;text-underline-offset:5px;text-decoration-thickness:1px;transition:color .2s ease,text-decoration-color .2s ease}
+    nav a:hover{color:#40785f;text-decoration-color:currentColor}
+    a:focus-visible{outline:2px solid var(--green);outline-offset:6px}
+    ::selection{background:#60a48440}
+    @media(max-width:420px){main{padding:40px 22px}.roles{max-width:310px}nav{gap:0 23px}}
+    @media(prefers-reduced-motion:reduce){a,.intro,.gate-mark{transition:none!important}.gate-mark svg,.intro h1,.intro .roles,.intro .format,.intro .email,.intro nav a{animation:none!important}html[data-gate="1"] #gate{display:none}html[data-gate="1"] .intro{opacity:1;visibility:visible}html[data-gate="1"] .intro .mark{opacity:1}}
   </style>
 </head>
 <body>
-<div id="gate" aria-hidden="true">
-  <div class="gate-mark">
-    <div class="gate-breathe">
-      <svg class="resolved-mark" viewBox="0 0 320 320" aria-hidden="true"><circle cx="160" cy="160" r="71" fill="none" stroke="currentColor" stroke-width="46"></circle></svg>
+  <div id="gate" aria-hidden="true"><div class="gate-mark"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10"/></svg></div></div>
+  <main>
+    <div class="intro">
+      <svg class="mark" viewBox="0 0 32 32" role="img" aria-label="Space to Be"><circle cx="16" cy="16" r="10"/></svg>
+      <h1>John Ooi</h1>
+      <p class="roles"><span>meditation teacher</span> / <span>spiritual friend</span> / <span>realisation partner</span></p>
+      <p class="format"><em>hourly or over six week flows</em></p>
+      <a class="email" href="mailto:john@spacetobe.xyz?subject=Space%20to%20Be">Email me</a>
+      <nav aria-label="Elsewhere">
+        <a href="https://beingsclub.com/">Beings Club</a>
+        <a href="https://wonderfool.substack.com">Wonderfool</a>
+        <a href="https://j-hn.info/">about</a>
+      </nav>
     </div>
-  </div>
-</div>
-
-<main id="stage">
-  <section class="panel hero is-active" id="home" data-title="Space to Be" aria-labelledby="home-title" data-screen-label="Home: hero">
-    <div class="shell home-layout">
-      <div class="hero-main">
-        <h1 id="home-title"><span class="hero-line">Life changes.</span> <span class="hero-line">So can the way <span class="hero-mobile-break">you <em>meet&nbsp;it.</em></span></span></h1>
-        <div class="hero-mark" aria-hidden="true"></div>
-      </div>
-      <div class="hero-footer">
-        <p class="body-copy">For curious people changing their work, their home, or the way they want to live.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel" id="for-you" data-title="For you" aria-labelledby="for-title" data-screen-label="Sheet 01: For you">
-    <div class="shell panel-inner recognition-layout">
-      <div class="panel-head"><div><h2 class="display panel-title" id="for-title">Time, space, and support for finding a way <em>forward.</em></h2></div></div>
-      <p class="manifesto"><em>Your life may be changing.</em> You may be moving away, changing career, starting a business, or starting university. You may be struggling to find your feet, wondering where you belong, or wanting to meet the people you love differently. On paper, your life may work. Inside, perhaps you want to meet it with more <em>confidence, kindness, and possibility.</em></p>
-    </div>
-  </section>
-
-  <section class="panel" id="how" data-title="How" aria-labelledby="how-title" data-screen-label="Sheet 02: How">
-    <div class="shell panel-inner practice-layout">
-      <div class="panel-head"><div><h2 class="display panel-title" id="how-title">A real relationship, with room for your <em>whole being.</em></h2></div></div>
-      <div class="journey">
-        <p>First, <em>a conversation.</em> Twenty minutes to see if it feels right.</p>
-        <p class="j2">Then <em>six weekly meetings</em> of meditation and honest conversation.</p>
-        <p class="j3">After the sixth week, we can <em>stop, begin again, or meet on a new schedule.</em></p>
-        <div class="meta-row practice-note"><div class="meta-cell"><p class="meta-label">Where</p><p class="meta-value">Online, or in person where practical</p></div><div class="meta-cell"><p class="meta-label">Between meetings</p><p class="meta-value">Voice notes + messages</p></div><div class="meta-cell"><p class="meta-label">Always</p><p class="meta-value">Confidential</p></div></div>
-        <a class="text-button journey-more" href="work-with-john/">Find out more about working together</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel" id="john" data-title="John" aria-labelledby="john-name" data-screen-label="Sheet 03: John">
-    <div class="john-layout">
-      <div class="john-copy">
-        <blockquote class="quote-lead" id="john-title"><span id="quoteText" aria-live="polite">“Time is not trivial, and Sundays are more intentional than the others. Time spent with John on Sundays was always worth it.”</span><cite class="quote-cite"><span id="quoteWho">Sean P, founder and industrial designer</span><span class="quote-count" id="quoteCount">1 / 4</span><span class="quote-arrows"><button class="q-arrow" id="prevQuote" aria-label="Previous testimonial">←</button><button class="q-arrow" id="nextQuote" aria-label="Next testimonial">→</button></span></cite></blockquote>
-        <div class="john-row">
-          <figure class="portrait"><img src="images/john-portrait.jpg" alt="John Ooi, smiling, photographed on film" width="1500" height="1000" decoding="async"></figure>
-          <div class="john-bio">
-            <h2 id="john-name">John Ooi</h2>
-            <p class="body-copy">I work with a small number of people, making time and space for depth and care. I listen, respond to what is happening, offer what I can, and stay open to what is possible.</p>
-            <button class="text-button" id="openTraining">More about me, my training, practice and influences</button>
-            <nav class="elsewhere" aria-label="Elsewhere">
-              <span class="elsewhere-label">Elsewhere</span>
-              <div class="elsewhere-links">
-                <a href="https://j-hn.info/"><span class="elsewhere-name">j-hn.info</span><span class="elsewhere-description">My writing and wider work</span></a>
-                <a href="https://beingsclub.com/"><span class="elsewhere-name">Beings Club</span><span class="elsewhere-description">Gatherings and membership for curious people</span></a>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel money" id="money" data-title="Money" aria-labelledby="money-title" data-screen-label="Sheet 04: Money">
-    <div class="shell panel-inner money-layout">
-      <div class="money-statement"><p id="money-title">This work is offered for <span class="money-price">£125 to £225</span> per session.</p></div>
-      <div class="money-notes"><p class="body-copy">I invite you to choose a rate within this range. The amount you choose does not change the care I offer.</p><p class="body-copy dana-invitation">If this is beyond your means, you’re still welcome to reach out. I offer a small number of <button class="dana-link" id="openDana" type="button" aria-haspopup="dialog" aria-controls="danaOverlay">dāna places</button>.</p></div>
-    </div>
-  </section>
-</main>
-
-<header class="site-header" data-screen-label="Home: header">
-  <div class="header-inner">
-    <button class="brand" data-go="home" aria-label="Space to Be home"><svg class="simple-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"></circle></svg><span>Space to Be</span></button>
-    <p class="header-tagline">Meditation and spiritual friendship for people in transition</p>
-    <a class="header-action" href="start.html">Write to John</a>
-  </div>
-</header>
-
-<nav class="right-nav" aria-label="Explore Space to Be"><button data-go="for-you">Is this for me?</button><button data-go="how">How it works</button><button data-go="john">About John</button><button data-go="money">Money</button></nav>
-
-<nav class="panel-controls" aria-label="Explore the landing page">
-  <div class="controls-inner"><div class="explore-links"><button data-go="for-you">Is this for me?</button><button data-go="how">How it works</button><button data-go="john">About John</button><button data-go="money">Money</button></div><button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Explore Space to Be" aria-expanded="false">Explore Space to Be +</button></div>
-</nav>
-
-<div class="persistent-action"><a class="cta" href="start.html">Begin with a conversation</a></div>
-
-<div class="training-overlay" id="trainingOverlay" role="dialog" aria-modal="true" aria-labelledby="trainingTitle" aria-hidden="true"><article class="training-card"><header><p class="eyebrow">John Ooi / background</p><button class="close-overlay" id="closeTraining">Close ✕</button></header><h2 id="trainingTitle">Training, practice and influences</h2><p>I have practised meditation since 2017. I continue to work personally with teachers.<br><br>My teacher training includes Jack Kornfield and Tara Brach’s Mindfulness Meditation Teacher Certification Program and Dharma Moon’s Mindfulness Meditation Teacher Training with David Nichtern.<br><br>My practice draws most deeply from Plum Village and the Karma Kagyu lineages, alongside an interfaith upbringing and respect for many more contemplative traditions.<br><br>I think of my work as secular in the root sense of the word: <em>belonging to this age</em>.</p><a class="overlay-more" href="about/">Read more about John</a></article></div>
-<dialog class="dana-dialog" id="danaOverlay" aria-labelledby="danaTitle"><header><p class="eyebrow">Dāna / giving</p><button class="close-overlay" id="closeDana" type="button" aria-label="Close dāna information">Close ×</button></header><h2 id="danaTitle">Working on a dāna basis</h2><p>Dāna means giving or generosity. I offer a small number of places where the work is freely given, with no agreed fee or price.</p><p>The work is given first. Afterwards, if you choose to give, what you offer is received as a gift.</p><p>You’re welcome to ask about a dāna place, whether because of your circumstances or because you prefer this approach.</p><div class="dana-dialog-actions"><a class="overlay-more" href="start.html" id="danaConversation">Begin a conversation</a><a class="overlay-more" href="dana/">Read more about dāna</a></div></dialog>
-<div class="form-overlay" id="formOverlay" role="dialog" aria-modal="true" aria-label="Begin with a conversation" aria-hidden="true"><iframe id="formFrame" title="Begin with a conversation · Space to Be" src="start.html?v=20260818-copy" loading="lazy"></iframe></div>
-<script>
-(function () {
-  var root=document.documentElement;
-  var localFile=location.protocol==='file:';
-  if(localFile){document.querySelectorAll('a[href]').forEach(function(link){var href=link.getAttribute('href');if(href&&href.endsWith('/')&&!/^(?:[a-z]+:|\/\/|#)/i.test(href))link.setAttribute('href',href+'index.html');});}
-  var gate=document.getElementById('gate');
-  var gateMark=gate.querySelector('.gate-mark');
-  var heroMark=document.querySelector('.hero-mark');
-  var gateLeaving=false;
-  var reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var johnCopy=document.querySelector('.john-copy'),johnRow=document.querySelector('.john-row'),johnQuote=document.querySelector('.quote-lead'),johnElsewhere=document.querySelector('#john .elsewhere');
-  johnCopy.append(johnRow,johnQuote,johnElsewhere);
-
-  function finishEnter(){
-    if(!gateLeaving)return;
-    gateLeaving=false;
-    root.removeAttribute('data-gate');
-    root.removeAttribute('data-entering');
-    gate.classList.add('is-finished');
-  }
-  function enter(){
-    if(root.getAttribute('data-gate')!=='1'||gateLeaving)return;
-    gateLeaving=true;
-    try{sessionStorage.setItem('stb-entered','1');}catch(e){}
-    root.setAttribute('data-entering','1');
-    if(reducedMotion){gate.classList.add('is-arrived');setTimeout(finishEnter,30);return;}
-    var from=gateMark.getBoundingClientRect();
-    var to=heroMark.getBoundingClientRect();
-    gate.style.setProperty('--gate-x',(to.left+to.width/2-from.left-from.width/2)+'px');
-    gate.style.setProperty('--gate-y',(to.top+to.height/2-from.top-from.height/2)+'px');
-    gate.style.setProperty('--gate-scale',String(to.width/from.width));
-    gate.classList.add('is-travelling');
-    setTimeout(function(){gate.classList.add('is-arrived');},1220);
-    setTimeout(finishEnter,1500);
-  }
-  if(root.getAttribute('data-gate')==='1')setTimeout(enter,reducedMotion?120:2200);
-
-  var activeIndex=0;
-  var panels=Array.prototype.slice.call(document.querySelectorAll('.panel'));
-  var mobileControls=document.querySelector('.panel-controls');
-  var mobileToggle=document.getElementById('mobileMenuToggle');
-  function closeMobileMenu(){mobileControls.classList.remove('open');document.body.classList.remove('landing-menu-open');mobileToggle.setAttribute('aria-expanded','false');mobileToggle.setAttribute('aria-label','Explore Space to Be');mobileToggle.textContent='Explore Space to Be +';}
-  mobileToggle.addEventListener('click',function(){var open=mobileControls.classList.toggle('open');document.body.classList.toggle('landing-menu-open',open);mobileToggle.setAttribute('aria-expanded',open?'true':'false');mobileToggle.setAttribute('aria-label',open?'Close exploration':'Explore Space to Be');mobileToggle.textContent=open?'Close exploration −':'Explore Space to Be +';});
-  panels.slice(1).forEach(function(panel){
-    panel.setAttribute('aria-hidden','true');panel.tabIndex=-1;
-    var close=document.createElement('button');
-    close.type='button';close.className='sheet-close';close.textContent='Close ✕';close.setAttribute('aria-label','Close '+panel.dataset.title);
-    close.addEventListener('click',function(){showPanel(0);});panel.insertBefore(close,panel.firstChild);
-  });
-  function updateControls(){document.querySelectorAll('[data-go]').forEach(function(button){if(activeIndex>0&&button.dataset.go===panels[activeIndex].id)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});}
-  function showPanel(next){
-    closeMobileMenu();
-    next=Math.max(0,Math.min(panels.length-1,next));
-    if(next===activeIndex)return;
-    panels.slice(1).forEach(function(panel,index){var open=index+1===next;panel.classList.toggle('is-active',open);panel.setAttribute('aria-hidden',open?'false':'true');});
-    activeIndex=next;updateControls();
-    try{history.replaceState(null,'',next===0?location.pathname:'#'+panels[next].id);}catch(e){}
-    if(next>0)setTimeout(function(){panels[next].focus({preventScroll:true});},720);
-  }
-  document.addEventListener('click',function(e){var button=e.target.closest('[data-go]');if(!button)return;var index=panels.findIndex(function(panel){return panel.id===button.dataset.go;});if(index>-1)showPanel(index);});
-  var initialId=location.hash.slice(1),initialIndex=panels.findIndex(function(panel){return panel.id===initialId;});if(initialIndex>0)showPanel(initialIndex);else updateControls();
-
-  var quotes=[
-    {text:'Time is not trivial, and Sundays are more intentional than the others. Time spent with John on Sundays was always worth it.',who:'Sean P, founder and industrial designer'},
-    {text:'John has this capacity to make you feel at ease in a place where you feel accepted and guided by someone who sees you and cares to add value to your life.',who:'Laura F, writer and teacher'},
-    {text:'What I love most about John is how genuine and supportive he is. He makes meditation feel approachable…',who:'Carolina M, founder and fashion designer'},
-    {text:"John brings a friendly, quiet confidence. I feel like I'm learning that just by spending time with him and will carry it forward with me.",who:'JT, product designer'}
-  ];
-  var quoteIndex=0,quoteText=document.getElementById('quoteText'),quoteWho=document.getElementById('quoteWho'),quoteCount=document.getElementById('quoteCount'),quoteLead=document.querySelector('.quote-lead'),quoteSwapTimer=null;
-  // Reserve the tallest excerpt at the current width so the attribution and arrows stay put.
-  function sizeQuoteField(){
-    var width=quoteText.getBoundingClientRect().width;if(!width)return;
-    var measure=document.createElement('span');
-    measure.setAttribute('aria-hidden','true');
-    measure.style.cssText='position:absolute;visibility:hidden;pointer-events:none;display:block;min-height:0;height:auto;width:'+width+'px';
-    quoteLead.appendChild(measure);
-    var height=0;
-    quotes.forEach(function(quote){measure.textContent='“'+quote.text+'”';height=Math.max(height,measure.getBoundingClientRect().height);});
-    measure.remove();
-    quoteLead.style.setProperty('--quote-field',Math.ceil(height)+'px');
-  }
-  sizeQuoteField();
-  if(document.fonts)document.fonts.ready.then(sizeQuoteField);
-  window.addEventListener('resize',sizeQuoteField);
-  function renderQuote(){quoteText.textContent='“'+quotes[quoteIndex].text+'”';quoteWho.textContent=quotes[quoteIndex].who;quoteCount.textContent=(quoteIndex+1)+' / '+quotes.length;}
-  function showQuote(next){
-    quoteIndex=(next+quotes.length)%quotes.length;
-    if(reducedMotion){renderQuote();return;}
-    quoteLead.classList.add('is-changing');
-    clearTimeout(quoteSwapTimer);
-    quoteSwapTimer=setTimeout(function(){renderQuote();requestAnimationFrame(function(){quoteLead.classList.remove('is-changing');});},180);
-  }
-  document.getElementById('prevQuote').addEventListener('click',function(){showQuote(quoteIndex-1);});
-  document.getElementById('nextQuote').addEventListener('click',function(){showQuote(quoteIndex+1);});
-
-  var training=document.getElementById('trainingOverlay');
-  var openTraining=document.getElementById('openTraining');
-  openTraining.addEventListener('click',function(){training.classList.add('open');training.setAttribute('aria-hidden','false');document.getElementById('closeTraining').focus();});
-  function closeTraining(){training.classList.remove('open');training.setAttribute('aria-hidden','true');openTraining.focus();}
-  document.getElementById('closeTraining').addEventListener('click',closeTraining);
-
-  var dana=document.getElementById('danaOverlay');
-  var openDana=document.getElementById('openDana');
-  openDana.addEventListener('click',function(){dana.showModal();});
-  function closeDana(){dana.close();}
-  document.getElementById('closeDana').addEventListener('click',closeDana);
-  dana.addEventListener('close',function(){openDana.focus({preventScroll:true});});
-  dana.addEventListener('keydown',function(e){e.stopPropagation();if(e.key==='Escape'){e.preventDefault();closeDana();}});
-  document.getElementById('danaConversation').addEventListener('click',closeDana);
-
-  var overlay=document.getElementById('formOverlay'),frame=document.getElementById('formFrame'),opener=null,messageOrigin=localFile?'*':location.origin;
-  function openForm(link){opener=link.id==='danaConversation'?openDana:link;overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');try{frame.contentWindow.postMessage('spacetobe:open',messageOrigin);}catch(err){}}
-  function closeForm(){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');if(opener)opener.focus({preventScroll:true});}
-  document.addEventListener('click',function(e){var link=e.target.closest('a[href="start.html"]');if(!link)return;e.preventDefault();openForm(link);});
-  window.addEventListener('message',function(e){if(e.source===frame.contentWindow&&(localFile||e.origin===location.origin)&&e.data==='spacetobe:close-form')closeForm();});
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){if(overlay.classList.contains('open'))closeForm();else if(training.classList.contains('open'))closeTraining();else if(dana.open)closeDana();else if(mobileControls.classList.contains('open'))closeMobileMenu();else if(activeIndex>0)showPanel(0);return;}
-    if(overlay.classList.contains('open')||training.classList.contains('open')||dana.open)return;
-    if(e.key==='ArrowRight'||e.key==='PageDown')showPanel(activeIndex+1);
-    if(e.key==='ArrowLeft'||e.key==='PageUp')showPanel(activeIndex-1);
-  });
-})();
-</script>
-<script src="giving-guide.js?v=20260916"></script>
+  </main>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      if (!root.hasAttribute('data-gate')) return;
+      setTimeout(function () {
+        var gate = document.getElementById('gate');
+        var from = gate.querySelector('.gate-mark').getBoundingClientRect();
+        var to = document.querySelector('.intro .mark').getBoundingClientRect();
+        gate.style.setProperty('--gate-x', (to.left + to.width / 2 - from.left - from.width / 2) + 'px');
+        gate.style.setProperty('--gate-y', (to.top + to.height / 2 - from.top - from.height / 2) + 'px');
+        gate.style.setProperty('--gate-scale', String(to.width / from.width));
+        try { sessionStorage.setItem('stb-entered', '1'); } catch (e) {}
+        root.setAttribute('data-entering', '1');
+        gate.classList.add('is-travelling');
+        setTimeout(function () {
+          root.removeAttribute('data-gate');
+          root.removeAttribute('data-entering');
+        }, 1400);
+      }, 2200);
+    }());
+  </script>
 </body>
 </html>
