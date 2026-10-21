@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>
     try {
-      if (!sessionStorage.getItem('stb-entered') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (!location.hash && !sessionStorage.getItem('stb-entered') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.setAttribute('data-gate', '1');
         setTimeout(function () { document.documentElement.removeAttribute('data-gate'); }, 4200);
       }
@@ -38,7 +38,8 @@
     *{box-sizing:border-box}
     html{background:var(--paper);color:var(--ink);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
     body{margin:0}
-    main{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:64px 24px}
+    html{scroll-behavior:smooth}
+    .landing{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:64px 24px}
     .intro{width:100%;text-align:center;transform:translateY(-24px)}
     .mark{display:block;width:100px;height:100px;margin:0 auto 32px}
     .mark circle{fill:none;stroke:var(--green);stroke-width:7}
@@ -63,6 +64,8 @@
     .name-link:hover,.name-link:focus-visible{color:#527b62}
     .roles{margin:18px auto 0;font-size:clamp(15px,1.45vw,18px);line-height:1.8;font-weight:400;text-wrap:balance}
     .roles span{white-space:nowrap}
+    .roles a{transition:color .25s ease;text-underline-offset:5px}
+    .roles a:hover,.roles a:focus-visible{color:#527b62;text-decoration:underline;text-decoration-thickness:1px}
     .format{margin:8px 0 0;font-size:14px;line-height:1.6;color:#62695e}
     a{color:inherit;text-decoration:none}
     .email{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 30px;margin-top:34px;border:1px solid rgba(96,164,132,.16);border-radius:4px;background:linear-gradient(115deg,rgba(96,164,132,.15),rgba(238,205,120,.13));color:var(--ink);font-size:15px;transition:background-color .25s ease,border-color .25s ease}
@@ -70,21 +73,92 @@
     .capacity{margin:16px 0 0;font-size:12px;line-height:1.6;color:#62695e;font-variant-numeric:tabular-nums}
     a:focus-visible{outline:2px solid var(--green);outline-offset:6px}
     ::selection{background:#60a48440}
-    @media(max-width:420px){main{padding:40px 22px}.roles{max-width:310px}}
+    .reading{width:min(100% - 96px,1040px);margin:0 auto}
+    .offering{width:min(100%,640px);margin:0 auto;padding:120px 0;scroll-margin-top:0}
+    .offering:focus{outline:none}
+    .section-label{margin:0 0 36px;font-size:14px;line-height:1.5;font-weight:400;color:#62695e}
+    .prose{max-width:640px}
+    .prose h3{margin:0 0 48px;font-size:clamp(32px,3.8vw,48px);font-weight:400;line-height:1.18;letter-spacing:-.04em;text-wrap:balance;max-width:22ch}
+    .prose p{font-size:18px;line-height:1.85;margin:0 0 28px;color:#454e41}
+    .prose p:last-child{margin-bottom:0}
+    .letter{padding:100px 0 120px;scroll-margin-top:40px}
+    .letter-close{text-align:center;margin-top:64px;scroll-margin-top:48px}
+    .letter-portrait{width:220px;max-width:100%;margin:0 auto;scroll-margin-top:48px}
+    .letter-portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 50%}
+    .letter-grid{max-width:640px}
+    @media(max-width:700px){.letter-close{margin-top:48px}.letter-portrait{width:180px;scroll-margin-top:28px}}
+    .letter .prose p{font-size:18px;line-height:1.85}
+    .letter .letter-close .signature{margin:24px 0 0;font-size:24px;letter-spacing:-.03em;color:var(--ink)}
+    .letter .email{margin-top:24px}
+    .page-end{display:flex;justify-content:flex-end;padding:32px 0}
+    .page-end a{display:flex;align-items:center;min-height:44px;font-size:12px;color:#62695e}
+    @media(max-width:700px){.reading{width:calc(100% - 56px)}.offering{padding:72px 0;scroll-margin-top:0}.section-label{margin:0 0 28px;font-size:13px}.prose h3{margin-bottom:36px}.prose p,.letter .prose p{font-size:16px;line-height:1.85;margin-bottom:24px}.prose p:last-child{margin-bottom:0}.letter{padding:64px 0 80px}.page-end{padding:16px 0}}
+    @media(max-width:420px){.landing{padding:64px 22px}.roles{max-width:310px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     @media(prefers-reduced-motion:reduce){a,.intro,.gate-mark{transition:none!important}.gate-mark svg,.intro h1,.intro .roles,.intro .format,.intro .email,.intro .capacity{animation:none!important}html[data-gate="1"] #gate{display:none}html[data-gate="1"] .intro{opacity:1;visibility:visible}html[data-gate="1"] .intro .mark{opacity:1}}
   </style>
 </head>
 <body>
   <div id="gate" aria-hidden="true"><div class="gate-mark"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10"/></svg></div></div>
   <main>
+    <section class="landing" id="top" aria-label="Space to Be with John Ooi">
     <div class="intro">
       <svg class="mark" viewBox="0 0 32 32" role="img" aria-label="Space to Be"><circle cx="16" cy="16" r="10"/></svg>
       <h1><a class="name-link" href="https://j-hn.info/" aria-label="John Ooi, personal website">John Ooi</a></h1>
-      <p class="roles"><span>meditation teacher</span> / <span>spiritual friend</span> / <span>realisation partner</span></p>
+      <p class="roles"><span><a href="#meditation-teacher">meditation teacher</a></span> / <span><a href="#spiritual-friend">spiritual friend</a></span> / <span><a href="#realisation-partner">realisation partner</a></span></p>
       <p class="format"><em>hourly or over multi-week flows</em></p>
       <a class="email" href="mailto:john@spacetobe.xyz?subject=Space%20to%20Be">Email me</a>
       <p class="capacity">9 places available</p>
     </div>
+    </section>
+    <div class="reading">
+      <section class="offering" id="meditation-teacher" aria-labelledby="meditation-title" tabindex="-1">
+        <h2 class="section-label" id="meditation-title">Meditation teacher</h2>
+        <div class="prose">
+          <h3>A practice you can make your own.</h3>
+          <p>Meditation can begin with a simple curiosity: what is happening?</p>
+          <p>We can explore what meditation is, why you might practise, and what you discover when you do. You don’t need to arrive with experience, a quiet mind, or even certainty that meditation is for you.</p>
+          <p>I offer simple instructions and help you work with what actually happens. Over time, we may find a practice that grounds you, deepens your understanding, and becomes something you can draw on in ordinary life.</p>
+        </div>
+      </section>
+      <section class="offering" id="spiritual-friend" aria-labelledby="friend-title" tabindex="-1">
+        <h2 class="section-label" id="friend-title">Spiritual friend</h2>
+        <div class="prose">
+          <h3>Some things become clearer in company.</h3>
+          <p>There is something different about having someone alongside you. Someone to speak openly with, practise with, and return to as things unfold.</p>
+          <p>You can bring questions of meaning and belonging, difficult feelings, unexpected joy, or something you haven’t yet found words for. We don’t need to make everything into a problem to solve.</p>
+          <p>I listen, share what I notice, and offer another perspective when it might help. You remain the authority on your experience. No particular belief is required, and uncertainty is welcome.</p>
+        </div>
+      </section>
+      <section class="offering" id="realisation-partner" aria-labelledby="partner-title" tabindex="-1">
+        <h2 class="section-label" id="partner-title">Realisation partner</h2>
+        <div class="prose">
+          <h3>Let what you discover change how you live.</h3>
+          <p>Sometimes we understand something before we know how to live it. We recognise an old pattern, sense what matters, or glimpse a possibility, yet find ourselves returning to familiar ways.</p>
+          <p>We can stay with that gap together. Through conversation, attention and small experiments, we explore what your understanding asks of you in practice: a decision, a conversation, a different way of working, or permission to stop.</p>
+          <p>This might mean making a change. It might mean discovering that you don’t need to become someone else to meet what is here.</p>
+        </div>
+      </section>
+    </div>
+    <section class="letter" aria-labelledby="note-title">
+      <div class="reading letter-grid">
+        <div class="prose">
+          <h2 class="section-label" id="note-title">A note from me</h2>
+          <p>I came to meditation when moving to London and starting medical school unsettled a sense of myself I had felt quite sure of. I was anxious, sometimes panicked, and unsure where I belonged. What began as a way to cope became a much wider inquiry into how to live.</p>
+          <p>That inquiry is still alive. It has taken me through teacher training, travel, leaving medicine, and the less dramatic learning that happens in everyday relationships.</p>
+          <p>I don’t offer a finished answer to being human. I offer what I’ve learnt, a willingness to pay attention, and a real interest in you. I value depth, but also humour, simplicity, and the possibility that we don’t always need to take ourselves quite so seriously.</p>
+          <p>If something here speaks to you, you’re welcome to write. You don’t need to have worked out exactly what you’re looking for.</p>
+          <div class="letter-close" id="john-close">
+            <figure class="letter-portrait" id="john-photo">
+              <img src="images/john-seaside-original.jpg" alt="John beside the sea beneath an evening sky." width="1200" height="900" loading="lazy">
+            </figure>
+            <p class="signature">John</p>
+            <a class="email" href="mailto:john@spacetobe.xyz?subject=Space%20to%20Be">Email me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="reading page-end"><a href="#top">Back to the top ↑</a></footer>
   </main>
   <script>
     (function () {
